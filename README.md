@@ -1,4 +1,4 @@
-Jeff Winegar Base UI
+Jeff Winegar Personal Site
 =======================================
 
 Compiling Assets
