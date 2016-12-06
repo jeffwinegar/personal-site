@@ -1,0 +1,95 @@
+@mixin sticky-footer($height, $footer-name: '.main-footer') {
+  // Applies sticky footer.
+  // Must wrap all content outside of footer in .sticky-footer-push
+  // which must be a direct child of the body
+  //
+  // @param  $height      Height of footer.
+  // @param  $footer-name (optional) Class name given to main footer.
+  //
+  // Example: @include sticky-footer($height: 50px);
+
+  .sticky-footer-push {
+    min-height: 100%;
+    padding-bottom: $height;
+  }
+
+  #{$footer-name} {
+    height: $height;
+    margin-top: -$height;
+  }
+}
+
+
+@mixin fluid-grid($list: false, $vert-align: top, $font-size: root, $text-align: left, $spacer: false) {
+  // Spreads direct children of element horizontally with fluid spacing.
+  // Children will wrap if space is not avalable.
+  //
+  // @param  $list       (optional) Parent element is a list.
+  //                      Used to strip styles if parent is a UL.
+  // @param  $vert-align (optional) Vertical alignment of children.
+  // @param  $font-size  (optional) Font size reset of children.
+  // @param  $text-align (optional) Text alignment reset of children
+  // @param  $spacer     (optional) Boolean for if a wrap spacer exists in the DOM.
+  //
+  // Example: @include fluid-grid($list: true);
+
+  font-size: 0.1px;
+  text-align: justify;
+  @if $list == true {
+    list-style: none;
+  }
+
+  &:after {
+    content: '';
+    display: inline-block;
+    width: 100%;
+  }
+
+  & > * {
+    display: inline-block;
+    vertical-align: $vert-align;
+    text-align: $text-align;
+    @if $font-size == root {
+      font-size: 1rem;
+    }
+    @else {
+      font-size: rem($font-size);
+    }
+
+    @if $spacer == true {
+      &.fluid-grid-spacer {
+        height: 1px;
+        margin-top: -1px;
+      }
+    }
+  }
+}
+
+
+@mixin fluid-text($font-min, $viewport-min, $font-max, $viewport-max) {
+  // Fluidly changes font size based on viewport width within defined parameters.
+  // Pixel sizes defined, mixin converts to REMs and EMs where needed.
+  //
+  // @param  $font-min     Minimum font size. Calculations will stop at this font size.
+  // @param  $viewport-min Minimum viewport size.
+  //                       (Where font size calculations stop and min font size is used.)
+  // @param  $font-max     Maximum font size. Calculations will start at this font size.
+  // @param  $viewport-max Maximum viewport size.
+  //                       (Where font size calculations start and max font size is no longer used.)
+  //
+  // Example: @include fluid-text($font-min: 16px, $viewport-min: 320px, $font-max: 18px, $viewport-max: 480px);
+
+  $vmin-val  : ($viewport-min / ($viewport-min * 0 + 1)) / $pxBase;
+  $vmax-val  : ($viewport-max / ($viewport-max * 0 + 1)) / $pxBase;
+  $fmin-val  : ($font-min / ($font-min * 0 + 1)) / $pxBase;
+  $fmax-val  : ($font-max / ($font-max * 0 + 1)) / $pxBase;
+
+  font-size: rem($font-min);
+
+  @media (min-width: em($viewport-min)) and (max-width: em($viewport-max)) {
+    font-size: calc(#{rem($font-min)} + (#{$fmax-val} - #{$fmin-val}) * (100vw - #{rem($viewport-min)}) / (#{$vmax-val} - #{$vmin-val}));
+  }
+  @media (min-width: em($viewport-max)) {
+    font-size: rem($font-max);
+  }
+}

@@ -1,0 +1,77 @@
+$pxBase : 16 !default;
+
+
+$font-main       : 'Helvetica Neue', Helvetica, Arial, sans-serif !default;
+$font-base-color : #333333 !default; // Base Black
+
+$link-color             : #0088cc !default;
+$link-interaction-color : mix($link-color, black, 70%) !default;
+
+
+$wrapperWidth  : 1170 !default; // px value
+$wrapperMargin : (16/375)*100 !default; // % value
+$fluidWidth    : $wrapperWidth + ($wrapperWidth - ($wrapperWidth * ((100 - ($wrapperMargin * 2)) / 100) ));
+
+
+$body-background-color        : white !default;
+$main-header-background-color : white !default;
+$main-footer-background-color : mix($font-base-color, white, 20%) !default;
+
+
+
+// main menu variables
+// ---------------------------------
+
+$main-menu-item-color : $font-base-color !default;
+
+
+
+// mobile menu variables
+// ---------------------------------
+
+$mobile-menu-switch-max : 768 !default;
+$mobile-menu-switch-min : $mobile-menu-switch-max + 1 !default;
+
+$mobile-menu-button-color : $font-base-color !default;
+
+
+// flyout menu variables
+
+$mobile-header-height: 48px !default;
+// Number of main menu items
+$menu-items: 6;
+
+
+
+// WP content editor variables
+// ---------------------------------
+
+$blockquote-color      : mix($font-base-color, white, 75%) !default;
+$blockqote-border      : $font-base-color !default;
+
+$pre-border            : mix($font-base-color, white, 25%) !default;
+
+$horizontal-rule-color : mix($font-base-color, white, 25%) !default;
+
+$caption-color         : mix($font-base-color, white, 75%) !default;
+
+
+
+// bxSlider variables
+// ---------------------------------
+
+// direction control variables
+$carousel-controls-inset               : 12px !default;
+
+// pager variables
+$carousel-pager-color                  : $font-base-color !default;
+$carousel-pager-size                   : 12px !default;
+$carousel-pager-radius                 : 50% !default;
+$carousel-pager-background             : white !default;
+$carousel-pager-border                 : mix($carousel-pager-color, white, 70%) !default;
+
+$carousel-pager-interaction-background : mix($carousel-pager-color, white, 70%) !default;
+$carousel-pager-active-background      : $carousel-pager-color !default;
+$carousel-pager-active-border          : $carousel-pager-color !default;
+
+$carousel-pager-items-seperation       : 7px !default;

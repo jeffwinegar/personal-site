@@ -1,0 +1,12 @@
+.link {
+  box-shadow: 0 0 0 0 $link-color;
+  color: $link-color;
+  text-decoration: none;
+  transition: color 0.1s ease, box-shadow 0.1s ease;
+
+  &:hover,
+  &:focus {
+    color: $link-interaction-color;
+    box-shadow: 0 1px 0 0 $link-interaction-color;
+  }
+}

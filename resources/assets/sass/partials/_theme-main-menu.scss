@@ -1,0 +1,96 @@
+.main-menu {
+  list-style: none;
+
+  @media screen and (min-width: em($mobile-menu-switch-min)) {
+    @include fluid-grid();
+  }
+}
+.main-menu-item {
+  color: $main-menu-item-color;
+}
+.main-menu-link {
+  color: inherit;
+}
+
+
+.main-sub-menu {
+  @extend %hidden;
+  list-style: none;
+
+  @media screen and (max-width: em($mobile-menu-switch-max)) {
+    display: none;
+  }
+  @media screen and (min-width: em($mobile-menu-switch-min)) {
+    position: absolute;
+    z-index: 1;
+    white-space: nowrap;
+    background-color: $main-header-background-color;
+  }
+}
+.main-sub-menu-link {
+  color: inherit;
+}
+
+
+.mobile-menu-button {
+  @extend %hidden;
+
+  @media screen and (max-width: em($mobile-menu-switch-max)) {
+    display: inline-block;
+    position: absolute;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    width: 48px;
+    height: 48px;
+  }
+}
+.mobile-button-icon {
+
+  @media screen and (max-width: em($mobile-menu-switch-max)) {
+    display: block;
+    position: absolute;
+    top: #{(48/2)}px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 18px;
+    height: 1px;
+    background-color: $mobile-menu-button-color;
+    transition: background-color 0ms linear 200ms;
+
+    &:before,
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background-color: $mobile-menu-button-color;
+      transform: rotate(0deg);
+      transition: top 200ms ease-in-out 150ms, transform 150ms ease-in-out;
+    }
+    &:before {
+      top: -5px;
+    }
+    &:after {
+      top: calc(100% + 4px);
+    }
+  }
+
+  .js-menu-expanded & {
+    background-color: transparent;
+    transition: background-color 0ms linear 200ms;
+
+    &:before,
+    &:after {
+      top: 0;
+      transition: top 200ms ease-in-out, transform 150ms ease-in-out 150ms;
+    }
+    &:before {
+      transform: rotate(45deg);
+    }
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}

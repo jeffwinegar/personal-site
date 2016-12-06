@@ -1,0 +1,54 @@
+*,
+*:before,
+*:after {
+  margin:0;
+  padding:0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  outline: none !important;
+  -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+
+.xdebug-var-dump {
+  background: white !important;
+  color: black !important;
+}
+
+html,
+body {
+  height:100%;
+}
+
+body {
+  font: {
+    family: $font-main;
+    size: 100%;
+    weight: normal;
+  }
+  line-height: (26/16); // Golden Ratio scale
+  color: $font-base-color;
+  background-color: $body-background-color;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+.wrapper {
+  position: relative;
+  width: #{100 - ($wrapperMargin * 2) * 1%};
+  margin: 0 #{($wrapperMargin) * 1%};
+
+  @media screen and (min-width: em($fluidWidth)) {
+    width: em($wrapperWidth);
+    margin: 0 auto;
+  }
+}

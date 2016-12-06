@@ -1,0 +1,74 @@
+.bx-wrapper {
+  position: relative;
+}
+
+.slide {
+  line-height: 0;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+}
+
+.bx-controls-direction {
+
+  & > * {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 10;
+  }
+  a {
+    text-decoration: none;
+    line-height: 0;
+    transition: color 0.25s ease;
+  }
+  .bx-prev {
+    left: $carousel-controls-inset;
+  }
+  .bx-next {
+    right: $carousel-controls-inset;
+  }
+}
+
+.bx-pager {
+  font: {
+    family: arial;
+    size: 0.85em;
+    weight: 700;
+  }
+  text-align: center;
+  line-height: 0;
+
+  .bx-pager-item {
+    display: inline-block;
+    *zoom: 1;
+    *display: inline;
+
+    & + .bx-pager-item {
+      margin-left: $carousel-pager-items-seperation;
+    }
+  }
+
+  a {
+    background: $carousel-pager-background;
+    text-indent: -9999px;
+    display: block;
+    width: $carousel-pager-size;
+    height: $carousel-pager-size;
+    outline: 0;
+    border: solid 1px $carousel-pager-border;
+    border-radius: $carousel-pager-radius;
+    transition: background-color 0.25s ease, border-color 0.25s ease;
+
+    &:hover,
+    &:focus {
+      background: $carousel-pager-interaction-background;
+    }
+    &.active {
+      background: $carousel-pager-active-background;
+      border-color: $carousel-pager-active-border;
+    }
+  }
+}

@@ -1,0 +1,3 @@
+.page-headline {
+  @include fluid-text($font-min: 24px, $viewport-min: 320px, $font-max: 42px, $viewport-max: 1170px);
+}

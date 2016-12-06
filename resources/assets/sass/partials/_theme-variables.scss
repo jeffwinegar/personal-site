@@ -1,0 +1,32 @@
+// imported theme fonts
+// @font-face font imports from sass/fonts
+// ---------------------------------
+
+// @import "../fonts/font-font-name";
+
+
+
+// Theme brand colors
+// ---------------------------------
+
+$theme-black : #333333;
+$theme-blue  : #0088cc;
+
+
+// Theme specific variables
+// ---------------------------------
+
+$body-background-color : white;
+
+$wrapperWidth  : 1170; // px value
+
+
+$font-main   : 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-accent : 'accent font name', 'fallback fonts';
+
+
+$font-base-color : $theme-black;
+$link-color      : $theme-blue;
+
+
+// $footer-background-color : transparent;

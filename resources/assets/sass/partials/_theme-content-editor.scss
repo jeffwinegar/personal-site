@@ -1,0 +1,116 @@
+// Golden Ratio scale
+// http://www.pearsonified.com/typography/
+.content-editor {
+  @extend %clearfix;
+
+  & > * + * {
+    margin-top: em(26px, 16px);
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    line-height: 1.1;
+
+    & + * {
+      margin-top: #{(26/16) / 2}em;
+    }
+  }
+
+  h1 {
+    font-size: em(42px, 16px);
+  }
+
+  h2 {
+    font-size: em(26px, 16px);
+  }
+
+  h3 {
+    font-size: em(20px, 16px);
+  }
+
+  h4,
+  h5 {
+    font-size: 1em;
+  }
+
+  h6 {
+    font-size: em(13px, 16px);
+  }
+  
+  img {
+    @extend %fluid-image;
+  }
+
+  .video-embed {
+    position: relative;
+    padding-bottom: #{(9/16)*100%};
+    height: 0;
+    overflow: hidden;
+
+    iframe,
+    object,
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+
+  a {
+    box-shadow: 0 0 0 0 $link-color;
+    color: $link-color;
+    text-decoration: none;
+    transition: color 0.1s ease, box-shadow 0.1s ease;
+
+    &:hover,
+    &:focus {
+      color: $link-interaction-color;
+      box-shadow: 0 1px 0 0 $link-interaction-color;
+    }
+  }
+
+  ul,
+  ol {
+    list-style: none;
+    margin-top: 0;
+
+    li {
+      position: relative;
+    }
+  }
+
+  ul {
+
+    li {
+      padding-left: em(20px);
+
+      &:before {
+        content: '\2022';
+        position: absolute;
+        left: em(7px);
+      }
+    }
+  }
+  ol {
+    counter-reset: num-list;
+
+    li {
+      padding-left: em(32px);
+
+      &:before {
+        counter-increment: num-list;
+        content: counter(num-list) '.';
+        position: absolute;
+        left: 0;
+        width: em(26px);
+        text-align: right;
+      }
+    }
+  }
+}

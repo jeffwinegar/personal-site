@@ -1,0 +1,65 @@
+// Grvity Forms specific global overrides
+
+$inputs: ('textarea', 'input[type="text"]', 'input[type="url"]', 'input[type="email"]', 'input[type="tel"]', 'input[type="number"]', 'input[type="password"]');
+$fields: ();
+
+@each $item in $inputs {
+  $fields: $fields, unquote('#{$item}, .ginput_complex #{$item}, .ginput_complex .ginput_right #{$item}, .ginput_complex .ginput_full #{$item}') !global;
+}
+
+body {
+
+  .gform_wrapper {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+
+    .gform_anchor {
+      display: inline;
+    }
+
+    select,
+    .ginput_complex select,
+    .ginput_complex .ginput_right select,
+    #{$fields} {
+      width: 100% !important;
+      font-size: 1em;
+    }
+    #{$fields} {
+      line-height: 1;
+      padding: 0;
+      border: none;
+      -webkit-appearance: none;
+      border-radius: 0;
+    }
+
+    .ginput_complex {
+      font-size: 0.1px;
+
+      & > * {
+        width: (1/2)*100% - 0.1% !important;
+        font-size: u(1rem);
+        margin: 0 !important;
+
+        &:first-of-type {
+          padding-right: 10px;
+        }
+        &:last-of-type {
+          padding-left: 10px;
+        }
+      }
+    }
+
+    .gform_footer {
+      padding: 0;
+      margin: 0;
+
+      input.button,
+      input[type="submit"] {
+        -webkit-appearance: none;
+        transition: background-color 0.25s ease;
+        border-radius: 0;
+      }
+    }
+  }
+}

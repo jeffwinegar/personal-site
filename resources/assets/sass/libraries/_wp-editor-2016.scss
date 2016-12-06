@@ -1,0 +1,115 @@
+.content-editor {
+
+  // Typography
+  // ---------------------------------
+
+  blockquote {
+    @extend %clearfix;
+
+    border-left: 4px solid $blockqote-border;
+    color: $blockquote-color;
+    font: {
+      size: em(19px);
+      style: italic;
+    }
+    margin-bottom: 26px;
+    padding: 0 0 6px 20px;
+
+    &.alignleft,
+    &.alignright {
+      border: 0 solid $blockqote-border;
+      border-top-width: 4px;
+      padding: 14px 0 0;
+      width: calc(50% - 14px);
+    }
+  }
+
+  address {
+    font-style: italic;
+  }
+
+  pre {
+    border: solid 1px $pre-border;
+    line-height: 1.3125;
+    max-width: 100%;
+    overflow: auto;
+    padding: 14px;
+    white-space: pre;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+  }
+
+  sup,
+  sub {
+    font-size: 75%;
+    height: 0;
+    line-height: 0;
+    position: relative;
+    vertical-align: baseline;
+  }
+  sub {
+    top: -6px;
+  }
+  sup {
+    bottom: -3px;
+  }
+
+  small {
+    font-size: 80%;
+  }
+
+  big {
+    font-size: 125%;
+  }
+
+
+  // Elements
+  // ---------------------------------
+
+  hr {
+    background-color: $horizontal-rule-color;
+    border: 0;
+    height: 1px;
+  }
+
+
+  // Alignment
+  // ---------------------------------
+
+  .alignleft {
+    float: left;
+    margin: 6px 26px 26px 0;
+  }
+
+  .alignright {
+    float: right;
+    margin: 6px 0 26px 26px;
+  }
+
+  .aligncenter {
+    clear: both;
+    display: block;
+    margin: 0 auto 26px;
+  }
+}
+
+
+// Caption
+// ---------------------------------
+
+.wp-caption {
+  background: transparent;
+  border: none;
+  margin-bottom: 26px;
+  max-width: 100%;
+  padding: 0;
+  text-align: inherit;
+}
+
+.wp-caption-text,
+.wp-caption-dd {
+  color: $caption-color;
+  font-size: em(13px, 16px);
+  font-style: italic;
+  padding-top: 7px;
+}
