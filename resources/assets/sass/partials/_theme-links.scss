@@ -1,12 +1,12 @@
-.link {
-  box-shadow: 0 0 0 0 $link-color;
+a {
   color: $link-color;
   text-decoration: none;
+  box-shadow: inset 0 -0.0625em 0 0 $link-border-color;
   transition: color 0.1s ease, box-shadow 0.1s ease;
 
   &:hover,
   &:focus {
     color: $link-interaction-color;
-    box-shadow: 0 1px 0 0 $link-interaction-color;
+    box-shadow: inset 0 -0.0625em 0 0 $link-interaction-border-color;
   }
 }

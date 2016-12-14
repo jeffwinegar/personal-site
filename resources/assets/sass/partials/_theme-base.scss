@@ -42,13 +42,13 @@ h6 {
   margin: 0;
 }
 
-.wrapper {
-  position: relative;
-  width: #{100 - ($wrapperMargin * 2) * 1%};
-  margin: 0 #{($wrapperMargin) * 1%};
+// .wrapper {
+//   position: relative;
+//   width: #{100 - ($wrapperMargin * 2) * 1%};
+//   margin: 0 #{($wrapperMargin) * 1%};
 
-  @media screen and (min-width: em($fluidWidth)) {
-    width: em($wrapperWidth);
-    margin: 0 auto;
-  }
-}
+//   @media screen and (min-width: em($fluidWidth)) {
+//     width: em($wrapperWidth);
+//     margin: 0 auto;
+//   }
+// }

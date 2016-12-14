@@ -21,12 +21,16 @@ $body-background-color : white;
 $wrapperWidth  : 1170; // px value
 
 
-$font-main   : 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-accent : 'accent font name', 'fallback fonts';
+$font-main   : 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+$font-accent : 'Vidaloka', serif;
 
 
-$font-base-color : $theme-black;
-$link-color      : $theme-blue;
+$font-base-color               : $theme-black;
+
+$link-color                    : $font-base-color;
+$link-interaction-color        : $link-color;
+$link-border-color             : mix(white, $theme-blue, 60%);
+$link-interaction-border-color : $theme-blue;
 
 
 // $footer-background-color : transparent;

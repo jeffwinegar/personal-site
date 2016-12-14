@@ -41,3 +41,10 @@ img[src*=svg] {
     clear: both;
   }
 }
+
+
+// Theme specific
+%block-inset {
+  width: #{100 - (((16/375)*100) * 2) * 1%};
+  margin: 0 #{((16/375)*100) * 1%};
+}

@@ -2,6 +2,7 @@
 // http://www.pearsonified.com/typography/
 .content-editor {
   @extend %clearfix;
+  font-size: rem(20px);
 
   & > * + * {
     margin-top: em(26px, 16px);
@@ -40,7 +41,7 @@
   h6 {
     font-size: em(13px, 16px);
   }
-  
+
   img {
     @extend %fluid-image;
   }
@@ -62,18 +63,18 @@
     }
   }
 
-  a {
-    box-shadow: 0 0 0 0 $link-color;
-    color: $link-color;
-    text-decoration: none;
-    transition: color 0.1s ease, box-shadow 0.1s ease;
+  // a {
+  //   box-shadow: 0 0 0 0 $link-color;
+  //   color: $link-color;
+  //   text-decoration: none;
+  //   transition: color 0.1s ease, box-shadow 0.1s ease;
 
-    &:hover,
-    &:focus {
-      color: $link-interaction-color;
-      box-shadow: 0 1px 0 0 $link-interaction-color;
-    }
-  }
+  //   &:hover,
+  //   &:focus {
+  //     color: $link-interaction-color;
+  //     box-shadow: 0 1px 0 0 $link-interaction-color;
+  //   }
+  // }
 
   ul,
   ol {

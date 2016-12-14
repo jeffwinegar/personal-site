@@ -1,0 +1,10 @@
+.intro {
+  @extend %block-inset;
+  font-family: $font-accent;
+  @include fluid-text($font-min : 40px, $viewport-min : 320px, $font-max : 60px, $viewport-max : $wrapperWidth);
+  line-height: 1.2;
+
+  & section > * + * {
+    margin-top: em(32px, 52px);
+  }
+}

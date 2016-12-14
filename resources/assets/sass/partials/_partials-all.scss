@@ -4,11 +4,15 @@
 @import "ghost-helpers";
 @import "theme-base";
 @import "theme-links";
-@import "theme-buttons";
+// @import "theme-buttons";
 @import "theme-headlines";
 
 @import "theme-header-main";
 @import "theme-footer-main";
+
+@import "theme-connect";
+
+@import "theme-intro";
 
 
 
@@ -18,7 +22,7 @@
 // @import "../utilities/mobile-flyout-menu";
 // @import "theme-menu-main";
 
-@import "../utilities/horizontal-scroll-menu";
+// @import "../utilities/horizontal-scroll-menu";
 
 
 
@@ -26,7 +30,7 @@
 // ---------------------------------
 
 // @import "../libraries/wp-editor-2016";
-@import "theme-content-editor";
+// @import "theme-content-editor";
 
 // @import "../libraries/bxslider-base-4.1.2";
 // @import "theme-component-name";
