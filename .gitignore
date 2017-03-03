@@ -67,3 +67,4 @@ Temporary Items
 *.sublime-workspace
 *.sublime-project
 .idea/
+makefile
