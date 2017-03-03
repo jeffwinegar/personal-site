@@ -1,6 +1,7 @@
-@include sticky-footer($height: 54px);
-
 .main-footer {
   padding: 16px 0;
+  font-size: rem(14px);
+  color: $main-footer-font-color;
   background-color: $main-footer-background-color;
+  @extend %block-inset;
 }

@@ -1,5 +1,50 @@
+// Component variables
+$min-connect-width : 760;
+$max-connect-width : $min-connect-width - 1;
+
+
 .connect {
   list-style: none;
   columns: 2;
-  max-width: 500px;
+  column-gap: 20px;
+  max-width: 800px;
+
+  & > * {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    & > *:first-child:not(:last-child) {
+
+      & ~ * {
+        overflow: hidden;
+      }
+
+      @media screen and (min-width: em(500px)) {
+        width: 70px;
+        float: left;
+      }
+    }
+  }
+}
+.connect-label {
+  font-size: em(15px, 16px);
+  line-height: (26/15);
+  color: $label-color;
+
+  @media screen and (max-width: em($max-connect-width)) {
+    display: none;
+  }
+}
+.connect-short-link {
+
+  @media screen and (min-width: em($min-connect-width)) {
+    display: none;
+  }
+}
+.connect-full-link {
+
+  @media screen and (max-width: em($max-connect-width)) {
+    display: none;
+  }
 }

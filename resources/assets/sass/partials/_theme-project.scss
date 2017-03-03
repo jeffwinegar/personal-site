@@ -1,0 +1,75 @@
+// Component variables
+$min-project-detail-width : 500;
+
+
+.project {
+
+  @media screen and (max-width: em($wrapperWidth - 1px)) {
+    margin: {
+      top: percent(120px, $wrapperWidth);
+      bottom: percent(160px, $wrapperWidth);
+    }
+  }
+  @media screen and (min-width: em($wrapperWidth)) {
+    margin: {
+      top: 140px;
+      bottom: 140px;
+    }
+  }
+}
+.project-intro {
+  @extend %block-inset;
+  font-family: $font-accent;
+  @include fluid-text($font-min : 36px, $viewport-min : 375px, $font-max : 58px, $viewport-max : $wrapperWidth);
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  margin-bottom: -0.48em;
+
+  & > * + * {
+    margin-top: em(36px, 58px);
+  }
+}
+.project-overview {
+  background-color: $project-overview-background-color;
+}
+.project-details {
+  @extend %block-inset;
+  // font-size: em(14px, 16px);
+
+  @media screen and (max-width: em($wrapperWidth - 1px)) {
+    padding: percent(100px, $wrapperWidth) 0;
+  }
+  @media screen and (min-width: em($wrapperWidth)) {
+    padding: 100px 0;
+  }
+}
+.project-detail {
+  display: block;
+  max-width: 1025px;
+  line-height: (30/16);
+
+  & + & {
+    margin-top: em(5px);
+  }
+
+  & > *:first-child:not(:last-child) {
+
+    & ~ * {
+      overflow: hidden;
+    }
+
+    @media screen and (min-width: em($min-project-detail-width)) {
+      width: 100px;
+      float: left;
+    }
+  }
+  & > *:last-child:not(:first-child) {
+    columns: 350px 2;
+    column-gap: em(55px, 16px);
+  }
+}
+.project-detail-label {
+  font-size: em(15px, 16px);
+  line-height: (30/15);
+  color: $label-color;
+}

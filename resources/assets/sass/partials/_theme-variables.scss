@@ -10,6 +10,7 @@
 // ---------------------------------
 
 $theme-black : #333333;
+$theme-gray  : #EFEFEF;
 $theme-blue  : #0088cc;
 
 
@@ -22,15 +23,23 @@ $wrapperWidth  : 1170; // px value
 
 
 $font-main   : 'Roboto', 'Helvetica Neue', Helvetica, Arial, sans-serif;
-$font-accent : 'Vidaloka', serif;
+$font-accent : 'Abril Fatface', serif;
 
 
 $font-base-color               : $theme-black;
 
+
 $link-color                    : $font-base-color;
 $link-interaction-color        : $link-color;
-$link-border-color             : mix(white, $theme-blue, 60%);
 $link-interaction-border-color : $theme-blue;
+$link-border-color             : mix(white, $link-interaction-border-color, 60%);
 
 
-// $footer-background-color : transparent;
+$label-color : mix(white, $theme-black, 60%);
+
+
+$project-overview-background-color : mix(white, $theme-gray, 20%);
+
+
+$main-footer-font-color       : $label-color;
+$main-footer-background-color : transparent;

@@ -1,4 +1,4 @@
-.intro {
+.outro {
   @extend %block-inset;
   font-family: $font-accent;
   @include fluid-text($font-min : 36px, $viewport-min : 375px, $font-max : 58px, $viewport-max : $wrapperWidth);
@@ -11,26 +11,14 @@
 
   @media screen and (max-width: em($wrapperWidth - 1px)) {
     margin: {
-      top: percent(140px, $wrapperWidth);
-      bottom: percent(210px, $wrapperWidth);
+      top: percent(210px, $wrapperWidth);
+      bottom: percent(140px, $wrapperWidth);
     }
   }
   @media screen and (min-width: em($wrapperWidth)) {
     margin: {
-      top: 140px;
-      bottom: 210px;
+      top: 210px;
+      bottom: 140px;
     }
-  }
-}
-.intro-excerpt,
-.intro-less-button {
-  display: none;
-}
-.intro-more-button,
-.intro-less-button {
-  @extend a;
-  font: {
-    family: $font-main;
-    size: 1rem;
   }
 }
