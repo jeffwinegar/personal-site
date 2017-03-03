@@ -370,9 +370,9 @@ button {
 }
 
 .main-footer {
-  padding: 16px 0;
   font-size: 0.875rem;
   color: #adadad;
+  padding: 40px 0 45px;
   background-color: transparent;
 }
 

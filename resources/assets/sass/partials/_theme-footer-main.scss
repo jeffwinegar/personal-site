@@ -1,7 +1,7 @@
 .main-footer {
-  padding: 16px 0;
+  @extend %block-inset;
   font-size: rem(14px);
   color: $main-footer-font-color;
+  padding: 40px 0 45px;
   background-color: $main-footer-background-color;
-  @extend %block-inset;
 }
