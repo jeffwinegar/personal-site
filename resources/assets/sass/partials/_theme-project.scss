@@ -1,9 +1,8 @@
 // Component variables
-$min-project-detail-width : 500;
+$project-detail-width-min : 500;
 
 
 .project {
-
   @media screen and (max-width: em($wrapperWidth - 1px)) {
     margin: {
       top: percent(120px, $wrapperWidth);
@@ -34,9 +33,11 @@ $min-project-detail-width : 500;
 }
 .project-details {
   @extend %block-inset;
-  // font-size: em(14px, 16px);
 
-  @media screen and (max-width: em($wrapperWidth - 1px)) {
+  @media screen and (max-width: em(467px)) {
+    padding: percent(100px, $wrapperWidth) 0 40px;
+  }
+  @media screen and (min-width: em(468px)) and (max-width: em($wrapperWidth - 1px)) {
     padding: percent(100px, $wrapperWidth) 0;
   }
   @media screen and (min-width: em($wrapperWidth)) {
@@ -58,7 +59,7 @@ $min-project-detail-width : 500;
       overflow: hidden;
     }
 
-    @media screen and (min-width: em($min-project-detail-width)) {
+    @media screen and (min-width: em($project-detail-width-min)) {
       width: 100px;
       float: left;
     }
@@ -72,4 +73,39 @@ $min-project-detail-width : 500;
   font-size: em(15px, 16px);
   line-height: (30/15);
   color: $label-color;
+}
+
+
+.project-highlights {
+  width: 100%;
+  margin: {
+    right: auto;
+    left: auto;
+  }
+
+  & > * {
+    display: inline-block;
+  }
+
+  @media screen and (max-width: em($wrapperWidth - 1px)) {
+    margin-top: percent(-50px, $wrapperWidth);
+  }
+  @media screen and (min-width: em($wrapperWidth)) {
+    margin-top: -50px;
+  }
+}
+.project-highlight-large {
+  width: percent(1080px, $wrapperWidth);
+  max-width: 1080px;
+}
+.project-highlight-medium {
+  width: percent(720px, $wrapperWidth);
+  max-width: 720px;
+}
+.project-highlight-small {
+  width: percent(420px, $wrapperWidth);
+  max-width: 420px;
+}
+.project-highlight-image {
+  @extend %fluid-image;
 }

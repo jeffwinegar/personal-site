@@ -1,0 +1,19 @@
+.project-v-suites {
+
+  .project-highlights {
+    display: flex;
+    align-items: center;
+    max-width: #{(1080px + 720px) - 90px};
+  }
+}
+.project-v-suites-laptop {
+  @media screen and (max-width: em($wrapperWidth - 1px)) {
+    margin-right: -#{percent(90px, $wrapperWidth)};
+  }
+  @media screen and (min-width: em($wrapperWidth)) {
+    margin-right: -90px;
+  }
+}
+.project-v-suites-mobile {
+  margin-top: percent(60px, $wrapperWidth);
+}

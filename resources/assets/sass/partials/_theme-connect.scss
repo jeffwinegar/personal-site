@@ -37,13 +37,11 @@ $max-connect-width : $min-connect-width - 1;
   }
 }
 .connect-short-link {
-
   @media screen and (min-width: em($min-connect-width)) {
     display: none;
   }
 }
 .connect-full-link {
-
   @media screen and (max-width: em($max-connect-width)) {
     display: none;
   }
