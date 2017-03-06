@@ -41,7 +41,7 @@ h6 {
   margin-right: -0.2em;
 }
 
-// Low-rez image is 25% size of original with gaussian blur of 1.0 or use image below.
+// Low-rez image is 15% size of original with gaussian blur of 2.5, or use image below.
 // data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
 img[src*="-lr"] {
   width: 400%;
