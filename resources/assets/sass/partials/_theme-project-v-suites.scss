@@ -1,9 +1,12 @@
+$project-v-suites-max-width : (1080px + 720px) - 90px;
+
+
 .project-v-suites {
 
   .project-highlights {
     display: flex;
     align-items: center;
-    max-width: #{(1080px + 720px) - 90px};
+    max-width: $project-v-suites-max-width;
   }
 }
 .project-v-suites-laptop {

@@ -1,9 +1,19 @@
 const moment = require('moment')
+const Blazy = require('./libraries/blazy.min.js')
 import {showHideContent} from './helpers.js'
 
 
 
 showHideContent('.intro')
+
+/**
+ * Lazy loads all images http://dinbror.dk/blog/blazy/
+ */
+const bLazy = new Blazy({
+  selector : 'img',
+  offset : 0,
+  successClass : 'image-loaded'
+})
 
 /**
  * Gets user's local time and returns a custom greeting based on the time

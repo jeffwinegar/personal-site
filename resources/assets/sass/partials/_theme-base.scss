@@ -41,6 +41,12 @@ h6 {
   margin-right: -0.2em;
 }
 
+// Low-rez image is 25% size of original with gaussian blur of 1.0 or use image below.
+// data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==
+img[src*="-lr"] {
+  width: 400%;
+}
+
 // .wrapper {
 //   position: relative;
 //   width: #{100 - ($wrapperMargin * 2) * 1%};
