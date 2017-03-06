@@ -9,7 +9,7 @@ showHideContent('.intro')
 /**
  * Lazy loads all images http://dinbror.dk/blog/blazy/
  */
-const bLazy = new Blazy({
+new Blazy({
   selector : 'img',
   offset : 0,
   successClass : 'image-loaded'
