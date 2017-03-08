@@ -1,13 +1,9 @@
-// Component variables
-$project-v-suites-max-width : (1080px + 720px) - 90px;
-
-
 .project-v-suites {
 
   .project-highlights {
     display: flex;
+    justify-content: center;
     align-items: center;
-    max-width: $project-v-suites-max-width;
   }
 }
 .project-v-suites-laptop {
@@ -19,5 +15,10 @@ $project-v-suites-max-width : (1080px + 720px) - 90px;
   }
 }
 .project-v-suites-mobile {
-  margin-top: percent(60px, $wrapperWidth);
+  @media screen and (max-width: em($wrapperWidth - 1px)) {
+    margin-top: percent(60px, $wrapperWidth);
+  }
+  @media screen and (min-width: em($wrapperWidth)) {
+    margin-top: 60px;
+  }
 }
