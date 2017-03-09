@@ -65,7 +65,7 @@ $project-detail-width-min : 500;
     }
   }
   & > *:last-child:not(:first-child) {
-    columns: 350px 2;
+    columns: 355px 2;
     column-gap: em(55px, 16px);
   }
 }
