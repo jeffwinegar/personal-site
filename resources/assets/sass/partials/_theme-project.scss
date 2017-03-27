@@ -65,7 +65,7 @@ $project-detail-width-min : 550;
       padding-right: 20px;
     }
   }
-  & > *:last-child:not(:first-child) {
+  & > *:last-child {
     columns: 355px 2;
     column-gap: em(55px, 16px);
   }
