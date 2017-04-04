@@ -1,0 +1,10 @@
+.project-secondkit {
+  align-self: center;
+
+  @media screen and (min-width: em(461px)) and (max-width: em(986px)) {
+    margin: 0 #{((16/375)*100) * 1%} 0 auto;
+  }
+  @media screen and (max-width: em(460px)), (min-width: em(987px)) {
+    margin: 0 #{((16/375)*100) * 1%};
+  }
+}

@@ -104,9 +104,43 @@ $project-detail-width-min : 550;
   max-width: 720px;
 }
 .project-highlight-small {
-  width: percent(420px, $wrapperWidth);
   max-width: 420px;
+
+  @media screen and (max-width: em(986px)) {
+    width: percent(1080px, $wrapperWidth);
+  }
+  @media screen and (min-width: em(987px)) {
+    width: percent(420px, $wrapperWidth);
+  }
 }
 .project-highlight-image {
   @extend %fluid-image;
+}
+.project-highlight-image-offset {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 0;
+
+  & > * {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.project-highlight-copy {
+  display: block;
+  position: relative;
+  font-size: em(15px, 16px);
+  line-height: (21/15);
+  padding-top: 15px;
+}
+.project-highlight-title {
+  font: {
+    size: 1em;
+    weight: 400;
+  }
+  color: $label-color;
+  margin-bottom: 5px;
 }
