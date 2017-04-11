@@ -25,6 +25,10 @@
     }
     @media screen and (min-width: em(987px)) {
       flex-direction: row;
+
+      & :nth-child(n+3) {
+        margin-top: 60px;
+      }
     }
   }
 }
