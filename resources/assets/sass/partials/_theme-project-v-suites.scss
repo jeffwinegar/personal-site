@@ -2,8 +2,14 @@
 
   .project-highlights {
     display: flex;
-    justify-content: center;
-    align-items: center;
+
+    @media screen and (max-width: em(986px)) {
+      flex-wrap: wrap;
+    }
+    @media screen and (min-width: em(987px)) {
+      justify-content: center;
+      align-items: center;
+    }
   }
 }
 .project-v-suites-laptop {
@@ -15,7 +21,13 @@
   }
 }
 .project-v-suites-mobile {
-  @media screen and (max-width: em($wrapperWidth - 1px)) {
+  @media screen and (max-width: em(986px)) {
+    margin: {
+      top: -#{percent(120px, $wrapperWidth)};
+      left: auto;
+    }
+  }
+  @media screen and (min-width: em(987px)) and (max-width: em($wrapperWidth - 1px)) {
     margin-top: percent(60px, $wrapperWidth);
   }
   @media screen and (min-width: em($wrapperWidth)) {

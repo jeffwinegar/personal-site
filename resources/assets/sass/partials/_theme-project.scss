@@ -3,6 +3,8 @@ $project-detail-width-min : 550;
 
 
 .project {
+  width: 100%;
+
   @media screen and (max-width: em($wrapperWidth - 1px)) {
     margin: {
       top: percent(120px, $wrapperWidth);
@@ -65,7 +67,7 @@ $project-detail-width-min : 550;
       padding-right: 20px;
     }
   }
-  & > *:last-child:not(:first-child) {
+  & > *:last-child {
     columns: 355px 2;
     column-gap: em(55px, 16px);
   }
@@ -100,13 +102,61 @@ $project-detail-width-min : 550;
   max-width: 1080px;
 }
 .project-highlight-medium {
-  width: percent(720px, $wrapperWidth);
+  // width: percent(720px, $wrapperWidth);
   max-width: 720px;
+
+  @media screen and (max-width: em(986px)) {
+    width: percent(1080px, $wrapperWidth);
+  }
+  @media screen and (min-width: em(987px)) {
+    width: percent(720px, $wrapperWidth);
+  }
 }
 .project-highlight-small {
-  width: percent(420px, $wrapperWidth);
   max-width: 420px;
+
+  @media screen and (max-width: em(986px)) {
+    width: percent(1080px, $wrapperWidth);
+  }
+  @media screen and (min-width: em(987px)) {
+    width: percent(420px, $wrapperWidth);
+  }
 }
 .project-highlight-image {
   @extend %fluid-image;
+}
+.project-highlight-image-offset {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 0;
+
+  & > * {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+.project-highlight-push-right {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.project-highlight-copy {
+  display: block;
+  position: relative;
+  width: 100%;
+  max-width: 420px;
+  font-size: em(15px, 16px);
+  line-height: (21/15);
+  padding-top: 15px;
+}
+.project-highlight-title {
+  font: {
+    size: 1em;
+    weight: 400;
+  }
+  color: $label-color;
+  margin-bottom: 5px;
 }

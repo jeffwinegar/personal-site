@@ -28,6 +28,10 @@ body {
   background-color: $body-background-color;
 }
 
+main {
+  overflow: hidden;
+}
+
 h1,
 h2,
 h3,
