@@ -1,11 +1,22 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React from "react"
+import styled from "styled-components"
+
+const StyledLink = styled(Link)`
+  /* background-image: radial-gradient(
+    ellipse 200% 100% at 55% 100%,
+    rgb(247, 18, 160) 0%,
+    rgb(121, 8, 177) 46%,
+    rgb(33, 0, 127) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; */
+`
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      background: `rebeccapurple`,
       marginBottom: `1.45rem`,
     }}
   >
@@ -16,16 +27,15 @@ const Header = ({ siteTitle }) => (
         padding: `1.45rem 1.0875rem`,
       }}
     >
-      <h1 style={{ margin: 0 }}>
-        <Link
+      <h1>
+        <StyledLink
           to="/"
           style={{
-            color: `white`,
             textDecoration: `none`,
           }}
         >
           {siteTitle}
-        </Link>
+        </StyledLink>
       </h1>
     </div>
   </header>

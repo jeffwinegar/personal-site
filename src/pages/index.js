@@ -1,21 +1,35 @@
 import React from "react"
-import { Link } from "gatsby"
 
 import Layout from "../components/layout"
-import Image from "../components/image"
+// import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => (
-  <Layout>
-    <SEO title="Home" />
-    <h1>Hi people</h1>
-    <p>Welcome to your new Gatsby site.</p>
-    <p>Now go build something great.</p>
-    <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
-      <Image />
-    </div>
-    <Link to="/page-2/">Go to page 2</Link>
-  </Layout>
-)
+// const timedGreeting = () => {
+//   const curHr = new Date().getHours()
+
+//   return curHr < 12
+//     ? "Good Morning"
+//     : curHr < 18
+//     ? "Good Afternoon"
+//     : "Good Evening"
+// }
+
+const IndexPage = () => {
+  // const hello = timedGreeting()
+
+  return (
+    <Layout>
+      <SEO title="Home" />
+      <p>
+        Hi there. My name is Jeff Winegar. I'm a Frontend JavaScript Developer
+        based in Southern California.
+      </p>
+
+      {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
+        <Image />
+      </div> */}
+    </Layout>
+  )
+}
 
 export default IndexPage
