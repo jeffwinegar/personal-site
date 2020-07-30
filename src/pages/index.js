@@ -4,26 +4,16 @@ import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 
-// const timedGreeting = () => {
-//   const curHr = new Date().getHours()
-
-//   return curHr < 12
-//     ? "Good Morning"
-//     : curHr < 18
-//     ? "Good Afternoon"
-//     : "Good Evening"
-// }
-
 const IndexPage = () => {
-  // const hello = timedGreeting()
-
   return (
     <Layout>
-      <SEO title="Home" />
+      <SEO title="Jeff Winegar" lang="en" />
       <p>
         Hi there. My name is Jeff Winegar. I'm a Frontend JavaScript Developer
         based in Southern California.
       </p>
+
+      <p>I need to add more content here.</p>
 
       {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />

@@ -1,8 +1,10 @@
 module.exports = {
   siteMetadata: {
     title: `Jeff Winegar`,
-    author: `Jeff Winegar`,
     description: `Frontend Web Developer`,
+    url: `https://www.jeffwinegar.com`,
+    author: `Jeff Winegar`,
+    startYear: 2016,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,

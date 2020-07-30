@@ -6,12 +6,12 @@
  */
 
 import React from "react"
-import PropTypes from "prop-types"
 import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 import GlobalStyles from "./styles/GlobalStyles"
-import Header from "./header"
+// import Header from "./header"
+import Footer from "./footer"
 
 const Wrapper = styled.div`
   margin: 0 auto;
@@ -21,33 +21,30 @@ const Wrapper = styled.div`
 
 const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
-    query SiteTitleQuery {
+    query SiteTitleAuthorStartYearQuery {
       site {
         siteMetadata {
           title
           author
+          startYear
         }
       }
     }
   `)
 
+  const { author, startYear } = data.site.siteMetadata
+
   return (
     <>
       <GlobalStyles />
-      <Header siteTitle={data.site.siteMetadata.title} />
+      {/* <Header siteTitle={title} /> */}
       <Wrapper>
         <main>{children}</main>
         email: github:
-        <footer>
-          {data.site.siteMetadata.author} © 2016 - {new Date().getFullYear()}
-        </footer>
+        <Footer siteAuthor={author} siteStartYear={startYear} />
       </Wrapper>
     </>
   )
-}
-
-Layout.propTypes = {
-  children: PropTypes.node.isRequired,
 }
 
 export default Layout
