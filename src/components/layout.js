@@ -6,7 +6,6 @@
  */
 
 import React from "react"
-import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 import GlobalStyles from "./styles/GlobalStyles"
@@ -20,28 +19,14 @@ const Wrapper = styled.div`
 `
 
 const Layout = ({ children }) => {
-  const data = useStaticQuery(graphql`
-    query SiteTitleAuthorStartYearQuery {
-      site {
-        siteMetadata {
-          title
-          author
-          siteStartYear
-        }
-      }
-    }
-  `)
-
-  const { title, author, siteStartYear } = data.site.siteMetadata
-
   return (
     <>
       <GlobalStyles />
-      <Header siteTitle={title} />
+      <Header />
       <Wrapper>
         <main>{children}</main>
         email: github:
-        <Footer siteAuthor={author} siteStartYear={siteStartYear} />
+        <Footer />
       </Wrapper>
     </>
   )

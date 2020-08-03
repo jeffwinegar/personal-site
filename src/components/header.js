@@ -2,6 +2,8 @@ import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
+import { useSiteMetadata } from "./hooks/useSiteMetadata"
+
 const Wrapper = styled.div`
   margin: 0 auto;
   max-width: var(--maxWidth);
@@ -18,21 +20,24 @@ const StyledLink = styled(Link)`
   -webkit-text-fill-color: transparent; */
 `
 
-const Header = ({ siteTitle }) => (
-  <header>
-    <Wrapper>
-      <h1>
-        <StyledLink
-          to="/"
-          style={{
-            textDecoration: `none`,
-          }}
-        >
-          {siteTitle}
-        </StyledLink>
-      </h1>
-    </Wrapper>
-  </header>
-)
+const Header = () => {
+  const { title } = useSiteMetadata()
+  return (
+    <header>
+      <Wrapper>
+        <h1>
+          <StyledLink
+            to="/"
+            style={{
+              textDecoration: `none`,
+            }}
+          >
+            {title}
+          </StyledLink>
+        </h1>
+      </Wrapper>
+    </header>
+  )
+}
 
 export default Header

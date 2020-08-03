@@ -1,13 +1,16 @@
 import React from "react"
 
+import { useSiteMetadata } from "./hooks/useSiteMetadata"
+
 const currYear = new Date().getFullYear()
 
-const Footer = ({ siteAuthor, siteStartYear }) => {
+const Footer = () => {
+  const { author, siteStartYear } = useSiteMetadata()
   const copyrightYearRange =
     siteStartYear !== currYear ? `${siteStartYear} - ${currYear}` : currYear
   return (
     <footer>
-      {siteAuthor} &copy; {copyrightYearRange}
+      {author} &copy; {copyrightYearRange}
     </footer>
   )
 }

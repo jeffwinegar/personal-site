@@ -7,36 +7,29 @@
 
 import React from "react"
 import { Helmet } from "react-helmet"
-import { useStaticQuery, graphql } from "gatsby"
 
-function SEO({ description, lang, keywords, title, url }) {
-  const { site } = useStaticQuery(
-    graphql`
-      query SiteSEOQuery {
-        site {
-          siteMetadata {
-            title
-            description
-            siteUrl
-            twitterHandle
-          }
-        }
-      }
-    `
-  )
+import { useSiteMetadata } from "./hooks/useSiteMetadata"
 
-  const metaDescription = description || site.siteMetadata.description
-  const metaTitle = title || site.siteMetadata.title
-  const metaUrl = url || site.siteMetadata.siteUrl
+const SEO = ({ description, lang, keywords, title, url }) => {
+  const {
+    title: siteTitle,
+    description: siteDescription,
+    siteUrl,
+    twitterHandle,
+  } = useSiteMetadata()
+  const metaLang = lang || `en`
+  const metaDescription = description || siteDescription
+  const metaTitle = title || siteTitle
+  const metaUrl = url || siteUrl
   const metaKeywords = keywords || []
 
   return (
     <Helmet
       htmlAttributes={{
-        lang,
+        lang: metaLang,
       }}
-      title={title}
-      titleTemplate={`%s - ${site.siteMetadata.description}`}
+      title={metaTitle}
+      titleTemplate={`%s - ${siteDescription}`}
       meta={[
         {
           name: `description`,
@@ -64,7 +57,7 @@ function SEO({ description, lang, keywords, title, url }) {
         },
         {
           name: `twitter:creator`,
-          content: site.siteMetadata.twitterHandle,
+          content: twitterHandle,
         },
         {
           name: `twitter:title`,

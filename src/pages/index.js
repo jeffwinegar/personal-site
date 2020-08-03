@@ -7,7 +7,7 @@ import SEO from "../components/seo"
 const IndexPage = () => {
   return (
     <Layout>
-      <SEO title="Jeff Winegar" lang="en" />
+      <SEO />
       <p>
         Hi there. My name is Jeff Winegar. I'm a Frontend JavaScript Developer
         based in Southern California.
