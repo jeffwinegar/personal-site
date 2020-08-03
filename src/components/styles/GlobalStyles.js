@@ -56,13 +56,7 @@ const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
-    line-height: 1.625;
-    /* background-image: radial-gradient(
-      ellipse 200% 100% at 55% 100%,
-      rgb(247, 18, 160) 0%, 
-      rgb(121, 8, 177) 46%, 
-      rgb(33, 0, 127) 100% 
-    ); */
+    line-height: calc(1ex / 0.32);
   }
 
   ul[class],
@@ -99,26 +93,34 @@ const GlobalStyles = createGlobalStyle`
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    line-height: 1.1;
-    + * {
-      margin-top: 0.8125em;
-    }
+  h1, h2 {
+    line-height: calc(1ex / 0.42);
   }
   h1 {
-    font-size: 2.625em;
+    font-size: 2.5em;
   }
   h2 {
-    font-size: 1.625em;
+    font-size: 2em;
   }
   h3 {
-    font-size: 1.25em;
+    font-size: 1.75em;
+    line-height: calc(1ex / 0.38);
   }
-  h4, h5 {
-    font-size: 1em;
+  h4 {
+    font-size: 1.5em;
+    line-height: calc(1ex / 0.37);
+  }
+  h5 {
+    font-size: 1.25em;
+    line-height: calc(1ex / 0.36);
   }
   h6 {
-    font-size: 0.8125em;
+    font-size: 1em;
+    line-height: calc(1ex / 0.32);
+  }
+
+  p + p {
+    margin: calc(1ex / 0.32) 0;
   }
 
   a {

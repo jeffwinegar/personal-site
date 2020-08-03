@@ -17,7 +17,8 @@ function SEO({ description, lang, keywords, title, url }) {
           siteMetadata {
             title
             description
-            url
+            siteUrl
+            twitterHandle
           }
         }
       }
@@ -26,7 +27,7 @@ function SEO({ description, lang, keywords, title, url }) {
 
   const metaDescription = description || site.siteMetadata.description
   const metaTitle = title || site.siteMetadata.title
-  const metaUrl = url || site.siteMetadata.url
+  const metaUrl = url || site.siteMetadata.siteUrl
   const metaKeywords = keywords || []
 
   return (
@@ -63,7 +64,7 @@ function SEO({ description, lang, keywords, title, url }) {
         },
         {
           name: `twitter:creator`,
-          content: `@jeff_winegar`,
+          content: site.siteMetadata.twitterHandle,
         },
         {
           name: `twitter:title`,

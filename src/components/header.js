@@ -2,6 +2,11 @@ import { Link } from "gatsby"
 import React from "react"
 import styled from "styled-components"
 
+const Wrapper = styled.div`
+  margin: 0 auto;
+  max-width: var(--maxWidth);
+  padding: 1.45rem 1.0875rem;
+`
 const StyledLink = styled(Link)`
   /* background-image: radial-gradient(
     ellipse 200% 100% at 55% 100%,
@@ -14,18 +19,8 @@ const StyledLink = styled(Link)`
 `
 
 const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      marginBottom: `1.45rem`,
-    }}
-  >
-    <div
-      style={{
-        margin: `0 auto`,
-        maxWidth: 960,
-        padding: `1.45rem 1.0875rem`,
-      }}
-    >
+  <header>
+    <Wrapper>
       <h1>
         <StyledLink
           to="/"
@@ -36,7 +31,7 @@ const Header = ({ siteTitle }) => (
           {siteTitle}
         </StyledLink>
       </h1>
-    </div>
+    </Wrapper>
   </header>
 )
 

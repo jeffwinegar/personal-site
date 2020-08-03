@@ -10,7 +10,7 @@ import { useStaticQuery, graphql } from "gatsby"
 import styled from "styled-components"
 
 import GlobalStyles from "./styles/GlobalStyles"
-// import Header from "./header"
+import Header from "./header"
 import Footer from "./footer"
 
 const Wrapper = styled.div`
@@ -26,22 +26,22 @@ const Layout = ({ children }) => {
         siteMetadata {
           title
           author
-          startYear
+          siteStartYear
         }
       }
     }
   `)
 
-  const { author, startYear } = data.site.siteMetadata
+  const { title, author, siteStartYear } = data.site.siteMetadata
 
   return (
     <>
       <GlobalStyles />
-      {/* <Header siteTitle={title} /> */}
+      <Header siteTitle={title} />
       <Wrapper>
         <main>{children}</main>
         email: github:
-        <Footer siteAuthor={author} siteStartYear={startYear} />
+        <Footer siteAuthor={author} siteStartYear={siteStartYear} />
       </Wrapper>
     </>
   )

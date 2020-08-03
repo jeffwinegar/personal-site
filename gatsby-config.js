@@ -2,9 +2,10 @@ module.exports = {
   siteMetadata: {
     title: `Jeff Winegar`,
     description: `Frontend Web Developer`,
-    url: `https://www.jeffwinegar.com`,
+    siteUrl: `https://www.jeffwinegar.com`,
     author: `Jeff Winegar`,
-    startYear: 2016,
+    twitterHandle: `@jeff_winegar`,
+    siteStartYear: 2020,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
@@ -32,6 +33,6 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
-    // `gatsby-plugin-offline`,
+    `gatsby-plugin-offline`,
   ],
 }
