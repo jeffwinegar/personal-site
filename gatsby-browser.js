@@ -1,7 +1,8 @@
-import React from "react"
+const React = require("react")
+const Layout = require("./src/components/layout").default
 
-import Layout from "./src/components/layout"
-
-export const wrapRootElement = ({ element, props }) => (
-  <Layout {...props}>{element}</Layout>
-)
+exports.wrapPageElement = ({ element, props }) => {
+  // props provide same data to Layout as Page element will get
+  // including location, data, etc - you don't need to pass it
+  return <Layout {...props}>{element}</Layout>
+}
