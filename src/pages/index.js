@@ -1,12 +1,11 @@
 import React from "react"
 
-import Layout from "../components/layout"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 
 const IndexPage = () => {
   return (
-    <Layout>
+    <>
       <SEO />
       <p>
         Hi there. My name is Jeff Winegar. I'm a Frontend JavaScript Developer
@@ -18,7 +17,7 @@ const IndexPage = () => {
       {/* <div style={{ maxWidth: `300px`, marginBottom: `1.45rem` }}>
         <Image />
       </div> */}
-    </Layout>
+    </>
   )
 }
 
