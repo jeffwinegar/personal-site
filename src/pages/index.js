@@ -3,10 +3,10 @@ import React from "react"
 // import Image from "../components/image"
 import SEO from "../components/seo"
 
-const IndexPage = () => {
+const IndexPage = ({ path }) => {
   return (
     <>
-      <SEO />
+      <SEO path={path} />
       <p>
         Hi there. My name is Jeff Winegar. I'm a Frontend JavaScript Developer
         based in Southern California.

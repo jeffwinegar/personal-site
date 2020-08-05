@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 
 import { useSiteMetadata } from "./hooks/useSiteMetadata"
 
-const SEO = ({ description, lang, keywords, title, url }) => {
+const SEO = ({ description, lang, keywords, title, url, path }) => {
   const {
     title: siteTitle,
     description: siteDescription,
@@ -15,6 +15,7 @@ const SEO = ({ description, lang, keywords, title, url }) => {
   const metaTitle = title || siteTitle
   const metaUrl = url || siteUrl
   const metaKeywords = keywords || []
+  const pagePath = `${metaUrl}${path}`
 
   return (
     <Helmet
@@ -23,6 +24,12 @@ const SEO = ({ description, lang, keywords, title, url }) => {
       }}
       title={metaTitle}
       titleTemplate={`%s - ${siteDescription}`}
+      link={[
+        {
+          rel: `canonical`,
+          href: pagePath,
+        },
+      ]}
       meta={[
         {
           name: `description`,
@@ -42,7 +49,7 @@ const SEO = ({ description, lang, keywords, title, url }) => {
         },
         {
           property: `og:url`,
-          content: metaUrl,
+          content: pagePath,
         },
         {
           name: `twitter:card`,
@@ -62,7 +69,7 @@ const SEO = ({ description, lang, keywords, title, url }) => {
         },
         {
           name: `twitter:url`,
-          content: metaUrl,
+          content: pagePath,
         },
       ].concat(
         metaKeywords && metaKeywords.length > 0
