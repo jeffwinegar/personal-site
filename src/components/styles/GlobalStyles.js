@@ -7,7 +7,7 @@ const GlobalStyles = createGlobalStyle`
 
     --text-color: var(--color-dark);
     
-    --maxWidth: 960px;
+    --maxWidth: 55ch;
   }
   
   html {
@@ -119,7 +119,7 @@ const GlobalStyles = createGlobalStyle`
     line-height: calc(1ex / 0.32);
   }
 
-  p + p {
+  p {
     margin: calc(1ex / 0.32) 0;
   }
 

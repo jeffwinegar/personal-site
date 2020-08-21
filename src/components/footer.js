@@ -5,11 +5,14 @@ import { useSiteMetadata } from "./hooks/useSiteMetadata"
 const currYear = new Date().getFullYear()
 
 const Footer = () => {
-  const { author, siteStartYear } = useSiteMetadata()
+  const { author, siteCopyrightYear } = useSiteMetadata()
   const copyrightYearRange =
-    siteStartYear !== currYear ? `${siteStartYear} - ${currYear}` : currYear
+    siteCopyrightYear !== currYear
+      ? `${siteCopyrightYear} - ${currYear}`
+      : currYear
   return (
     <footer>
+      <p>email: github:</p>
       {author} &copy; {copyrightYearRange}
     </footer>
   )

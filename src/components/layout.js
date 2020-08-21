@@ -2,7 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import GlobalStyles from "./styles/GlobalStyles"
-import Header from "./header"
+// import Header from "./header"
 import Footer from "./footer"
 
 const Wrapper = styled.div`
@@ -15,10 +15,9 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyles />
-      <Header />
+      {/* <Header /> */}
       <Wrapper>
         <main>{children}</main>
-        email: github:
         <Footer />
       </Wrapper>
     </>

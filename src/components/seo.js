@@ -15,7 +15,7 @@ const SEO = ({ description, lang, keywords, title, url, path }) => {
   const metaTitle = title || siteTitle
   const metaUrl = url || siteUrl
   const metaKeywords = keywords || []
-  const pagePath = `${metaUrl}${path}`
+  const pagePath = path ? `${metaUrl}${path}` : metaUrl
 
   return (
     <Helmet
@@ -23,7 +23,7 @@ const SEO = ({ description, lang, keywords, title, url, path }) => {
         lang: metaLang,
       }}
       title={metaTitle}
-      titleTemplate={`%s - ${siteDescription}`}
+      // titleTemplate={`%s - ${siteDescription}`}
       link={[
         {
           rel: `canonical`,
