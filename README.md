@@ -1,4 +1,4 @@
-Codebase for personal site buit with Gatsby.
+Codebase for personal site built with Gatsby.
 
 **🚀 Deploy**
 
