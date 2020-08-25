@@ -6,9 +6,11 @@ import GlobalStyles from "./styles/GlobalStyles"
 import Footer from "./footer"
 
 const Wrapper = styled.div`
-  margin: 0 auto;
+  display: flow-root;
+  box-sizing: content-box;
   max-width: var(--maxWidth);
   padding: 0 1.0875rem 1.45rem;
+  margin: 0 auto;
 `
 
 const Layout = ({ children }) => {

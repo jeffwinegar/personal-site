@@ -56,6 +56,7 @@ const GlobalStyles = createGlobalStyle`
     min-height: 100vh;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
+    font-size: 1.125rem;
     line-height: calc(1ex / 0.32);
   }
 
