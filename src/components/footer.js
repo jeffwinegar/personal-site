@@ -10,9 +10,9 @@ const Footer = () => {
     siteCopyrightYear !== currYear
       ? `${siteCopyrightYear} - ${currYear}`
       : currYear
+
   return (
-    <footer>
-      <p>email: github:</p>
+    <footer style={{ fontSize: `1rem`, paddingTop: `calc(1ex / 0.32)` }}>
       {author} &copy; {copyrightYearRange}
     </footer>
   )

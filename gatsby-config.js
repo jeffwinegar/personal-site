@@ -1,16 +1,24 @@
+require("dotenv").config()
+
 module.exports = {
   siteMetadata: {
     title: `Jeff Winegar`,
     description: `Frontend Web Developer`,
-    image: ``,
-    siteUrl: `https://www.jeffwinegar.com`,
+    siteUrl: process.env.GATSBY_URL || `http://localhost:8000`,
     author: `Jeff Winegar`,
     twitterHandle: `@jeff_winegar`,
-    siteCopyrightYear: 2020,
+    siteCopyrightYear: 2010,
   },
   plugins: [
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `pages`,
+        path: `${__dirname}/src/pages`,
+      },
+    },
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
@@ -25,10 +33,51 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-react-svg`,
       options: {
-        name: `pages`,
-        path: `${__dirname}/src/pages`,
+        rule: {
+          include: /\.inline\.svg$/,
+        },
+      },
+    },
+    {
+      resolve: `gatsby-source-github-api`,
+      options: {
+        token: process.env.GATSBY_GITHUB_API_TOKEN,
+        graphQLQuery: `query ($author: String = "", $userFirst: Int = 0, $userOrderBy: String = "", $langFirst: Int = 0) {
+          user(login: $author) {
+            repositories(first: $userFirst, orderBy: {field: $userOrderBy, direction: DESC} privacy: PUBLIC, isFork: false) {
+              edges {
+                node {
+                  id
+                  name
+                  description
+                  url
+                  forkCount
+                  stargazers {
+                    totalCount
+                  }
+                  languages(first: $langFirst, orderBy: {field: SIZE, direction: DESC}) {
+                    edges {
+                      node {
+                        id
+                        name
+                      }
+                      size
+                    }
+                    totalSize
+                  }
+                }
+              }
+            }
+          }
+        }`,
+        variables: {
+          author: `jeffwinegar`,
+          userFirst: 4,
+          userOrderBy: `STARGAZERS`,
+          langFirst: 5,
+        },
       },
     },
     `gatsby-transformer-sharp`,

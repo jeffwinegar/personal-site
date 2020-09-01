@@ -11,6 +11,10 @@ const Wrapper = styled.div`
   max-width: var(--maxWidth);
   padding: 0 1.0875rem 1.45rem;
   margin: 0 auto;
+
+  > * {
+    box-sizing: border-box;
+  }
 `
 
 const Layout = ({ children }) => {
