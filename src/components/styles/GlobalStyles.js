@@ -3,37 +3,40 @@ import { createGlobalStyle } from "styled-components"
 const GlobalStyles = createGlobalStyle`
   :root {
     --light-rgb: 255, 255, 255;
-    --dark-rgb: 30, 30, 30;
-    --dk-gray-rgb: 72, 72, 72;
-    --gray-rgb: 194, 194, 194;
+    --dark-rgb: 0, 0, 0;
+    --dk-gray-rgb: 90, 90, 90;
+    --gray-rgb: 208, 208, 208;
     --lt-gray-rgb: 226, 226, 226;
+    --blue-rgb: 0, 102, 204;
+    --lt-blue-rgb: 0, 153, 255;
 
     --text-primary-rgb: var(--dark-rgb);
     --text-secondary-rgb: var(--dk-gray-rgb);
+    --text-accent-rgb: var(--blue-rgb);
 
     --background-rgb: var(--light-rgb);
     --border-rgb: var(--lt-gray-rgb);
     
-    --maxWidth: 55ch;
-  }
-  
-  html {
-    box-sizing: border-box;
-    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif;
-    
-    color: rgb(var(--text-primary-rgb));
-    background-color: rgb(var(--background-rgb));
+    --maxWidth: 800px;
   }
   @media (prefers-color-scheme: dark) {
     :root {
       --text-primary-rgb: var(--light-rgb);
       --text-secondary-rgb: var(--gray-rgb);
+      --text-accent-rgb: var(--lt-blue-rgb);
       
       --background-rgb: var(--dark-rgb);
       --border-rgb: var(--dk-gray-rgb);
     }
   }
-
+  
+  html {
+    box-sizing: border-box;
+    font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+    
+    color: rgb(var(--text-primary-rgb));
+    background-color: rgb(var(--background-rgb));
+  }
 
   *,
   *::before,
@@ -85,10 +88,6 @@ const GlobalStyles = createGlobalStyle`
     display: block;
   }
 
-  article > * + * {
-    margin-top: 1.625em;
-  }
-
   input,
   button,
   textarea,
@@ -107,7 +106,7 @@ const GlobalStyles = createGlobalStyle`
 
   h1, h2 {
     line-height: calc(1ex / 0.42);
-    margin: calc(1ex / 0.42) 0;
+    margin: calc(1ex / (0.42 + 0.32)) 0;
   }
   h1 {
     font-size: 2.5em;
@@ -118,28 +117,46 @@ const GlobalStyles = createGlobalStyle`
   h3 {
     font-size: 1.75em;
     line-height: calc(1ex / 0.38);
-    margin: calc(1ex / 0.38) 0;
+    margin: calc(1ex / (0.38 + 0.32)) 0;
   }
   h4 {
     font-size: 1.5em;
     line-height: calc(1ex / 0.37);
-    margin: calc(1ex / 0.37) 0;
+    margin: calc(1ex / (0.37 + 0.32)) 0;
   }
   h5 {
     font-size: 1.25em;
     line-height: calc(1ex / 0.36);
-    margin: calc(1ex / 0.36) 0;
+    margin: calc(1ex / (0.36 + 0.32)) 0;
   }
   h6 {
     font-size: 1em;
   }
 
   h6, p:not([class]) {
-    margin: calc(1ex / 0.32) 0;
+    margin: calc(1ex / 0.64) 0;
   }
 
   a {
     color: inherit;
+
+    p:not([class]) &,
+    li:not([class]) & {
+      color: rgb(var(--text-accent-rgb));
+      text-decoration-color: rgba(var(--text-accent-rgb), 0.5);
+      transition: text-decoration 0.25s ease;
+
+      &:hover {
+        text-decoration-color: currentColor;
+      }
+    }
+  }
+
+  blockquote:not([class]) > * {
+    font-style: italic;
+    color: rgb(var(--text-secondary-rgb));
+    padding-left: 0.75em;
+    border-left: solid 0.25em rgb(var(--border-rgb));
   }
 `
 

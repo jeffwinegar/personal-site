@@ -5,7 +5,7 @@ import styled from "styled-components"
 import IconStars from "../assets/images/icon-stars.inline.svg"
 import IconForks from "../assets/images/icon-forks.inline.svg"
 
-const StyledGid = styled.ol`
+const GridContainer = styled.ol`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1em;
@@ -24,7 +24,15 @@ const StyledCardTitle = styled.div`
   line-height: calc(1ex / 0.36);
 
   a {
+    display: block;
     font-weight: 600;
+    color: rgb(var(--text-accent-rgb));
+    text-decoration-color: rgba(var(--text-accent-rgb), 0);
+    transition: text-decoration 0.25s ease;
+
+    &:hover {
+      text-decoration-color: currentColor;
+    }
   }
 `
 const StyledCardDescription = styled.p`
@@ -98,11 +106,11 @@ const GithubRepos = () => {
   const repos = data.githubData.data.user.repositories.edges
 
   return (
-    <StyledGid>
+    <GridContainer>
       {repos.map((repo) => (
         <GithubRepoCard key={repo.node.id} data={repo.node} />
       ))}
-    </StyledGid>
+    </GridContainer>
   )
 }
 
@@ -113,9 +121,7 @@ const GithubRepoCard = ({ data }) => {
   return (
     <StyledCard>
       <StyledCardTitle>
-        <a href={repo.url}>
-          {repo.name}
-        </a>
+        <a href={repo.url}>{repo.name}</a>
       </StyledCardTitle>
 
       <StyledCardDescription>{repo.description}</StyledCardDescription>

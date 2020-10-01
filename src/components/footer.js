@@ -1,8 +1,24 @@
 import React from "react"
+import styled from "styled-components"
 
 import { useSiteMetadata } from "./hooks/useSiteMetadata"
 
 const currYear = new Date().getFullYear()
+
+const StyledFooter = styled.footer`
+  display: flex;
+  justify-content: center;
+  padding: calc(1ex / 0.64) 0;
+
+  > * {
+    width: 100%;
+    max-width: 52ch;
+  }
+
+  p {
+    font-size: 1rem;
+  }
+`
 
 const Footer = () => {
   const { author, siteCopyrightYear } = useSiteMetadata()
@@ -12,9 +28,13 @@ const Footer = () => {
       : currYear
 
   return (
-    <footer style={{ fontSize: `1rem`, paddingTop: `calc(1ex / 0.32)` }}>
-      {author} &copy; {copyrightYearRange}
-    </footer>
+    <StyledFooter>
+      <div>
+        <p>
+          {author} &copy; {copyrightYearRange}
+        </p>
+      </div>
+    </StyledFooter>
   )
 }
 

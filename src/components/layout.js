@@ -2,18 +2,26 @@ import React from "react"
 import styled from "styled-components"
 
 import GlobalStyles from "./styles/GlobalStyles"
-// import Header from "./header"
-import Footer from "./footer"
+import Footer from "./Footer"
 
-const Wrapper = styled.div`
-  display: flow-root;
-  box-sizing: content-box;
+const ContentContainer = styled.div`
   max-width: var(--maxWidth);
-  padding: 0 1.0875rem 1.45rem;
+  padding: 0 1.0875rem;
   margin: 0 auto;
+`
+const ContentGrid = styled.main`
+  display: grid;
+  grid-template-columns: 1fr fit-content(52ch) 1fr;
 
-  > * {
-    box-sizing: border-box;
+  > *:not([class]) {
+    grid-column: 2;
+  }
+  > *[class] {
+    grid-column: 1 / span 3;
+  }
+
+  ol {
+    margin: calc(1ex / 0.64) 0;
   }
 `
 
@@ -21,11 +29,10 @@ const Layout = ({ children }) => {
   return (
     <>
       <GlobalStyles />
-      {/* <Header /> */}
-      <Wrapper>
-        <main>{children}</main>
+      <ContentContainer>
+        <ContentGrid>{children}</ContentGrid>
         <Footer />
-      </Wrapper>
+      </ContentContainer>
     </>
   )
 }

@@ -15,7 +15,7 @@ const SEO = ({ description, lang, keywords, title, url, path }) => {
   const metaTitle = title || siteTitle
   const metaUrl = url || siteUrl
   const metaKeywords = keywords || []
-  const pagePath = path ? `${metaUrl}${path}` : metaUrl
+  const href = path ? `${metaUrl}${path}` : metaUrl
 
   return (
     <Helmet
@@ -25,12 +25,31 @@ const SEO = ({ description, lang, keywords, title, url, path }) => {
       title={metaTitle}
       // titleTemplate={`%s - ${siteDescription}`}
       link={[
+        // {
+        //   rel: `icon`,
+        //   href: `/favicon.svg`,
+        //   type: `image/svg+xml`,
+        // },
+        // {
+        //   rel: `alternate icon`,
+        //   href: `/favicon.png`,
+        //   type: `image/png`,
+        // },
+        // {
+        //   rel: `mask-icon`,
+        //   href: `safari-pinned-tab.svg`,
+        //   color: `#000000`,
+        // },
         {
           rel: `canonical`,
-          href: pagePath,
+          href: href,
         },
       ]}
       meta={[
+        {
+          name: `theme-color`,
+          content: `#ffffff`,
+        },
         {
           name: `description`,
           content: metaDescription,
@@ -49,7 +68,7 @@ const SEO = ({ description, lang, keywords, title, url, path }) => {
         },
         {
           property: `og:url`,
-          content: pagePath,
+          content: href,
         },
         {
           name: `twitter:card`,
@@ -69,7 +88,7 @@ const SEO = ({ description, lang, keywords, title, url, path }) => {
         },
         {
           name: `twitter:url`,
-          content: pagePath,
+          content: href,
         },
       ].concat(
         metaKeywords && metaKeywords.length > 0
