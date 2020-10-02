@@ -3,7 +3,7 @@ import { Helmet } from "react-helmet"
 
 import { useSiteMetadata } from "./hooks/useSiteMetadata"
 
-const SEO = ({ description, lang, keywords, title, url, path }) => {
+const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
   const {
     title: siteTitle,
     description: siteDescription,
@@ -23,7 +23,7 @@ const SEO = ({ description, lang, keywords, title, url, path }) => {
         lang: metaLang,
       }}
       title={metaTitle}
-      // titleTemplate={`%s - ${siteDescription}`}
+      titleTemplate={pageType ? `%s - ${siteTitle}` : `%s`}
       link={[
         // {
         //   rel: `icon`,
