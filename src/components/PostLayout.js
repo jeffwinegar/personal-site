@@ -12,12 +12,13 @@ export const pageQuery = graphql`
     mdx(id: { eq: $id }) {
       id
       body
+      excerpt
+      fields {
+        slug
+        collection
+      }
       frontmatter {
         title
-        slug
-      }
-      fields {
-        collection
       }
     }
   }
@@ -29,7 +30,8 @@ const PostLayout = ({ data: { mdx: post } }) => {
     <>
       <SEO
         title={post.frontmatter.title}
-        path={post.frontmatter.slug}
+        path={post.fields.slug}
+        description={post.excerpt}
         pageType={post.fields.collection}
       />
 

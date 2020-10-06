@@ -25,19 +25,19 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
       title={metaTitle}
       titleTemplate={pageType ? `%s - ${siteTitle}` : `%s`}
       link={[
-        // {
-        //   rel: `icon`,
-        //   href: `/favicon.svg`,
-        //   type: `image/svg+xml`,
-        // },
-        // {
-        //   rel: `alternate icon`,
-        //   href: `/favicon.png`,
-        //   type: `image/png`,
-        // },
+        {
+          rel: `icon`,
+          href: `/favicon.svg`,
+          type: `image/svg+xml`,
+        },
+        {
+          rel: `alternate icon`,
+          href: `/favicon.png`,
+          type: `image/png`,
+        },
         // {
         //   rel: `mask-icon`,
-        //   href: `safari-pinned-tab.svg`,
+        //   href: `/safari-pinned-tab.svg`,
         //   color: `#000000`,
         // },
         {
@@ -64,7 +64,7 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
         },
         {
           property: `og:type`,
-          content: `website`,
+          content: pageType ? `article` : `website`,
         },
         {
           property: `og:url`,

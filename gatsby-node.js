@@ -49,7 +49,7 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       name: `slug`,
       node,
       value: node.frontmatter.slug
-        ? `/${node.frontmatter.slug}/`
+        ? `/${node.frontmatter.slug}`
         : generatedSlug,
     })
 
