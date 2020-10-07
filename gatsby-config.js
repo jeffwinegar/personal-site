@@ -29,6 +29,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
+        root: __dirname,
         extentions: [`.md`, `.mdx`],
       },
     },
