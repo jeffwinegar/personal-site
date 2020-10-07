@@ -1,9 +1,0 @@
-.project-did {
-
-  @media screen and (max-width: em(1180px)) {
-    margin: 0 #{((16/375)*100) * 1%};
-  }
-  @media screen and (min-width: em(1181px)) {
-    margin: 0 #{((16/375)*100) * 1%} 0 auto;
-  }
-}
