@@ -8,6 +8,7 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
     title: siteTitle,
     description: siteDescription,
     siteUrl,
+    author,
     twitterHandle,
   } = useSiteMetadata()
   const metaLang = lang || `en`
@@ -56,7 +57,7 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
         },
         {
           property: `og:title`,
-          content: metaTitle,
+          content: path && path === "/" ? author : metaTitle,
         },
         {
           property: `og:description`,
@@ -80,7 +81,7 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
         },
         {
           name: `twitter:title`,
-          content: metaTitle,
+          content: path && path === "/" ? author : metaTitle,
         },
         {
           name: `twitter:description`,

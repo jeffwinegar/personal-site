@@ -12,6 +12,7 @@ const ContentContainer = styled.div`
 const ContentGrid = styled.main`
   display: grid;
   grid-template-columns: 1fr fit-content(52ch) 1fr;
+  padding-top: calc(1ex / 0.32);
 
   > *:not([class]) {
     grid-column: 2;
