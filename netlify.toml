@@ -1,5 +1,5 @@
-[build.environment]
-  GATSBY_URL = $URL
+[build]
+  command = "GATSBY_URL=$URL gatsby build"
 
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
