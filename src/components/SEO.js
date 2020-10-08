@@ -57,7 +57,7 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
         },
         {
           property: `og:title`,
-          content: path && path === "/" ? author : metaTitle,
+          content: !path || path === "/" ? author : metaTitle,
         },
         {
           property: `og:description`,
@@ -81,7 +81,7 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
         },
         {
           name: `twitter:title`,
-          content: path && path === "/" ? author : metaTitle,
+          content: !path || path === "/" ? author : metaTitle,
         },
         {
           name: `twitter:description`,
