@@ -9,12 +9,12 @@ const GridContainer = styled.ol`
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1em;
-  font-size: 1rem;
 `
 const StyledCard = styled.li`
   display: flex;
   flex-flow: column nowrap;
   align-content: stretch;
+  font-size: 1rem;
   padding: 1em;
   border: 1px solid rgb(var(--border-rgb));
   border-radius: 4px;
