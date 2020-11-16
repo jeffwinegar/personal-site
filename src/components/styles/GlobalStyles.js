@@ -3,10 +3,10 @@ import { createGlobalStyle } from "styled-components"
 const GlobalStyles = createGlobalStyle`
   :root {
     --light-rgb: 255, 255, 255;
-    --dark-rgb: 0, 0, 0;
-    --dk-gray-rgb: 90, 90, 90;
-    --gray-rgb: 208, 208, 208;
-    --lt-gray-rgb: 226, 226, 226;
+    --dark-rgb: 22, 22, 29;
+    --dk-gray-rgb: 61, 61, 69;
+    --gray-rgb: 152, 152, 161;
+    --lt-gray-rgb: 202, 202, 212;
     --blue-rgb: 0, 102, 204;
     --lt-blue-rgb: 0, 153, 255;
 
@@ -21,7 +21,7 @@ const GlobalStyles = createGlobalStyle`
   }
   @media (prefers-color-scheme: dark) {
     :root {
-      --text-primary-rgb: var(--light-rgb);
+      --text-primary-rgb: var(--lt-gray-rgb);
       --text-secondary-rgb: var(--gray-rgb);
       --text-accent-rgb: var(--lt-blue-rgb);
       

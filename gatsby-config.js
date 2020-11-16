@@ -10,6 +10,7 @@ module.exports = {
     siteCopyrightYear: 2010,
   },
   plugins: [
+    "gatsby-plugin-eslint",
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
     {
@@ -29,8 +30,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-mdx`,
       options: {
-        root: __dirname,
-        extentions: [`.md`, `.mdx`],
+        extensions: [`.mdx`, `.md`],
       },
     },
     {
