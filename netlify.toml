@@ -2,8 +2,14 @@
   command = "GATSBY_URL=$URL gatsby build"
   publish = "public"
 
+[build.environment]
+  CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
+  TERM = "xterm"
+
 [[plugins]]
   package = "netlify-plugin-gatsby-cache"
 
 [[plugins]]
   package = "netlify-plugin-cypress"
+    [plugins.inputs]
+      record = true
