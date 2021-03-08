@@ -33,13 +33,13 @@ module.exports = {
         extensions: [`.mdx`, `.md`],
       },
     },
-    {
-      resolve: `gatsby-source-filesystem`,
-      options: {
-        name: `images`,
-        path: `${__dirname}/src/assets/images`,
-      },
-    },
+    // {
+    //   resolve: `gatsby-source-filesystem`,
+    //   options: {
+    //     name: `images`,
+    //     path: `${__dirname}/src/assets/images`,
+    //   },
+    // },
     {
       resolve: `gatsby-plugin-react-svg`,
       options: {
@@ -88,8 +88,9 @@ module.exports = {
         },
       },
     },
-    `gatsby-transformer-sharp`,
+    `gatsby-plugin-image`,
     `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
     {
       resolve: `gatsby-plugin-google-analytics`,
       options: {
