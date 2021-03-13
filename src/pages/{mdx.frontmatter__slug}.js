@@ -8,16 +8,16 @@ import SEO from "../components/SEO"
 const shortcodes = { Link }
 
 export const pageQuery = graphql`
-  query BlogPostQuery($id: String) {
+  query PostQuery($id: String) {
     mdx(id: { eq: $id }) {
       id
       body
       excerpt
       fields {
-        slug
         collection
       }
       frontmatter {
+        slug
         title
       }
     }
@@ -25,12 +25,13 @@ export const pageQuery = graphql`
 `
 
 const PostLayout = ({ data: { mdx: post } }) => {
-  console.log(post)
+  const slugPath = `/${post.frontmatter.slug}`
+
   return (
     <>
       <SEO
         title={post.frontmatter.title}
-        path={post.fields.slug}
+        path={slugPath}
         description={post.excerpt}
         pageType={post.fields.collection}
       />
