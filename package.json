@@ -70,8 +70,7 @@
     "test:e2e:ci": "start-server-and-test serve http://localhost:9090 cy:run",
     "test:coverage": "jest --coverage",
     "test:watch": "jest --watch",
-    "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "prepare": "husky install"
   },
   "repository": {
     "type": "git",
