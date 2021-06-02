@@ -74,6 +74,10 @@ const GlobalStyles = createGlobalStyle`
     line-height: calc(1ex / 0.32);
   }
 
+  ul:not([class]) {
+    padding-left: 1.1em;
+  }
+
   ul[class],
   ol[class] {
     list-style: none;

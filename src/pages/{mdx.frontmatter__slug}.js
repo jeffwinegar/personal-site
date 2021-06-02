@@ -4,21 +4,24 @@ import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
 import SEO from "../components/SEO"
+import PostMeta from "../components/PostMeta"
 
 const shortcodes = { Link }
 
 export const pageQuery = graphql`
-  query PostQuery($id: String) {
+  query GetPost($id: String) {
     mdx(id: { eq: $id }) {
       id
       body
       excerpt
+      timeToRead
       fields {
         collection
       }
       frontmatter {
         slug
         title
+        date(formatString: "MMMM DD, YYYY")
       }
     }
   }
@@ -36,7 +39,15 @@ const PostLayout = ({ data: { mdx: post } }) => {
         pageType={post.fields.collection}
       />
 
-      <h1>{post.frontmatter.title}</h1>
+      <header>
+        <h1>{post.frontmatter.title}</h1>
+        <PostMeta
+          metaData={{
+            timeToRead: post.timeToRead,
+            date: post.frontmatter.date,
+          }}
+        />
+      </header>
       <MDXProvider components={shortcodes}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </MDXProvider>
