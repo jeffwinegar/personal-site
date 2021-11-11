@@ -70,7 +70,7 @@ const percentage = (val, total) =>
 
 const GithubRepos = () => {
   const data = useStaticQuery(graphql`
-    query GithubReposQuery {
+    query GetAllGithubRepos {
       githubData {
         data {
           user {

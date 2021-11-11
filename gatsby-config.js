@@ -10,6 +10,7 @@ module.exports = {
     siteCopyrightYear: 2010,
   },
   plugins: [
+    "gatsby-plugin-netlify",
     "gatsby-plugin-eslint",
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-styled-components`,
