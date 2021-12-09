@@ -3,11 +3,15 @@ import { useStaticQuery, graphql, Link } from "gatsby"
 import styled from "styled-components"
 import PostMeta from "./PostMeta"
 
-const StyledPost = styled.li``
+const StyledPost = styled.li`
+  & + & {
+    margin-top: calc(1ex / (0.64 + 0.32));
+  }
+`
 
 const StyledLink = styled(Link)`
   display: inline-block;
-  font-weight: 600;
+  font-weight: 500;
   color: rgb(var(--text-accent-rgb));
   text-decoration-color: rgba(var(--text-accent-rgb), 0);
   transition: text-decoration 0.25s ease;
@@ -27,11 +31,11 @@ const PostsListing = () => {
         edges {
           node {
             id
+            slug
             timeToRead
             frontmatter {
               title
-              slug
-              date(formatString: "MMMM DD, YYYY")
+              date
             }
           }
         }
@@ -45,8 +49,9 @@ const PostsListing = () => {
       {posts.map((post) => {
         const {
           id,
+          slug,
           timeToRead,
-          frontmatter: { slug, title, date },
+          frontmatter: { title, date },
         } = post.node
 
         return (

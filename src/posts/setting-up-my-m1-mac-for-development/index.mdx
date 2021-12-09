@@ -1,0 +1,318 @@
+---
+title: Setting up my M1 Mac for Development
+image:
+category:
+  - Other
+  - Reference
+date: 2021-12-08
+---
+
+> It's hard to remember all the things you need to do to get a proper development environment so I am mainly writing this for my own reference (you're welcome future me).
+
+Getting a new computer is exciting—until you start setting it up—then all the questions and anxiety kick in. This was increased even more when getting my new Macbook Pro M1 Max. I didn't even consider that with Apple's M1 chip being out for about a year some things still haven't been updated to support it yet. I wanted to make sure I got all the Apple Silicon versions for everything I could. For this I've been using [Does It ARM?](https://doesitarm.com/) to see what has been ported to Apple Silicon, runs using Rosetta, or doesn't work yet.
+
+I am primarily a frontend developer, so most of my needs will revolve around Javascript and (_spoiler_) so far I haven't had to jump through any Rosetta hoops to get things working for my needs.
+
+## macOS setup
+
+First run through the initial setup then check for software updates, ensure that the operating system is at the latest point release. After all updates have been applied, restart the computer.
+
+### Configure the Trackpad
+
+I like being able to move windows around using three fingers instead of clicking with one finger and moving with another. You can set this up by going to _System Preferences > Accessibility > Motor:Pointer Control > Mouse & Trackpad > Trackpad Options... > Enable dragging > three finger drag_
+
+### Configure Security
+
+_System Preferences > Security & Privacy_
+
+- Under _General_, set _Require password after sleep or screen saver begins_ to _1 minute_
+- Select _Use your Apple Watch to unlock apps and your Mac_
+- In the bottom left _Click the lock to make changes_ then click _Advanced..._, select _Require an administrator password to access system-wide preferences_
+- Under _FileVault_ ensure it is turned on
+- Under _Firewall_ click _Turn Firewall On_
+- Under _Privacy > Location Services_ deselect all apps you don't want to see your location. I keep on _Weather.app, Home.app, Calendar.app, Wallet, and System Services_
+
+### Configure Sharing
+
+_System Preferences > Sharing_ change _Computer Name_
+
+### Configure Spotlight
+
+Remove from menu bar. I exclusively use the shortcut `Command + Space` to launch.
+
+Go to _System Preferences > Spotlight_ and deselect everything except _Applications, Calculator, Definition, and System Preferences_.
+
+### Configure the Dock
+
+Remove all unnecessary app icons. I only keep my regularly used apps in the Dock.
+
+I like to separate my app icons in the Dock into visual sections using this spacer tile. Open Terminal.app and enter the first command below for as many spaces as you'd like. To have them show up you must force restart the Dock by running the second command. To remove, drag them off the Dock like any other icon.
+
+```shell
+defaults write com.apple.dock persistent-apps -array-add '{"tile-type"="spacer-tile";}'
+
+killall Dock
+```
+
+### Configure Screenshots
+
+I like to keep my Desktop completely clean. Because of this I change where my screenshots are saved. To do this use the shortcut `Command + Shift + 5` then click on _Options_ and change _Save to_ to _Downloads_. Also while we are in the options lets uncheck _Show Floating Thumbnail_.
+
+### Configure Safari
+
+Let's secure Safari a bit and make the devtools available.
+
+_Safari > Preferences > General_ deselect _Open "safe" files after downloading_.
+
+_Safari > Preferences > Privacy_ ensure _Hide IP address_ is selected and set to _from Trackers and Websites_.
+
+_Safari > Preferences > Advanced_. While we are in the settings select _Show Develop menu in menu bar_.
+
+## Development setup
+
+To start we first need to install the Xcode Command Line Tools. _**Note:** You **don't** need to install Xcode from the App Store if you don't plan on doing any macOS or iOS development. However, you will need to rerun this command after every system update_.
+
+```shell
+xcode-select --install
+```
+
+### Homebrew
+
+[Homebrew](https://brew.sh/) is a package manager for macOS, we will use to install some of our packages. _**Note:** At this time [not all Homebrew packages support Apple Silicon](https://doesitarm.com/kind/homebrew/) so you may need Rosetta to install one. There are additional steps to get that to work, instead I found other ways to install some things I needed outside of Homebrew_.
+
+```shell
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Follow install instructions. On M1 Macs Homebrew is now installed in a different directory than it used to be so we will need to add Homebrew to our PATH. If you missed the instructions the two commands are (make sure to change to your user name):
+
+```shell
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/jeff_winegar/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
+```
+
+To check that Homebrew installed correctly, run this command:
+
+```shell
+brew doctor
+```
+
+### Oh My Zsh
+
+Zsh is the default terminal shell for macOS. [Oh My Zsh](https://ohmyz.sh/) is an open source framework for managing your Zsh configuration.
+
+```shell
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+```
+
+Oh My Zsh will create a configuration file for us so now we can add some plugins and a theme at `~/.zshrc` to customize our terminal window. We will use the keyboard shortcut `Command + Shift + .` to show hidden files so we can see it.
+
+#### Zsh Plugins and Themes
+
+The plugins and themes I currently have set up are:
+
+**[zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions/blob/master/INSTALL.md#oh-my-zsh)**  
+First clone repository. (defaulted to `~/.oh-my-zsh/custom/plugins`)
+
+```shell
+git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+```
+
+Then add the plugin to the list of plugins for Oh My Zsh to load
+
+```ini title="~/.zshrc"
+plugins=(
+  # other plugins
+  zsh-autosuggestions
+)
+```
+
+**[Powerlevel10k](https://github.com/romkatv/powerlevel10k#get-started)**  
+I just started using this theme and really like it.
+
+Download and install [the recommended font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k). To set up the Apple Terminal go to _Terminal > Preferences > Profiles > Text_, click _Change..._ under _Font_ and select `MesloLGS NF` family. We will go over setting up Visual Studio Code in that section.
+
+Clone the repository
+
+```shell
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
+```
+
+Then set the theme
+
+```ini title="~/.zshrc"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+```
+
+Restart your terminal. If the wizard doesn't start automatically or you want to change your configuration type this command:
+
+```shell
+p10k configure
+```
+
+### Git
+
+Now that we have Homebrew installed and our terminal set up, let's get our development tools installed.
+
+First, Xcode Command Line Tools includes a copy of [Git](https://www.git-scm.com) but this will be out of date so lets use Homebrew to install the latest version.
+
+```shell
+brew install git
+```
+
+However because of Homebrew's new directory path on M1 Macs we need to make sure we are pointing to the updated version and not the Xcode CLT version. Let's check:
+
+```shell
+which git
+```
+
+If you see a return of `/user/bin/git` it is still pointing to the Xcode version. I found the easiest way to fix this is to run this command and follow the instructions:
+
+```shell
+brew doctor
+```
+
+Now when we run `which git` we should see `/opt/homebrew/bin/git` and if we run
+
+```shell
+git --version
+```
+
+we should see the latest version of Git.
+
+Next, lets set up some configurations. We will start with our global configuration file by creating it in our root directory.
+
+```shell
+touch ~/.gitconfig
+```
+
+```ini title="~/.gitconfig"
+[user]
+  name = Firstname Lastname
+  email = you@example.com
+[init]
+  defaultBranch = main
+```
+
+Then let's set up a global ignore file.
+
+```shell
+touch ~/.gitignore_global
+```
+
+```ini title="~/.gitignore_global"
+# macOS files
+.DS_Store
+
+# VSCode
+.vscode/*
+
+# Local History
+.history/
+
+# Logs
+logs
+*.logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Optional eslint cache
+.eslintcache
+
+# Misc
+*.ignored.*
+ignored/
+```
+
+Let's go back to our `.gitconfig` file and add our `.gitignore_global` file to our configuration. Additionally you can add more configurations including aliases.
+
+```ini title="~/.gitconfig" {3,4}
+[user]
+  name = Firstname Lastname
+  email = you@example.com
+[core]
+  excludefile = /Users/jeff_winegar/.gitignore_global
+[init]
+  defaultBranch = main
+
+# Add any other configurations you'd like.
+```
+
+### NVM and Node
+
+Let's use [Node Version Manager](https://github.com/nvm-sh/nvm) to control our Node.js install. This allows us to easily switch between node versions, which is essential. _**Note: Do not use Homebrew to install NVM.** Doing so will run Node.js on Rosetta not Apple Silicon and is noted as not being supported by the NVM team._
+
+```shell
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
+```
+
+To verify our installation, run:
+
+```shell
+command -v nvm
+```
+
+which should output `nvm` if successful.
+
+Now we can install node. _**Note:** For Macs with the M1 chip, node started providing **arm64** arch darwin packages since v16.0.0. so, without messing with Rosetta, you will not be able to install Node versions lower than v16._
+
+```shell
+nvm install node # "node" is an alias for the latest version
+# or
+nvm install 'lts/*' # for the long-term stable version
+# or
+nvm install 16 # or 16.3.0, 17, etc. for a specific version of node
+```
+
+restart your terminal and run:
+
+```shell
+nvm use node # or 'lts/*', --lts, 16, etc
+```
+
+Additional useful commands:
+
+```shell
+# To set a default Node version to be used in any new shell, use the alias 'default'
+nvm alias default node # or 'lts/*', --lts, 16, etc
+
+# To see what versions you have installed
+nvm ls
+
+# To see what versions are available to install
+nvm ls-remote
+
+# To install a new version of Node.js and migrate npm packages from a previous version
+nvm install node --reinstall-packages-from=node
+
+# To get the latest LTS version of node and migrate your existing installed packages
+nvm install 'lts/*' --reinstall-packages-from=current
+
+# To get the latest supported npm version on the current node version
+nvm install-latest-npm
+```
+
+### Text Editor
+
+My text editor of choice is [Visual Studio Code](https://code.visualstudio.com/). Check out my <Link to="/uses/">uses page</Link> to see what theme and extensions I am currently using. I use VS Code's integrated terminal 99% of the time so I don't use a terminal emulator. If you are using a Nerd Font in your ZSH theme make sure you add it to your font family so your theme works properly in the integrated terminal.
+
+### GitHub CLI
+
+[GitHub CLI](https://cli.github.com/) is one of my most used CLIs. It makes working with GitHub so much easier and quicker without having to leave your terminal. Check out [the manual](https://cli.github.com/manual/) to see everything you can do.
+
+To install we will use Homebrew.
+
+```shell
+brew install gh
+```
+
+Now let's setup our authentication with GitHub. The default authentication mode is a web-based browser flow so you will be prompted to login to GitHub (if you're not already) and allow access. You can set up SSH if you want but I found this much simpler and this is [the promoted way]() on GitHub to connect to your account.
+
+```shell
+gh auth login
+```
+
+: :
+
+There you have it. That's my setup so far. This is the first time I took some time to carefully consider my setup at the beginning when getting a new computer. We will see how things evolve and if I make any changes and/or adjustments as I continue to use this setup. My next step will be creating a repository of all my dotfiles for future use. I may do a write up on my experience with that...stay tuned.

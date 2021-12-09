@@ -2,6 +2,7 @@ import React from "react"
 import { graphql, Link } from "gatsby"
 import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
+import SyntaxStyles from "../components/styles/SyntaxHighlightingStyles"
 
 import SEO from "../components/SEO"
 import PostMeta from "../components/PostMeta"
@@ -14,21 +15,21 @@ export const pageQuery = graphql`
       id
       body
       excerpt
+      slug
       timeToRead
       fields {
         collection
       }
       frontmatter {
-        slug
         title
-        date(formatString: "MMMM DD, YYYY")
+        date
       }
     }
   }
 `
 
 const PostLayout = ({ data: { mdx: post } }) => {
-  const slugPath = `/${post.frontmatter.slug}`
+  const slugPath = `/${post.slug}`
 
   return (
     <>
@@ -38,6 +39,7 @@ const PostLayout = ({ data: { mdx: post } }) => {
         description={post.excerpt}
         pageType={post.fields.collection}
       />
+      <SyntaxStyles />
 
       <header>
         <h1>{post.frontmatter.title}</h1>
