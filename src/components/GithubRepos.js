@@ -27,7 +27,7 @@ const StyledCardTitle = styled.div`
     display: block;
     font-weight: 600;
     color: rgb(var(--text-accent-rgb));
-    text-decoration-color: rgba(var(--text-accent-rgb), 0);
+    text-decoration-color: rgb(var(--text-accent-rgb) / 0);
     transition: text-decoration 0.25s ease;
 
     &:hover {

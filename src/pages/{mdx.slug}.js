@@ -7,27 +7,39 @@ import styled from "styled-components"
 import SyntaxStyles from "../components/styles/SyntaxHighlightingStyles"
 import SEO from "../components/SEO"
 import PostMeta from "../components/PostMeta"
+import IconArrow from "../assets/images/icon-arrow-left.inline.svg"
 
 const shortcodes = { Link }
 
 const StyledBackLink = styled(Link)`
+  color: rgb(var(--text-accent-rgb));
   display: inline-block;
   font-size: 1rem;
   line-height: 1.25;
-  padding-left: 1rem;
+  padding-left: 1.0625em;
   position: relative;
+  text-decoration-color: rgb(var(--text-accent-rgb) / 50%);
 
-  &::before {
-    content: "←";
+  svg {
+    height: 1em;
     left: 0;
     position: absolute;
     top: 50%;
     transform: translate3d(0, -50%, 0);
-    transition: transform 0.25s ease;
+    transition: transform 0.25s ease, text-decoration 0.25s ease;
+    width: 1em;
+
+    path {
+      fill: currentColor;
+    }
   }
-  &:focus::before,
-  &:hover::before {
-    transform: translate3d(-15%, -50%, 0);
+
+  &:hover {
+    text-decoration-color: currentColor;
+
+    svg {
+      transform: translate3d(-15%, -50%, 0);
+    }
   }
 `
 
@@ -64,7 +76,9 @@ const PostLayout = ({ data: { mdx: post } }) => {
       <SyntaxStyles />
 
       <div>
-        <StyledBackLink to="/#some-thoughts">Back</StyledBackLink>
+        <StyledBackLink to="/#some-thoughts">
+          <IconArrow /> Back
+        </StyledBackLink>
       </div>
       <header>
         <h1>{post.frontmatter.title}</h1>

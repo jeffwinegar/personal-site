@@ -154,7 +154,7 @@ const GlobalStyles = createGlobalStyle`
     p:not([class]) &,
     li:not([class]) & {
       color: rgb(var(--text-accent-rgb));
-      text-decoration-color: rgba(var(--text-accent-rgb), 0.5);
+      text-decoration-color: rgb(var(--text-accent-rgb) / 50%);
       transition: text-decoration 0.25s ease;
 
       &:hover {

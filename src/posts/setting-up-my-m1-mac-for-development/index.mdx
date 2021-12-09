@@ -4,14 +4,14 @@ image:
 category:
   - Other
   - Reference
-date: 2021-12-08
+date: 2021-12-10
 ---
 
-> It's hard to remember all the things you need to do to get a proper development environment so I am mainly writing this for my own reference (you're welcome future me).
+> It's hard to remember all the things you need to do to set up a proper development environment so I am mainly writing this for my own reference (you're welcome future me).
 
-Getting a new computer is exciting—until you start setting it up—then all the questions and anxiety kick in. This was increased even more when getting my new Macbook Pro M1 Max. I didn't even consider that with Apple's M1 chip being out for about a year some things still haven't been updated to support it yet. I wanted to make sure I got all the Apple Silicon versions for everything I could. For this I've been using [Does It ARM?](https://doesitarm.com/) to see what has been ported to Apple Silicon, runs using Rosetta, or doesn't work yet.
+Getting a new computer is exciting—until you start setting it up—then all the questions and anxiety kick in. This feeling was increased upon getting my new Macbook Pro M1 Max. I didn't even consider that despite Apple's M1 chip being out for about a year, some things still haven't been updated to support it yet. I wanted to make sure I got all the Apple Silicon versions for everything I could. For this I've been using [Does It ARM?](https://doesitarm.com/) to see what has been ported to Apple Silicon, runs using Rosetta, or doesn't work yet.
 
-I am primarily a frontend developer, so most of my needs will revolve around Javascript and (_spoiler_) so far I haven't had to jump through any Rosetta hoops to get things working for my needs.
+I'm primarily a frontend developer, so most of my needs will revolve around Javascript and (_spoiler_) so far I haven't had to jump through any Rosetta hoops to get things working for my needs.
 
 ## macOS setup
 
@@ -56,7 +56,7 @@ killall Dock
 
 ### Configure Screenshots
 
-I like to keep my Desktop completely clean. Because of this I change where my screenshots are saved. To do this use the shortcut `Command + Shift + 5` then click on _Options_ and change _Save to_ to _Downloads_. Also while we are in the options lets uncheck _Show Floating Thumbnail_.
+I like to keep my Desktop completely clean. Because of this I change where my screenshots are saved. To do this use the shortcut `Command + Shift + 5` then click on _Options_ and change _Save to_ to _Other Location..._ then select the _Downloads_ folder. Also while we are in the options lets uncheck _Show Floating Thumbnail_.
 
 ### Configure Safari
 
@@ -70,7 +70,7 @@ _Safari > Preferences > Advanced_. While we are in the settings select _Show Dev
 
 ## Development setup
 
-To start we first need to install the Xcode Command Line Tools. _**Note:** You **don't** need to install Xcode from the App Store if you don't plan on doing any macOS or iOS development. However, you will need to rerun this command after every system update_.
+To start, you first need to install the Xcode Command Line Tools. _**Note:** You **don't** need to install Xcode from the App Store if you don't plan on doing any macOS or iOS development. However, you will need to rerun this command after every system update_.
 
 ```shell
 xcode-select --install
@@ -78,7 +78,7 @@ xcode-select --install
 
 ### Homebrew
 
-[Homebrew](https://brew.sh/) is a package manager for macOS, we will use to install some of our packages. _**Note:** At this time [not all Homebrew packages support Apple Silicon](https://doesitarm.com/kind/homebrew/) so you may need Rosetta to install one. There are additional steps to get that to work, instead I found other ways to install some things I needed outside of Homebrew_.
+[Homebrew](https://brew.sh/) is a package manager for macOS. I'll use it to install some packages I need so let's get it. _**Note:** At this time [not all Homebrew packages support Apple Silicon](https://doesitarm.com/kind/homebrew/) so you may need Rosetta to install one. There are additional steps to get that to work, instead I found other ways to install some things I needed outside of Homebrew_.
 
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -130,7 +130,7 @@ plugins=(
 **[Powerlevel10k](https://github.com/romkatv/powerlevel10k#get-started)**  
 I just started using this theme and really like it.
 
-Download and install [the recommended font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k). To set up the Apple Terminal go to _Terminal > Preferences > Profiles > Text_, click _Change..._ under _Font_ and select `MesloLGS NF` family. We will go over setting up Visual Studio Code in that section.
+Download and install [the recommended font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k). To set up the Apple Terminal.app go to _Terminal > Preferences > Profiles > Text_, click _Change..._ under _Font_ and select `MesloLGS NF` family. We will go over setting up Visual Studio Code in that section.
 
 Clone the repository
 
@@ -152,7 +152,7 @@ p10k configure
 
 ### Git
 
-Now that we have Homebrew installed and our terminal set up, let's get our development tools installed.
+Now that you have Homebrew installed and your terminal set up, let's get our development tools installed.
 
 First, Xcode Command Line Tools includes a copy of [Git](https://www.git-scm.com) but this will be out of date so lets use Homebrew to install the latest version.
 
@@ -160,7 +160,7 @@ First, Xcode Command Line Tools includes a copy of [Git](https://www.git-scm.com
 brew install git
 ```
 
-However because of Homebrew's new directory path on M1 Macs we need to make sure we are pointing to the updated version and not the Xcode CLT version. Let's check:
+However because of Homebrew's new directory path on M1 Macs you need to make sure it is pointing to the updated version and not the Xcode CLT version. Let's check:
 
 ```shell
 which git
@@ -172,13 +172,13 @@ If you see a return of `/user/bin/git` it is still pointing to the Xcode version
 brew doctor
 ```
 
-Now when we run `which git` we should see `/opt/homebrew/bin/git` and if we run
+Now when you run `which git` you should see `/opt/homebrew/bin/git` and if you run
 
 ```shell
 git --version
 ```
 
-we should see the latest version of Git.
+You should see the latest version of Git.
 
 Next, lets set up some configurations. We will start with our global configuration file by creating it in our root directory.
 
@@ -241,13 +241,13 @@ Let's go back to our `.gitconfig` file and add our `.gitignore_global` file to o
 
 ### NVM and Node
 
-Let's use [Node Version Manager](https://github.com/nvm-sh/nvm) to control our Node.js install. This allows us to easily switch between node versions, which is essential. _**Note: Do not use Homebrew to install NVM.** Doing so will run Node.js on Rosetta not Apple Silicon and is noted as not being supported by the NVM team._
+Let's use [Node Version Manager](https://github.com/nvm-sh/nvm) to control our Node.js install. This allows you to easily switch between node versions, which is essential. _**Note: Do not use Homebrew to install NVM.** Doing so will run Node.js on Rosetta not Apple Silicon and is noted as not being supported by the NVM team._
 
 ```shell
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.0/install.sh | bash
 ```
 
-To verify our installation, run:
+To verify installation, run:
 
 ```shell
 command -v nvm
@@ -255,7 +255,7 @@ command -v nvm
 
 which should output `nvm` if successful.
 
-Now we can install node. _**Note:** For Macs with the M1 chip, node started providing **arm64** arch darwin packages since v16.0.0. so, without messing with Rosetta, you will not be able to install Node versions lower than v16._
+Now we can install node. _**Note:** For Macs with the M1 chip, node started providing **arm64** arch darwin packages since v16.0.0. so, without messing with Rosetta, you will not be able to install node versions lower than v16._
 
 ```shell
 nvm install node # "node" is an alias for the latest version
@@ -295,7 +295,17 @@ nvm install-latest-npm
 
 ### Text Editor
 
-My text editor of choice is [Visual Studio Code](https://code.visualstudio.com/). Check out my <Link to="/uses/">uses page</Link> to see what theme and extensions I am currently using. I use VS Code's integrated terminal 99% of the time so I don't use a terminal emulator. If you are using a Nerd Font in your ZSH theme make sure you add it to your font family so your theme works properly in the integrated terminal.
+My text editor of choice is [Visual Studio Code](https://code.visualstudio.com/). Check out my <Link to="/uses/">uses page</Link> to see what theme and extensions I am currently using. I use VS Code's integrated terminal 99% of the time so I don't use a terminal emulator. If you are using a Nerd Font in your Zsh theme make sure you add it to your font family so your theme works properly in the integrated terminal.
+
+### Project Directory Structure
+
+To keep my projects organized I follow this guideline. Create a top level directory with a short generic name like _dev_. Inside this directory create a sub-directory for each repository host and inside that create a sub-directory that matches your username. You will check out your projects into this directory. Your final structure will look like this:
+
+```
+~/dev/github/githubusername/project
+```
+
+Also, with some additional configuration in your Zsh theme, structuring your directories this way allows you to create a direct link to your remote repository right in your terminal. I learned this from Jason Lengstorf on one of his [Learn with Jason](https://www.learnwithjason.dev/) streams, which I highly recommended checking out.
 
 ### GitHub CLI
 
@@ -307,7 +317,7 @@ To install we will use Homebrew.
 brew install gh
 ```
 
-Now let's setup our authentication with GitHub. The default authentication mode is a web-based browser flow so you will be prompted to login to GitHub (if you're not already) and allow access. You can set up SSH if you want but I found this much simpler and this is [the promoted way]() on GitHub to connect to your account.
+Now let's set up your authentication with GitHub. The default authentication mode is a web-based browser flow so you will be prompted to login to GitHub (if you're not already) and allow access. You can set up manually if you want but I found this much simpler and this is [the promoted way](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github#authenticating-with-the-command-line) to connect to your account on GitHub.
 
 ```shell
 gh auth login
