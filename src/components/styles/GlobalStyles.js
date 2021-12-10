@@ -151,6 +151,10 @@ const GlobalStyles = createGlobalStyle`
   a {
     color: inherit;
 
+    &.autolink-anchor {
+      fill: currentColor;
+    }
+
     p:not([class]) &,
     li:not([class]) & {
       color: rgb(var(--text-accent-rgb));
