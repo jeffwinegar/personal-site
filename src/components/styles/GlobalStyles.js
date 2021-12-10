@@ -2,13 +2,13 @@ import { createGlobalStyle } from "styled-components"
 
 const GlobalStyles = createGlobalStyle`
   :root {
-    --light-rgb: 255, 255, 255;
-    --dark-rgb: 22, 22, 29;
-    --dk-gray-rgb: 61, 61, 69;
-    --gray-rgb: 152, 152, 161;
-    --lt-gray-rgb: 202, 202, 212;
-    --blue-rgb: 0, 102, 204;
-    --lt-blue-rgb: 0, 153, 255;
+    --light-rgb: 255 255 255;
+    --dark-rgb: 22 22 29;
+    --dk-gray-rgb: 61 61 69;
+    --gray-rgb: 152 152 161;
+    --lt-gray-rgb: 202 202 212;
+    --blue-rgb: 0 102 204;
+    --lt-blue-rgb: 0 153 255;
 
     --text-primary-rgb: var(--dark-rgb);
     --text-secondary-rgb: var(--dk-gray-rgb);
@@ -82,6 +82,13 @@ const GlobalStyles = createGlobalStyle`
   ol[class] {
     list-style: none;
   }
+  ul:not([class]) > li,
+  ol:not([class]) > li,
+  li:not([class]) {
+    & + & {
+      margin-top: calc(1ex / (0.64 + 0.32))
+    }
+  }
 
   a:not([class]) {
     text-decoration-skip-ink: auto;
@@ -147,7 +154,7 @@ const GlobalStyles = createGlobalStyle`
     p:not([class]) &,
     li:not([class]) & {
       color: rgb(var(--text-accent-rgb));
-      text-decoration-color: rgba(var(--text-accent-rgb), 0.5);
+      text-decoration-color: rgb(var(--text-accent-rgb) / 50%);
       transition: text-decoration 0.25s ease;
 
       &:hover {
