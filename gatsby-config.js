@@ -110,9 +110,9 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-transformer-sharp`,
     {
-      resolve: `gatsby-plugin-google-gtag`,
+      resolve: `gatsby-plugin-plausible`,
       options: {
-        trackingIds: [`UA-93186602-1`],
+        domain: `jeffwinegar.com`,
       },
     },
     // {
