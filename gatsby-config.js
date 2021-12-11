@@ -1,10 +1,19 @@
 require("dotenv").config()
 
+const {
+  NODE_ENV,
+  URL: NETLIFY_SITE_URL = process.env.GATSBY_URL || `http://localhost:8000`,
+  DEPLOY_PRIME_URL: NETLIFY_DEPLOY_URL = NETLIFY_SITE_URL,
+  CONTEXT: NETLIFY_ENV = NODE_ENV,
+} = process.env
+const isNetlifyProduction = NETLIFY_ENV === "production"
+const siteUrl = isNetlifyProduction ? NETLIFY_SITE_URL : NETLIFY_DEPLOY_URL
+
 module.exports = {
   siteMetadata: {
     title: `Jeff Winegar`,
     description: `Frontend Web Developer`,
-    siteUrl: process.env.GATSBY_URL || `http://localhost:8000`,
+    siteUrl,
     author: `Jeff Winegar`,
     twitterHandle: `@jeff_winegar`,
     siteCopyrightYear: 2010,
@@ -114,6 +123,81 @@ module.exports = {
       resolve: `gatsby-plugin-plausible`,
       options: {
         domain: `jeffwinegar.com`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        query: `
+        {
+          site {
+            siteMetadata {
+              siteUrl
+            }
+          }
+          allMdx(
+            sort: {fields: frontmatter___date, order: DESC}
+            filter: {fields: {collection: {eq: "posts"}}}
+          ) {
+            nodes {
+              frontmatter {
+                date
+              }
+              slug
+            }
+          }
+        }
+      `,
+        resolveSiteUrl: ({
+          site: {
+            siteMetadata: { siteUrl },
+          },
+        }) => siteUrl,
+        resolvePages: ({ allMdx: { nodes: mdxs } }) => {
+          const posts = mdxs.map((mdx) => {
+            return {
+              path: `/${mdx.slug}`,
+              lastmod: mdx.frontmatter.date,
+              changefreq: "weekly",
+              priority: 0.7,
+            }
+          })
+          const home = {
+            path: `/`,
+            changefreq: "daily",
+            priority: 0.5,
+          }
+          return [...posts, home]
+        },
+        serialize: ({ path, lastmod, changefreq, priority }) => {
+          return {
+            url: path,
+            lastmod: lastmod ? lastmod : null,
+            changefreq,
+            priority,
+          }
+        },
+      },
+    },
+    {
+      resolve: "gatsby-plugin-robots-txt",
+      options: {
+        resolveEnv: () => NETLIFY_ENV,
+        env: {
+          production: {
+            policy: [{ userAgent: "*" }],
+          },
+          "branch-deploy": {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+            sitemap: null,
+            host: null,
+          },
+          "deploy-preview": {
+            policy: [{ userAgent: "*", disallow: ["/"] }],
+            sitemap: null,
+            host: null,
+          },
+        },
       },
     },
     // {
