@@ -33,7 +33,6 @@ const GlobalStyles = createGlobalStyle`
   html {
     box-sizing: border-box;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    
     color: rgb(var(--text-primary-rgb));
     background-color: rgb(var(--background-rgb));
     text-size-adjust: none;
