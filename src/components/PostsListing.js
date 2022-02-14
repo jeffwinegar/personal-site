@@ -1,5 +1,7 @@
 import React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
+import { MDXProvider } from "@mdx-js/react"
+import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled from "styled-components"
 import PostMeta from "./PostMeta"
 
@@ -34,7 +36,7 @@ const PostsListing = () => {
             slug
             timeToRead
             frontmatter {
-              title
+              mdxTitle
               date
             }
           }
@@ -45,23 +47,27 @@ const PostsListing = () => {
   const posts = data.allMdx.edges
 
   return (
-    <ul>
-      {posts.map((post) => {
-        const {
-          id,
-          slug,
-          timeToRead,
-          frontmatter: { title, date },
-        } = post.node
+    <MDXProvider components={{ p: (props) => <React.Fragment {...props} /> }}>
+      <ul>
+        {posts.map((post) => {
+          const {
+            id,
+            slug,
+            timeToRead,
+            frontmatter: { mdxTitle, date },
+          } = post.node
 
-        return (
-          <StyledPost key={id}>
-            <StyledLink to={`/${slug}`}>{title}</StyledLink>
-            <PostMeta metaData={{ timeToRead: timeToRead, date: date }} />
-          </StyledPost>
-        )
-      })}
-    </ul>
+          return (
+            <StyledPost key={id}>
+              <StyledLink to={`/${slug}`}>
+                <MDXRenderer>{mdxTitle}</MDXRenderer>
+              </StyledLink>
+              <PostMeta metaData={{ timeToRead: timeToRead, date: date }} />
+            </StyledPost>
+          )
+        })}
+      </ul>
+    </MDXProvider>
   )
 }
 
