@@ -9,8 +9,6 @@ import SEO from "../components/SEO"
 import PostMeta from "../components/PostMeta"
 import IconArrow from "../assets/images/icon-arrow-left.inline.svg"
 
-const shortcodes = { Link }
-
 const StyledBackLink = styled(Link)`
   color: rgb(var(--text-accent-rgb));
   display: inline-block;
@@ -56,6 +54,7 @@ export const pageQuery = graphql`
       }
       frontmatter {
         title
+        mdxTitle
         date
       }
     }
@@ -75,21 +74,25 @@ const PostLayout = ({ data: { mdx: post } }) => {
       />
       <SyntaxStyles />
 
-      <div>
-        <StyledBackLink to="/#some-thoughts">
-          <IconArrow /> Back
-        </StyledBackLink>
-      </div>
-      <header>
-        <h1>{post.frontmatter.title}</h1>
-        <PostMeta
-          metaData={{
-            timeToRead: post.timeToRead,
-            date: post.frontmatter.date,
-          }}
-        />
-      </header>
-      <MDXProvider components={shortcodes}>
+      <MDXProvider components={{ p: (props) => <React.Fragment {...props} /> }}>
+        <div>
+          <StyledBackLink to="/#some-thoughts">
+            <IconArrow /> Back
+          </StyledBackLink>
+        </div>
+        <header>
+          <h1>
+            <MDXRenderer>{post.frontmatter.mdxTitle}</MDXRenderer>
+          </h1>
+          <PostMeta
+            metaData={{
+              timeToRead: post.timeToRead,
+              date: post.frontmatter.date,
+            }}
+          />
+        </header>
+      </MDXProvider>
+      <MDXProvider components={{ Link }}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </MDXProvider>
     </>

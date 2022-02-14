@@ -33,6 +33,7 @@
     "styled-components": "^5.3.3"
   },
   "devDependencies": {
+    "@fec/remark-a11y-emoji": "^3.1.0",
     "@netlify/plugin-gatsby": "^2.0.0-beta",
     "@testing-library/cypress": "^8.0.2",
     "@testing-library/react": "^12.1.2",

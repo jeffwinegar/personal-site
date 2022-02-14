@@ -59,6 +59,7 @@ module.exports = {
             },
           },
         ],
+        remarkPlugins: [require(`@fec/remark-a11y-emoji`)],
       },
     },
     // {

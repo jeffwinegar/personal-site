@@ -10,13 +10,63 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
   }
 }
 
-exports.createSchemaCustomization = ({ actions }) => {
-  const { createTypes } = actions
+exports.createSchemaCustomization = ({ actions, createContentDigest }) => {
+  const { createTypes, createFieldExtension } = actions
+
+  /**
+   * https://github.com/zslabs/gatsby-plugin-mdx-frontmatter
+   * Modified to add config option to choose what field MDX will transform
+   * allowing you to keep the original field and create a new transformed one
+   * in your typeDef.
+   */
+  createFieldExtension({
+    name: `mdx`,
+    args: {
+      field: {
+        type: `String`,
+        defaultValue: ``,
+      },
+    },
+    extend(options) {
+      return {
+        type: `String`,
+        resolve(source, args, context, info) {
+          const value = options.field
+            ? source[options.field]
+            : source[info.fieldName]
+
+          if (typeof value === `undefined`) return null
+
+          const mdxType = info.schema.getType(`Mdx`)
+          const { resolve } = mdxType.getFields().body
+
+          return resolve(
+            {
+              rawBody: value,
+              internal: {
+                contentDigest: createContentDigest(value),
+              },
+            },
+            args,
+            context,
+            info
+          )
+        },
+      }
+    },
+  })
+
   const typeDefs = `
-    type MdxFrontmatter implements Node {
-      date: Date
+    type Mdx implements Node {
+      frontmatter: Frontmatter
+    }
+    type Frontmatter {
+      title: String!
+      mdxTitle: String! @mdx(field:"title")
+      image: String
+      category: [String!]!
+      date: Date!
     }
   `
-
   createTypes(typeDefs)
 }
