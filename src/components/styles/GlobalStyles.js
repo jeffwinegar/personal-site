@@ -36,6 +36,7 @@ const GlobalStyles = createGlobalStyle`
     
     color: rgb(var(--text-primary-rgb));
     background-color: rgb(var(--background-rgb));
+    text-size-adjust: none;
   }
 
   *,
