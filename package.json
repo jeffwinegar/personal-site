@@ -2,7 +2,7 @@
   "name": "jeff-winegar-site",
   "private": true,
   "description": "",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Jeff Winegar <winegarj@gmail.com>",
   "dependencies": {
     "@mdx-js/mdx": "^1.6.22",
