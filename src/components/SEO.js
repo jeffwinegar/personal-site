@@ -28,19 +28,22 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
       link={[
         {
           rel: `icon`,
+          href: `/favicon.ico`,
+          sizes: `any`,
+        },
+        {
+          rel: `icon`,
           href: `/favicon.svg`,
           type: `image/svg+xml`,
         },
         {
-          rel: `alternate icon`,
-          href: `/favicon.png`,
-          type: `image/png`,
+          rel: `apple-touch-icon`,
+          href: `/apple-touch-icon.png`,
         },
-        // {
-        //   rel: `mask-icon`,
-        //   href: `/safari-pinned-tab.svg`,
-        //   color: `#000000`,
-        // },
+        {
+          rel: `manifest`,
+          href: `/site.webmanifest`,
+        },
         {
           rel: `canonical`,
           href: href,
@@ -78,18 +81,6 @@ const SEO = ({ description, lang, keywords, title, url, path, pageType }) => {
         {
           name: `twitter:creator`,
           content: twitterHandle,
-        },
-        {
-          name: `twitter:title`,
-          content: !path || path === `/` ? author : metaTitle,
-        },
-        {
-          name: `twitter:description`,
-          content: metaDescription,
-        },
-        {
-          name: `twitter:url`,
-          content: href,
         },
       ].concat(
         metaKeywords && metaKeywords.length > 0
