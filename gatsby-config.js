@@ -201,19 +201,6 @@ module.exports = {
         },
       },
     },
-    // {
-    //   resolve: `gatsby-plugin-manifest`,
-    //   options: {
-    //     name: `Jeff Winegar Site`,
-    //     short_name: `jeffwinegar`,
-    //     start_url: `/`,
-    //     background_color: `#ffffff`,
-    //     theme_color: `#663399`,
-    //     display: `minimal-ui`,
-    //     icon: `${__dirname}/src/assets/images/favicon.svg`, // This path is relative to the root of the site.
-    //     legacy: false,
-    //   },
-    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,
