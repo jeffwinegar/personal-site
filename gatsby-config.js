@@ -81,9 +81,9 @@ module.exports = {
       resolve: `gatsby-source-github-api`,
       options: {
         token: process.env.GATSBY_GITHUB_API_TOKEN,
-        graphQLQuery: `query ($author: String = "", $userFirst: Int = 0, $userOrderBy: String = "", $langFirst: Int = 0) {
+        graphQLQuery: `query ($author: String = "", $userFirst: Int = 0, $langFirst: Int = 0) {
           user(login: $author) {
-            repositories(first: $userFirst, orderBy: {field: $userOrderBy, direction: DESC} privacy: PUBLIC, isFork: false) {
+            repositories(first: $userFirst, orderBy: {field: STARGAZERS, direction: DESC} privacy: PUBLIC, isFork: false) {
               edges {
                 node {
                   id
@@ -112,7 +112,6 @@ module.exports = {
         variables: {
           author: `jeffwinegar`,
           userFirst: 4,
-          userOrderBy: `STARGAZERS`,
           langFirst: 5,
         },
       },
