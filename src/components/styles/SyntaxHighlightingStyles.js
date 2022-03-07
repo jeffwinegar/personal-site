@@ -57,10 +57,10 @@ const SyntaxHighlightingStyles = createGlobalStyle`
     }
       
     code {
-      padding-left: 0;
       font-size: inherit;
       font-weight: inherit;
       min-width: 100%;
+      padding-left: 0;
       
       &::before,
       &::after {

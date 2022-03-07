@@ -19,22 +19,10 @@ const GlobalStyles = createGlobalStyle`
     
     --maxWidth: 800px;
   }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --text-primary-rgb: var(--lt-gray-rgb);
-      --text-secondary-rgb: var(--gray-rgb);
-      --text-accent-rgb: var(--lt-blue-rgb);
-      
-      --background-rgb: var(--dark-rgb);
-      --border-rgb: var(--dk-gray-rgb);
-    }
-  }
   
   html {
     box-sizing: border-box;
     font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    color: rgb(var(--text-primary-rgb));
-    background-color: rgb(var(--background-rgb));
     text-size-adjust: none;
   }
 
@@ -67,11 +55,22 @@ const GlobalStyles = createGlobalStyle`
   }
 
   body {
+    background-color: rgb(var(--background-rgb));
+    color: rgb(var(--text-primary-rgb));
+    font-size: 1.125rem;
+    line-height: calc(1ex / 0.32);
     min-height: 100vh;
     scroll-behavior: smooth;
     text-rendering: optimizeSpeed;
-    font-size: 1.125rem;
-    line-height: calc(1ex / 0.32);
+
+    &[data-theme='dark'] {
+      --text-primary-rgb: var(--lt-gray-rgb);
+      --text-secondary-rgb: var(--gray-rgb);
+      --text-accent-rgb: var(--lt-blue-rgb);
+      
+      --background-rgb: var(--dark-rgb);
+      --border-rgb: var(--dk-gray-rgb);
+    }
   }
 
   ul:not([class]) {
@@ -95,8 +94,8 @@ const GlobalStyles = createGlobalStyle`
   }
 
   img {
-    max-width: 100%;
     display: block;
+    max-width: 100%;
   }
 
   input,
@@ -168,10 +167,10 @@ const GlobalStyles = createGlobalStyle`
   }
 
   blockquote:not([class]) > * {
-    font-style: italic;
-    color: rgb(var(--text-secondary-rgb));
-    padding-left: 0.75em;
     border-left: solid 0.25em rgb(var(--border-rgb));
+    color: rgb(var(--text-secondary-rgb));
+    font-style: italic;
+    padding-left: 0.75em;
   }
 `
 

@@ -2,6 +2,7 @@ import React from "react"
 import styled from "styled-components"
 
 import { useSiteMetadata } from "./hooks/useSiteMetadata"
+import { ThemeToggle } from "./ThemeToggle"
 
 const currYear = new Date().getFullYear()
 
@@ -28,11 +29,12 @@ const Footer = () => {
       : currYear
 
   return (
-    <StyledFooter>
+    <StyledFooter role="contentinfo">
       <div>
         <p>
           {author} &copy; {copyrightYearRange}
         </p>
+        <ThemeToggle />
       </div>
     </StyledFooter>
   )
