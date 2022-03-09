@@ -1,7 +1,7 @@
 import React from "react"
 
 export const useMedia = (queries, values, defaultValue) => {
-  const mediaQueriesList = queries.map((q) => window.matchMedia(q))
+  const mediaQueriesList = queries.map((query) => window.matchMedia(query))
 
   const getValue = () => {
     const index = mediaQueriesList.findIndex((mql) => mql.matches)

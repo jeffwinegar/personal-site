@@ -10,14 +10,22 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   padding: calc(1ex / 0.64) 0;
+`
+const StyledFooterContent = styled.div`
+  display: flex;
+  flex-direction: column;
+  max-width: 52ch;
+  width: 100%;
 
-  > * {
-    width: 100%;
-    max-width: 52ch;
+  > div {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: calc(1ex / 0.64);
   }
 
   p {
-    font-size: 1rem;
+    border-top: solid 1px rgb(var(--text-primary-rgb));
+    font-size: 0.875rem;
   }
 `
 
@@ -30,12 +38,14 @@ const Footer = () => {
 
   return (
     <StyledFooter role="contentinfo">
-      <div>
+      <StyledFooterContent>
+        <div>
+          <ThemeToggle />
+        </div>
         <p>
           {author} &copy; {copyrightYearRange}
         </p>
-        <ThemeToggle />
-      </div>
+      </StyledFooterContent>
     </StyledFooter>
   )
 }
