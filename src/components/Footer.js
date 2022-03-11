@@ -24,7 +24,7 @@ const StyledFooterContent = styled.div`
   }
 
   p {
-    border-top: solid 1px rgb(var(--text-primary-rgb));
+    border-top: solid 1px rgb(var(--border-rgb));
     font-size: 0.875rem;
   }
 `
