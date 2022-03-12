@@ -1,7 +1,7 @@
 import React from "react"
 import createPersistedState from "use-persisted-state"
 import styled from "styled-components"
-import { useMedia } from "./hooks/useMedia"
+import { usePrefersColorScheme } from "./hooks/usePrefersColorScheme"
 
 const StyledToggle = styled.fieldset`
   border-radius: 1em;
@@ -68,12 +68,10 @@ const StyledToggle = styled.fieldset`
 const useColorSchemeState = createPersistedState(
   "jw:setting:preferredColorScheme"
 )
-const useSystemPrefersColorScheme = () =>
-  useMedia(["(prefers-color-scheme: dark)"], ["dark"], "light")
 
 export const ThemeToggle = () => {
+  const systemColorScheme = usePrefersColorScheme()
   const [colorScheme, setColorScheme] = useColorSchemeState("auto")
-  const systemColorScheme = useSystemPrefersColorScheme()
 
   React.useEffect(() => {
     const themePreference =
