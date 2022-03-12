@@ -29,6 +29,7 @@ const StyledToggle = styled.fieldset`
   label span {
     border-radius: calc(1em - 2px);
     border: solid 1px transparent;
+    cursor: pointer;
     display: inline-block;
     min-width: 42px;
     text-align: center;
@@ -61,6 +62,7 @@ const StyledToggle = styled.fieldset`
       right: 0;
       top: 0;
       width: 100%;
+      z-index: -1;
     }
   }
 `
