@@ -4,7 +4,7 @@ import styled from "styled-components"
 
 const StyledContainer = styled.div`
   font-size: 0.875rem;
-  line-height: 1;
+  line-height: normal;
 `
 
 const PostMeta = ({ metaData }) => {
