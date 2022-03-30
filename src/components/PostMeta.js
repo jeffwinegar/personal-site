@@ -8,15 +8,11 @@ const StyledContainer = styled.div`
 `
 
 const PostMeta = ({ metaData }) => {
-  const { date: dateISO, timeToRead } = metaData
-  const localizeDate = new Date(dateISO).setDate(
-    new Date(dateISO).getDate() + parseInt(1)
-  )
-  const localeDate = format(new Date(localizeDate), "yyyy-MM-dd")
+  const { date, timeToRead } = metaData
 
   return (
     <StyledContainer>
-      <time dateTime={localeDate}>{format(parseISO(localeDate), "PPP")}</time> •{" "}
+      <time dateTime={date}>{format(parseISO(date), "PPP")}</time> •{" "}
       <i>{timeToRead} min read</i>
     </StyledContainer>
   )
