@@ -6,15 +6,24 @@ import styled from "styled-components"
 import PostMeta from "./PostMeta"
 
 const StyledPost = styled.li`
+  line-height: normal;
+
   & + & {
-    margin-top: calc(1ex / (0.64 + 0.32));
+    margin-top: calc(1ex / (0.36 + 0.32));
+  }
+
+  & > * + * {
+    margin-top: calc(1ex / (1.92 + 0.32));
+  }
+
+  span[role="img"] {
+    line-height: 1;
   }
 `
 
 const StyledLink = styled(Link)`
-  display: inline-block;
-  font-weight: 500;
   color: rgb(var(--text-accent-rgb));
+  font-weight: 500;
   text-decoration-color: rgb(var(--text-accent-rgb) / 0);
   transition: text-decoration 0.25s ease;
 

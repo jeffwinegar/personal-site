@@ -65,7 +65,7 @@ exports.createSchemaCustomization = ({ actions, createContentDigest }) => {
       mdxTitle: String! @mdx(field:"title")
       image: String
       category: [String!]!
-      date: Date!
+      date: Date! @dateformat(formatString: "YYYY-MM-DD")
     }
   `
   createTypes(typeDefs)
