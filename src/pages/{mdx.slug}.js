@@ -41,6 +41,11 @@ const StyledBackLink = styled(Link)`
   }
 `
 
+const StyledFooterContent = styled.div`
+  font-size: 1rem;
+  line-height: calc(1ex / 0.32);
+`
+
 export const pageQuery = graphql`
   query GetPost($id: String) {
     mdx(id: { eq: $id }) {
@@ -52,6 +57,7 @@ export const pageQuery = graphql`
       fields {
         collection
       }
+      fileAbsolutePath
       frontmatter {
         title
         mdxTitle
@@ -63,6 +69,10 @@ export const pageQuery = graphql`
 
 const PostLayout = ({ data: { mdx: post } }) => {
   const slugPath = `/${post.slug}`
+  const filePath = post.fileAbsolutePath.slice(
+    post.fileAbsolutePath.indexOf("posts/")
+  )
+  const editLink = `https://github.com/jeffwinegar/personal-site/edit/main/src/${filePath}`
 
   return (
     <>
@@ -95,6 +105,17 @@ const PostLayout = ({ data: { mdx: post } }) => {
       <MDXProvider components={{ Link }}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </MDXProvider>
+
+      <footer>
+        <StyledFooterContent>
+          <p>----</p>
+          <p>
+            <a href={editLink} target="_blank" rel="noopener noreferrer">
+              Edit on GitHub
+            </a>
+          </p>
+        </StyledFooterContent>
+      </footer>
     </>
   )
 }

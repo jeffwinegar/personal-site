@@ -32,6 +32,7 @@ const SyntaxHighlightingStyles = createGlobalStyle`
     
     border-radius: 4px;
     line-height: 1.5rem;
+    width: 100%;
 
     &[data-line-numbers="true"] {
       code {
@@ -72,6 +73,24 @@ const SyntaxHighlightingStyles = createGlobalStyle`
       overflow-x: auto;
       padding-bottom: 2rem;
       padding-top: 2rem;
+      scrollbar-color: var(--shiki-token-comment) var(--shiki-color-background);
+      scrollbar-width: thin;
+
+      &::-webkit-scrollbar {
+        background-color: var(--shiki-color-background);
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        height: 4px;
+      }
+      &::-webkit-scrollbar-thumb {
+        background-color: var(--shiki-token-comment);
+        border-radius: 4px;
+      }
+      &::-webkit-scrollbar-track {
+        background-color: var(--shiki-color-background);
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+      }
     }
     
     .line {
