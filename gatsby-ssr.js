@@ -30,8 +30,8 @@ const ThemeScriptTag = () => {
   return <script dangerouslySetInnerHTML={{ __html: clientSideCode }} />
 }
 
-export const onRenderBody = ({ setPreBodyComponent }) => {
-  setPreBodyComponent(<ThemeScriptTag />)
+export const onRenderBody = ({ setPreBodyComponents }) => {
+  setPreBodyComponents(<ThemeScriptTag />)
 }
 
 export const wrapPageElement = ({ element, props }) => {
