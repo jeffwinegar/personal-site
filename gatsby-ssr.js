@@ -5,8 +5,8 @@ const ThemeScriptTag = () => {
   const clientSideCode = `(function () {
     function getInitialColorScheme() {
       // Check for localStorage value
-      const persistedColorSchemePreference = window.localStorage.getItem(
-        "jw:setting:preferredColorScheme"
+      const persistedColorSchemePreference = JSON.parse(
+        window.localStorage.getItem("jw:setting:preferredColorScheme")
       )
       const hasPersistedPreference =
         typeof persistedColorSchemePreference === "string"
@@ -18,7 +18,8 @@ const ThemeScriptTag = () => {
       const mql = window.matchMedia("(prefers-color-scheme: dark)")
       const hasMediaQueryPreference = typeof mql.matches === "boolean"
 
-      if (hasMediaQueryPreference) return mql.matches ? "dark" : "light"
+      if (hasMediaQueryPreference || persistedColorSchemePreference === "auto")
+        return mql.matches ? "dark" : "light"
 
       // if browser doesn't support color themes set default to 'light'
       return "light"
