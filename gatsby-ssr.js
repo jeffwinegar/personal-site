@@ -1,7 +1,7 @@
 import React from "react"
 import Layout from "./src/components/Layout"
 
-function setTheme() {
+function setInitialTheme() {
   function getInitialColorScheme() {
     // Check for localStorage value
     const persistedColorSchemePreference = JSON.parse(
@@ -30,13 +30,13 @@ function setTheme() {
 }
 
 const ThemeScriptTag = () => {
-  const clientSideCode = `(${String(setTheme)})()`
+  const clientSideCode = `(${String(setInitialTheme)})()`
 
   return <script dangerouslySetInnerHTML={{ __html: clientSideCode }} />
 }
 
 export const onRenderBody = ({ setPreBodyComponents }) => {
-  setPreBodyComponents(<ThemeScriptTag />)
+  setPreBodyComponents(<ThemeScriptTag key="initialThemeScript" />)
 }
 
 export const wrapPageElement = ({ element, props }) => {
