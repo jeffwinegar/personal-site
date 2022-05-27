@@ -69,7 +69,7 @@
   "scripts": {
     "build": "gatsby build",
     "develop": "gatsby develop",
-    "start": "npm run develop",
+    "start": "netlify dev",
     "serve": "gatsby serve --port 9090",
     "clean": "gatsby clean",
     "lint": "eslint .",

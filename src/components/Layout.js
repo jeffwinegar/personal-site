@@ -14,10 +14,11 @@ const ContentGrid = styled.main`
   grid-template-columns: 1fr fit-content(52ch) 1fr;
   padding-top: calc(1ex / 0.32);
 
-  > *:not([class]) {
+  > *:not([class]),
+  [class*="Callout"] {
     grid-column: 2;
   }
-  > *[class] {
+  > *[class]:not([class*="Callout"]) {
     grid-column: 1 / span 3;
   }
 

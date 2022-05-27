@@ -4,6 +4,7 @@ import { MDXProvider } from "@mdx-js/react"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 import styled from "styled-components"
 
+import Callout from "../components/Callout"
 import SyntaxStyles from "../components/styles/SyntaxHighlightingStyles"
 import SEO from "../components/SEO"
 import PostMeta from "../components/PostMeta"
@@ -102,7 +103,7 @@ const PostLayout = ({ data: { mdx: post } }) => {
           />
         </header>
       </MDXProvider>
-      <MDXProvider components={{ Link }}>
+      <MDXProvider components={{ Link, Callout }}>
         <MDXRenderer>{post.body}</MDXRenderer>
       </MDXProvider>
 
