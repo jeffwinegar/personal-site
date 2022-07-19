@@ -3,10 +3,16 @@ import { withTRPC } from "@trpc/next";
 import type { AppRouter } from "../server/router";
 import type { AppType } from "next/dist/shared/lib/utils";
 import superjson from "superjson";
+
+import Layout from "../components/Layout";
 import "../styles/globals.css";
 
 const MyApp: AppType = ({ Component, pageProps }) => {
-  return <Component {...pageProps} />;
+  return (
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
+  );
 };
 
 const getBaseUrl = () => {
@@ -14,7 +20,7 @@ const getBaseUrl = () => {
     return "";
   }
   if (process.browser) return ""; // Browser should use current path
-  if (process.env.VERCEL_URL) return `https://${process.env.VERCEL_URL}`; // SSR should use vercel url
+  if (process.env.URL) return `${process.env.URL}`; // SSR should use Netlify url
 
   return `http://localhost:${process.env.PORT ?? 3000}`; // dev SSR should use localhost
 };

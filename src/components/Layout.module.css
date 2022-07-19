@@ -1,0 +1,17 @@
+.container {
+  max-width: var(--max-width-container);
+  padding: 0 1.0875rem;
+  margin: 0 auto;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr fit-content(55ch) 1fr;
+  padding-top: calc(1ex / 0.32);
+}
+.grid > :where(:not([class]), [class*="Callout"]) {
+  grid-column: 2;
+}
+.grid > [class]:not([class*="Callout"]) {
+  grid-column: 1 / span 3;
+}

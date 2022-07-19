@@ -1,16 +1,133 @@
-html,
-body {
-  padding: 0;
+:root {
+  --color-background: hsl(0, 0%, 100%);
+  --color-text: hsl(240, 10%, 10%);
+  
+  --color-primary: hsl(210, 100%, 40%);
+
+  --color-light-gray: hsl(240, 10%, 95%);
+  --color-gray: hsl(240, 5%, 60%);
+  --color-dark-gray: hsl(240, 5%, 25%);
+  
+  --max-width-container: 800px;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h1,
+h2,
+h3,
+h4,
+p,
+figure,
+blockquote,
+dl,
+dd {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+:where(ul, ol)[role="list"] {
+  list-style: none;
+}
+:where(ul, ol):not([role="list"]) > li + li,
+li:not([class]) + li:not([class]) {
+  margin-top: calc(1ex / (0.64 + 0.32));
+}
+
+html:focus-within {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  line-height: calc(1ex / 0.32);
+  min-height: 100vh;
+  text-rendering: optimizeSpeed;
+  -webkit-font-smoothing: antialiased;
+}
+
+a:not([class]) {
+  text-decoration-skip-ink: auto;
+}
+
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html:focus-within {
+   scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-text);
+}
+body[data-theme="dark"] {
+  --color-background: hsl(240, 10%, 10%);
+  --color-text: hsl(240, 10%, 95%);
+}
+
+#root, #__next {
+  font-size: 1.125rem;
+  isolation: isolate;
+}
+
+h1, h2 {
+  line-height: calc(1ex / 0.42);
+  margin: calc(1ex / (0.42 + 0.32)) 0;
+}
+h1 {
+  font-size: 2.5em;
+}
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.75em;
+  line-height: calc(1ex / 0.38);
+  margin: calc(1ex / (0.38 + 0.32)) 0;
+}
+h4 {
+  font-size: 1.5em;
+  line-height: calc(1ex / 0.37);
+  margin: calc(1ex / (0.37 + 0.32)) 0;
+}
+
+p:not([class]) {
+  margin: calc(1ex / 0.64) 0;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
 }
-
-* {
-  box-sizing: border-box;
+:where(p, li):not([class]) a {
+  color: var(--color-primary);
+  text-decoration-color: hsla(210, 100%, 40%, 0.5);
+  transition: text-decoration 0.25s ease;
+}
+:where(p, li):not([class]) a:hover {
+  text-decoration-color: currentColor;
 }
