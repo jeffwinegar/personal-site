@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { trpc } from "../utils/trpc";
+import { trpc } from "@/utils/trpc";
 
 const Home: NextPage = () => {
   const { data, isLoading } = trpc.useQuery([
@@ -9,6 +9,8 @@ const Home: NextPage = () => {
 
   return (
     <>
+      <div>{data ? <p>{data.greeting}</p> : <p>Loading..</p>}</div>
+
       <h1>Hey, I&rsquo;m Jeff Winegar.</h1>
 
       <p>
@@ -49,7 +51,6 @@ const Home: NextPage = () => {
 
       <p>👋 Thanks for visiting.</p>
 
-
       <div>
         <h3>This stack uses:</h3>
         <ul>
@@ -73,8 +74,6 @@ const Home: NextPage = () => {
             </a>
           </li>
         </ul>
-
-        <div>{data ? <p>{data.greeting}</p> : <p>Loading..</p>}</div>
       </div>
     </>
   );
