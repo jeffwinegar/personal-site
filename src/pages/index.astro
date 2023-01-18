@@ -1,81 +1,84 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Card from '../components/Card.astro';
+import Layout from '@layouts/Layout.astro';
+
+const yrsExp: number =
+  new Date().getFullYear() - new Date('2012-03-01').getFullYear();
 ---
 
-<Layout title="Welcome to Astro.">
-	<main>
-		<h1>Welcome to <span class="text-gradient">Astro</span></h1>
-		<p class="instructions">
-			To get started, open the directory <code>src/pages</code> in your project.<br />
-			<strong>Code Challenge:</strong> Tweak the "Welcome to Astro" message above.
-		</p>
-		<ul role="list" class="link-card-grid">
-			<Card
-				href="https://docs.astro.build/"
-				title="Documentation"
-				body="Learn how Astro works and explore the official API docs."
-			/>
-			<Card
-				href="https://astro.build/integrations/"
-				title="Integrations"
-				body="Supercharge your project with new frameworks and libraries."
-			/>
-			<Card
-				href="https://astro.build/themes/"
-				title="Themes"
-				body="Explore a galaxy of community-built starter themes."
-			/>
-			<Card
-				href="https://astro.build/chat/"
-				title="Community"
-				body="Come say hi to our amazing Discord community. ❤️"
-			/>
-		</ul>
-	</main>
+<Layout title="Jeff Winegar - Frontend Developer">
+  <main class="grid-container">
+    <h1>Hey, I'm Jeff Winegar.</h1>
+
+    <p>
+      I'm a frontend focused full stack developer based out of Los Angeles.
+      Originally a graphic designer for 10 years, I transitioned into web
+      development and have been building websites for the past {yrsExp}
+      years. When not writing code I am also an <a
+        href="https://www.strava.com/athletes/jeff_winegar"
+        >avid bike commuter</a
+      >; a <a href="https://www.instagram.com/jeff_winegar/">photographer</a>;
+      and a maker. I also really enjoy <a
+        href="https://music.apple.com/profile/jeff_winegar">music</a
+      > and watching a good <a href="https://letterboxd.com/jeff_winegar/"
+        >movie</a
+      >.
+    </p>
+
+    <p>
+      I work in HTML, CSS, and JavaScript. Though always exploring new
+      technologies, my focus right now is on React.js, Typescript, Node,
+      Serverless, Astro, and Next.js. Take a look at a few of my
+      public projects:
+    </p>
+
+    <ol class="grid-full-width" role="list">
+      <li><a href="">Project</a></li>
+      <li><a href="">Project</a></li>
+      <li><a href="">Project</a></li>
+      <li><a href="">Project</a></li>
+      <li><a href="">Project</a></li>
+      <li><a href="">Project</a></li>
+    </ol>
+
+    <p>
+      I am currently a Senior Web Developer at Wunderman Thompson where I do
+      hands-on development and lead teams working for clients including Genesis,
+      Hyundai, Mazda, Shell, Snap, and Synchrony Bank in projects that span from
+      micro-sites, landing pages, and site components to responsive dynamic
+      data-driven emails and animated banner ads.
+    </p>
+
+    <p>
+      If you'd like to see more of my contributions, take a look on <a
+        href="https://github.com/jeffwinegar">my GitHub profile</a
+      >. You can also see my work history on <a
+        href="https://www.linkedin.com/in/jeffwinegar">LinkedIn</a
+      >, or get in touch with me directly at <a
+        href="mailto:hello@jeffwinegar.com">hello@jeffwinegar.com</a
+      >.
+    </p>
+
+    <p>👋 Thanks for visiting.</p>
+  </main>
 </Layout>
 
 <style>
-	main {
-		margin: auto;
-		padding: 1.5rem;
-		max-width: 60ch;
-	}
-	h1 {
-		font-size: 3rem;
-		font-weight: 800;
-		margin: 0;
-	}
-	.text-gradient {
-		background-image: var(--accent-gradient);
-		-webkit-background-clip: text;
-		-webkit-text-fill-color: transparent;
-		background-size: 400%;
-		background-position: 0%;
-	}
-	.instructions {
-		line-height: 1.6;
-		margin: 1rem 0;
-		border: 1px solid rgba(var(--accent), 25%);
-		background-color: white;
-		padding: 1rem;
-		border-radius: 0.4rem;
-	}
-	.instructions code {
-		font-size: 0.875em;
-		font-weight: bold;
-		background: rgba(var(--accent), 12%);
-		color: rgb(var(--accent));
-		border-radius: 4px;
-		padding: 0.3em 0.45em;
-	}
-	.instructions strong {
-		color: rgb(var(--accent));
-	}
-	.link-card-grid {
-		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
-		gap: 1rem;
-		padding: 0;
-	}
+  main {
+    font-size: 1.125rem;
+    margin-inline: auto;
+    max-width: var(--max-width-container);
+    padding-inline: 1.0875rem;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr fit-content(52ch) 1fr;
+    padding-top: calc(1ex / 0.32);
+  }
+  .grid-full-width {
+    grid-column: 1 / span 3;
+  }
+  .grid-container > :not(.grid-full-width) {
+    grid-column: 2;
+  }
 </style>
