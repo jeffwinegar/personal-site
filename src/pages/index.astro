@@ -1,19 +1,21 @@
 ---
 import Layout from '@layouts/Layout.astro';
+import FeaturedRepos from '@components/FeaturedRepos.astro';
+
 
 const yrsExp: number =
   new Date().getFullYear() - new Date('2012-03-01').getFullYear();
 ---
 
-<Layout title="Jeff Winegar - Frontend Developer">
+<Layout title="Jeff Winegar - Front-end Developer">
   <main class="grid-container">
     <h1>Hey, I'm Jeff Winegar.</h1>
 
     <p>
-      I'm a frontend focused full stack developer based out of Los Angeles.
-      Originally a graphic designer for 10 years, I transitioned into web
-      development and have been building websites for the past {yrsExp}
-      years. When not writing code I am also an <a
+      I'm a full stack JavaScript developer focused on front-end technologies
+      based out of Los Angeles. Originally a graphic designer for 10 years, I
+      transitioned into web development and have been building websites for the
+      past {yrsExp} years. When not writing code I am also an <a
         href="https://www.strava.com/athletes/jeff_winegar"
         >avid bike commuter</a
       >; a <a href="https://www.instagram.com/jeff_winegar/">photographer</a>;
@@ -26,19 +28,12 @@ const yrsExp: number =
 
     <p>
       I work in HTML, CSS, and JavaScript. Though always exploring new
-      technologies, my focus right now is on React.js, Typescript, Node,
-      Serverless, Astro, and Next.js. Take a look at a few of my
-      public projects:
+      technologies, my focus right now is on Typescript, React.js, Node,
+      Serverless, Astro, and Next.js. Take a look at a few of my public
+      projects:
     </p>
 
-    <ol class="grid-full-width" role="list">
-      <li><a href="">Project</a></li>
-      <li><a href="">Project</a></li>
-      <li><a href="">Project</a></li>
-      <li><a href="">Project</a></li>
-      <li><a href="">Project</a></li>
-      <li><a href="">Project</a></li>
-    </ol>
+    <FeaturedRepos class="grid-full-width" />
 
     <p>
       I am currently a Senior Web Developer at Wunderman Thompson where I do

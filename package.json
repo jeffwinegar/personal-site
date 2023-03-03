@@ -11,6 +11,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "astro": "^1.9.0"
+    "@octokit/request": "^6.2.3",
+    "astro": "^2.0.17",
+    "astro-icon": "^0.8.0"
   }
 }
