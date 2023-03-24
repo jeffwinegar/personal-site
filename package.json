@@ -13,6 +13,10 @@
   "dependencies": {
     "@octokit/request": "^6.2.3",
     "astro": "^2.0.17",
-    "astro-icon": "^0.8.0"
+    "astro-icon": "^0.8.0",
+    "reading-time": "^1.5.0"
+  },
+  "devDependencies": {
+    "rehype-accessible-emojis": "^0.3.2"
   }
 }

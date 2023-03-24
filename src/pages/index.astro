@@ -1,6 +1,7 @@
 ---
 import Layout from '@layouts/Layout.astro';
 import FeaturedRepos from '@components/FeaturedRepos.astro';
+import FeaturedPosts from '@components/FeaturedPosts.astro';
 
 
 const yrsExp: number =
@@ -54,26 +55,13 @@ const yrsExp: number =
     </p>
 
     <p>👋 Thanks for visiting.</p>
+
+    <h2>🤔&hellip;some thoughts</h2>
+
+    <p>This space is for me to post about what I like and am interested in while trying not to worry about it being perfect. The entries may not be complete thoughts, I may circle back to them, I may not, we'll see how things go? 🤷</p>
+
+    <p>If you like something you read here, please feel free to share it and let me know. It's always nice to get feedback.</p>
+
+    <FeaturedPosts />
   </main>
 </Layout>
-
-<style>
-  main {
-    font-size: 1.125rem;
-    margin-inline: auto;
-    max-width: var(--max-width-container);
-    padding-inline: 1.0875rem;
-  }
-
-  .grid-container {
-    display: grid;
-    grid-template-columns: 1fr fit-content(52ch) 1fr;
-    padding-top: calc(1ex / 0.32);
-  }
-  .grid-full-width {
-    grid-column: 1 / span 3;
-  }
-  .grid-container > :not(.grid-full-width) {
-    grid-column: 2;
-  }
-</style>

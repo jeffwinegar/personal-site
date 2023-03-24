@@ -1,0 +1,42 @@
+---
+import { CollectionEntry, getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import PostMeta from '@components/PostMeta.astro';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props as {post: CollectionEntry<'blog'>};
+const {title, date} = post.data;
+const { Content } = await post.render();
+---
+
+<Layout title={`${title} - Jeff Winegar`}>
+  <main class="grid-container">
+    <header>
+      <PostMeta date={date} content={post.body} />
+      <h1>{title}</h1>
+    </header>
+    
+    <Content />
+  </main>
+</Layout>
+
+<style is:global>
+  header h1,
+  header + * {
+    margin-block-start: 0;
+  }
+
+  .callout > * {
+    border-inline-start: solid 0.25em var(--color-light-gray);
+    font-style: italic;
+    padding-inline-start: 0.75em;
+  }
+</style>

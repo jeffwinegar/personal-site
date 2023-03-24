@@ -1,0 +1,62 @@
+---
+import { getCollection } from 'astro:content';
+import PostMeta from '@components/PostMeta.astro';
+
+export type Props = {
+  class?: string;
+}
+
+const posts = await getCollection('blog');
+const { class: className = '' } = Astro.props;
+---
+
+<ul class={className}>
+  {
+    posts.map((post) => {
+      const { title, date } = post.data;
+
+      return (
+        <li>
+          <a href={`/${post.slug}`}>{title}</a>
+          <PostMeta date={date} content={post.body} />
+        </li>
+      );
+    })
+  }
+</ul>
+
+<style>
+  ul {
+    margin-block: calc(1ex / 0.64);
+    padding-inline-start: 1.1em;
+  }
+
+  li {
+    line-height: normal;
+  }
+  li + li {
+    margin-block-start: calc(1ex / (0.36 + 0.32));
+  }
+  li > * + * {
+    margin-block-start: calc(1ex / (1.92 + 0.32));
+  }
+  li span[role='img'] {
+    line-height: 1;
+  }
+
+  a {
+    color: var(--color-primary);
+    font-weight: 500;
+    text-decoration-color: transparent;
+    transition: text-decoration 0.25s ease;
+  }
+  a:where(:hover, :focus) {
+    text-decoration-color: currentColor;
+  }
+
+  .post-meta {
+    color: var(--color-dark-gray);
+    font-size: 0.875rem;
+    line-height: normal;
+  }
+</style>

@@ -3,6 +3,10 @@ import { request } from '@octokit/request';
 import type { Endpoints } from '@octokit/types';
 import { Icon } from 'astro-icon';
 
+export type Props = {
+  class?: string;
+};
+
 type listUserReposResponse =
   Endpoints[`GET /users/{username}/repos`]['response'];
 type repoLanguagesResponse =
@@ -67,7 +71,7 @@ const repos = Promise.all(
 
 const featuredRepos = await repos;
 
-const { class: className } = Astro.props;
+const { class: className = '' } = Astro.props;
 ---
 
 <ol class={className} role="list">
@@ -83,7 +87,11 @@ const { class: className } = Astro.props;
             {repo.languages.map((lang) => (
               <span>
                 <span class="lang">{lang.name}</span>
-                <span>{Math.round((lang.size / lang.totalSize) * 100 * 10) / 10 || 0}%</span>
+                <span>
+                  {Math.round((lang.size / lang.totalSize) * 100 * 10) / 10 ||
+                    0}
+                  %
+                </span>
               </span>
             ))}
             {stars_count > 0 ? (
