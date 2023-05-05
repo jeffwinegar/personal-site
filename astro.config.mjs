@@ -5,5 +5,8 @@ import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 export default defineConfig({
   markdown: {
     rehypePlugins: [rehypeAccessibleEmojis],
+    shikiConfig: {
+      theme: 'nord',
+    },
   },
 });

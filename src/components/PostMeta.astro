@@ -20,15 +20,16 @@ const friendlyDate = new Intl.DateTimeFormat('en-US', options).format(
 );
 ---
 
-<small>
+<p>
   <time datetime={isoDate}>{friendlyDate}</time> • {getTimeToRead(content)}
-</small>
+</p>
 
 <style>
-  small {
+  p {
     display: block;
     color: var(--color-text-secondary);
     font-size: 0.875rem;
     line-height: normal;
+    margin-block: 0;
   }
 </style>

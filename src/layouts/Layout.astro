@@ -26,6 +26,9 @@ const { title } = Astro.props;
     --primary-sat: 100%;
     --primary-lit: 40%;
 
+    --gray-hue: 240deg;
+    --gray-sat: 5%;
+
     --color-primary: hsl(
       var(--primary-hue) var(--primary-sat) var(--primary-lit)
     );
@@ -33,12 +36,14 @@ const { title } = Astro.props;
       var(--primary-hue) var(--primary-sat) var(--primary-lit) / 0.5
     );
 
-    --color-light-gray: hsl(240deg, 5%, 80%);
-    --color-gray: hsl(240deg 5% 60%);
-    --color-dark-gray: hsl(240deg 5% 25%);
+    --color-off-white: hsl(var(--gray-hue) var(--gray-sat) 95%);
+    --color-lighter-gray: hsl(var(--gray-hue) var(--gray-sat) 90%);
+    --color-light-gray: hsl(var(--gray-hue) var(--gray-sat) 80%);
+    --color-gray: hsl(var(--gray-hue) var(--gray-sat) 60%);
+    --color-dark-gray: hsl(var(--gray-hue) var(--gray-sat) 25%);
 
     --color-background: hsl(0deg 0% 100%);
-    --color-text: hsl(240deg 100% 10%);
+    --color-text: hsl(var(--gray-hue) 100% 10%);
     --color-text-secondary: var(--color-dark-gray);
 
     --max-width-container: 800px;
@@ -67,12 +72,17 @@ const { title } = Astro.props;
       'Segoe UI Symbol';
     line-height: calc(1ex / 0.32);
     min-height: 100vh;
+    padding-block-start: calc(1ex / 0.32);
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
   }
   body[data-theme='dark'] {
     --color-background: hsl(240, 10%, 10%);
     --color-text: hsl(240, 10%, 95%);
+  }
+
+  main {
+    font-size: 1.125rem;
   }
 
   img,
@@ -113,7 +123,7 @@ const { title } = Astro.props;
     list-style: none;
   }
   :where(ul, ol):not([role='list']) > li + li {
-    margin-top: calc(1ex / (0.64 + 0.32));
+    margin-block-start: calc(1ex / (0.64 + 0.32));
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -169,19 +179,22 @@ const { title } = Astro.props;
     text-decoration-color: currentColor;
   }
 
+  ul {
+    margin-block: calc(1ex / 0.64);
+    padding-inline-start: 1.1em;
+  }
+
   .grid-container {
     display: grid;
-    font-size: 1.125rem;
-    grid-template-columns: 1fr fit-content(52ch) 1fr;
+    grid-template-columns: 1fr fit-content(54ch) 1fr;
     margin-inline: auto;
     max-width: var(--max-width-container);
     padding-inline: 1.0875rem;
-    padding-top: calc(1ex / 0.32);
   }
   .grid-full-width {
     grid-column: 1 / span 3;
   }
-  .grid-container > :not(.grid-full-width) {
+  .grid-container > :not(.grid-full-width, article pre) {
     grid-column: 2;
   }
 </style>
