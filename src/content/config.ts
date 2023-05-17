@@ -16,6 +16,7 @@ const blogCollection = defineCollection({
       title: z.string(),
       date: z.date(),
       categories: z.array(z.enum(categories)).default([]),
+      toc: z.boolean().default(true),
       draft: z.boolean().optional(),
     })
     .strict(),

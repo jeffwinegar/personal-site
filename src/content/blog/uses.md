@@ -2,6 +2,7 @@
 title: 🤓 Uses
 date: 2021-11-15
 categories: [Other, Reference]
+toc: false
 ---
 
 I wanted to be like the cool kids so, even though no one has asked me what my setup is, I thought I'd add it here in case anyone is curious.

@@ -2,6 +2,7 @@
 import { getCollection } from 'astro:content';
 import Layout from '@layouts/Layout.astro';
 import PostMeta from '@components/PostMeta.astro';
+import TableOfContents from '@components/TableOfContents.astro';
 import type { InferGetStaticPropsType } from 'astro';
 import { Icon } from 'astro-icon';
 
@@ -17,14 +18,14 @@ export async function getStaticPaths() {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post } = Astro.props;
-const { title, date } = post.data;
-const { Content } = await post.render();
+const { title, date, toc } = post.data;
+const { Content, headings } = await post.render();
 ---
 
 <Layout title={`${title} - Jeff Winegar`}>
   <main>
     <div>
-      <a class="back-link" href="/" aria-label="back to home">
+      <a class="icon-link" href="/" aria-label="back to home">
         <Icon
           aria-hidden="true"
           role="img"
@@ -40,48 +41,15 @@ const { Content } = await post.render();
         <h1>{title}</h1>
       </header>
 
-      <Content />
+      {toc ? <TableOfContents headings={headings} /> : null}
 
-      <section>
-        <p>- end of post -</p>
-      </section>
+      <Content />
     </article>
   </main>
 </Layout>
 
 <style is:global>
-  [astro-icon] {
-    aspect-ratio: 1/1;
-    width: 1.1666666667em;
-  }
-  :not(.back-link) > [astro-icon] {
-    vertical-align: text-bottom;
-  }
-
-  main > div:first-of-type {
-    display: flex;
-    margin-block-end: calc(1ex / 0.32);
-    padding-inline: 1.0875rem;
-  }
-  
-  .back-link {
-    align-items: center;
-    color: var(--color-primary);
-    display: flex;
-    font-size: 1rem;
-    gap: 0.25em;
-    text-decoration-color: var(--color-primary-transparent);
-    transition: text-decoration 250ms ease;
-  }
-  .back-link:where(:hover, :focus) {
-    text-decoration-color: currentColor;
-  }
-
-  header h1,
-  header + * {
-    margin-block-start: 0;
-  }
-
+  /* Content styles */
   article pre {
     --color-shiki-theme: hsl(220deg 17% 46%); /* nord */
 
@@ -89,16 +57,6 @@ const { Content } = await post.render();
     grid-column: 1 / span 3;
     margin-block: calc(1ex / 0.64);
     padding-block: 0.75rem 0.875rem;
-    scrollbar-color: var(--color-shiki-theme) transparent;
-    scrollbar-width: thin;
-  }
-  article pre::-webkit-scrollbar {
-    background-color: transparent;
-    height: 0.25rem;
-  }
-  article pre::-webkit-scrollbar-thumb {
-    background-color: var(--color-shiki-theme);
-    border-radius: 0.25rem;
   }
 
   code {
@@ -120,11 +78,6 @@ const { Content } = await post.render();
     padding-inline: 1rem;
   }
 
-  section p {
-    color: var(--color-text-secondary);
-    font-size: 0.8888888889em;
-  }
-
   .callout > * {
     border-inline-start: solid 0.25em var(--color-light-gray);
     color: var(--color-text-secondary);
@@ -132,5 +85,39 @@ const { Content } = await post.render();
     font-style: italic;
     padding-block-end: 0.3125em;
     padding-inline: 0.75em 0.5em;
+  }
+</style>
+
+<style>
+  [astro-icon] {
+    aspect-ratio: 1/1;
+    width: 1.1666666667em;
+  }
+  :not(.icon-link) > [astro-icon] {
+    vertical-align: text-bottom;
+  }
+
+  main > div:first-of-type {
+    margin-block-end: calc(1ex / 0.32);
+    padding-inline: 1.0875rem;
+  }
+
+  .icon-link {
+    align-items: center;
+    color: var(--color-primary);
+    display: flex;
+    font-size: 1rem;
+    gap: 0.25em;
+    text-decoration-color: var(--color-primary-transparent);
+    transition: text-decoration 250ms ease;
+    width: fit-content;
+  }
+  .icon-link:where(:hover, :focus) {
+    text-decoration-color: currentColor;
+  }
+
+  header h1,
+  header :global(+ *) {
+    margin-block-start: 0;
   }
 </style>

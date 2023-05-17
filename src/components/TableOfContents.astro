@@ -1,0 +1,61 @@
+---
+import { generateToc } from '@utils/generateToc';
+import TableOfContentsItem from '@components/TableOfContentsItem.astro';
+import type { MarkdownHeading } from 'astro';
+export type Props = {
+  headings: MarkdownHeading[];
+};
+
+const { headings } = Astro.props;
+const toc = generateToc(headings);
+---
+
+<aside>
+  <nav class="table-of-contents">
+    <details>
+      <summary>
+        <h2>In This Article</h2>
+      </summary>
+      <ol>
+        {toc.map((heading) => <TableOfContentsItem heading={heading} />)}
+      </ol>
+    </details>
+  </nav>
+</aside>
+
+<style>
+  .table-of-contents {
+    margin-block: calc(1ex / 0.64);
+  }
+  .table-of-contents :global(ol) {
+    counter-reset: item;
+    font-size: 1rem;
+    line-height: normal;
+    list-style: none;
+    margin-block-start: calc(1ex / (0.64 + 0.32));
+  }
+  .table-of-contents :global(ol li::before) {
+    color: var(--color-text-secondary);
+    content: counters(item, '.') '\200A)';
+    counter-increment: item;
+    font-size: 0.75em;
+    font-weight: 500;
+  }
+
+  summary {
+    cursor: pointer;
+    width: fit-content;
+  }
+  summary > * {
+    display: inline;
+  }
+
+  h2 {
+    font-size: 1em;
+    font-weight: 600;
+  }
+
+  ol {
+    padding-inline-start: 0;
+  }
+</style>
