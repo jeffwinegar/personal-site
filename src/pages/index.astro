@@ -2,6 +2,7 @@
 import Layout from '@layouts/Layout.astro';
 import FeaturedRepos from '@components/FeaturedRepos.astro';
 import FeaturedPosts from '@components/FeaturedPosts.astro';
+import A11yEmoji from '@components/AcessibleEmoji.astro';
 
 const yrsExp: number =
   new Date().getFullYear() - new Date('2012-03-01').getFullYear();
@@ -54,17 +55,17 @@ const yrsExp: number =
         >.
       </p>
 
-      <p>👋 Thanks for visiting.</p>
+      <p><A11yEmoji symbol="👋" /> Thanks for visiting.</p>
     </section>
 
     <section class="grid-container">
-      <h2>🤔&hellip;some thoughts</h2>
+      <h2><A11yEmoji symbol="🤔" />&hellip;some thoughts</h2>
 
       <p>
         This space is for me to post about what I like and am interested in
         while trying not to worry about it being perfect. The entries may not be
         complete thoughts, I may circle back to them, I may not, we'll see how
-        things go? 🤷
+        things go? <A11yEmoji symbol="🤷" />
       </p>
 
       <p>

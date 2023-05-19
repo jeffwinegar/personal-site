@@ -17,6 +17,7 @@
     "reading-time": "^1.5.0"
   },
   "devDependencies": {
+    "gemoji": "^8.1.0",
     "rehype-accessible-emojis": "^0.3.2"
   }
 }

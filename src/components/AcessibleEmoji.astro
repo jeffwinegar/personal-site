@@ -1,0 +1,24 @@
+---
+import { gemoji, type Gemoji } from 'gemoji';
+
+export type Props = {
+  symbol: string;
+};
+
+const { symbol } = Astro.props;
+
+const emojiInfo: Gemoji | undefined = gemoji.find(
+  (x: { emoji: string }) => x.emoji === symbol
+);
+
+const description = emojiInfo?.description ? emojiInfo.description : '';
+const emoji = emojiInfo?.emoji ? emojiInfo.emoji : '';
+---
+
+<span
+  role="img"
+  aria-label={!!description ? description : null}
+  aria-hidden={!!!description}
+>
+  {emoji}
+</span>
