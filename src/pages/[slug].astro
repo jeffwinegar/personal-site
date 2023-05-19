@@ -37,11 +37,11 @@ const { Content, headings } = await post.render();
     </div>
     <article class="grid-container">
       <header>
-        <PostMeta date={date} content={post.body} />
+        <PostMeta {date} content={post.body} />
         <h1>{title}</h1>
       </header>
 
-      {toc ? <TableOfContents headings={headings} /> : null}
+      {toc ? <TableOfContents {headings} /> : null}
 
       <Content />
     </article>
