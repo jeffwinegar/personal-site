@@ -3,6 +3,7 @@ import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://www.jeffwinegar.com',
   markdown: {
     rehypePlugins: [rehypeAccessibleEmojis],
     shikiConfig: {
