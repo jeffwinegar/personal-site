@@ -1,7 +1,11 @@
 ---
 title: Setting up my M1 Mac for Development
 date: 2021-12-10
-categories: [Other, Reference]
+categories:
+  - Other
+  - Reference
+share:
+  description: It's hard to remember all the things you need to do to set up a proper development environment.
 ---
 
 <aside class="callout">

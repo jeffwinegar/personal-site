@@ -18,11 +18,18 @@ export async function getStaticPaths() {
 type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 
 const { post } = Astro.props;
-const { title, date, toc } = post.data;
+const { title, date, share, toc } = post.data;
 const { Content, headings } = await post.render();
 ---
 
 <Layout title={`${title} - Jeff Winegar`}>
+  <Fragment slot="meta-tags">
+    <meta name="description" content={share.description} />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={share.description} />
+  </Fragment>
+
   <main>
     <div>
       <a class="icon-link" href="/" aria-label="back to home">

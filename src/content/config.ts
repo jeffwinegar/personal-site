@@ -13,11 +13,15 @@ const categories = [
 const blogCollection = defineCollection({
   schema: z
     .object({
+      draft: z.boolean().default(false),
       title: z.string(),
       date: z.date(),
       categories: z.array(z.enum(categories)).default([]),
       toc: z.boolean().default(true),
-      draft: z.boolean().optional(),
+      share: z.object({
+        image: z.string().optional(),
+        description: z.string().max(200),
+      }),
     })
     .strict(),
 });

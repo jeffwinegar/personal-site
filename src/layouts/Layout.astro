@@ -4,6 +4,7 @@ export type Props = {
 };
 
 const { title } = Astro.props;
+const url: string = Astro.url.toString();
 ---
 
 <!DOCTYPE html>
@@ -11,9 +12,18 @@ const { title } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    
+    <slot name="meta-tags">
+      <meta property="og:url" content={url} />
+      <meta property="twitter:card" content="summary" />
+      <meta property="twitter:creator" content="@jeff_winegar" />
+    </slot>
+    
     <title>{title}</title>
+    
+    <link rel="canonical" href={url} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <slot />
