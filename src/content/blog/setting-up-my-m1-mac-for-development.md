@@ -5,7 +5,7 @@ categories:
   - Other
   - Reference
 share:
-  description: It's hard to remember all the things you need to do to set up a proper development environment.
+  description: It's hard to remember all the things you need to do to set up a proper development environment. Here's how I did it.
 ---
 
 <aside class="callout">
