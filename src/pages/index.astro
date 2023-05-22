@@ -3,19 +3,19 @@ import Layout from '@layouts/Layout.astro';
 import FeaturedRepos from '@components/FeaturedRepos.astro';
 import FeaturedPosts from '@components/FeaturedPosts.astro';
 import A11yEmoji from '@components/AcessibleEmoji.astro';
+import type { SeoMeta } from '@components/SEO.astro';
+
+const seoMeta: SeoMeta = {
+  type: 'website',
+  title: 'Jeff Winegar',
+  description: 'A full stack JavaScript developer focused on front-end technologies.',
+}
 
 const yrsExp: number =
   new Date().getFullYear() - new Date('2012-03-01').getFullYear();
 ---
 
-<Layout title="Jeff Winegar - Front-end Developer">
-  <Fragment slot="meta-tags">
-    <meta name="description" content="A full stack JavaScript developer focused on front-end technologies." />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Jeff Winegar" />
-    <meta property="og:description" content="A full stack JavaScript developer focused on front-end technologies." />
-  </Fragment>
-
+<Layout title="Jeff Winegar - Front-end Developer" {seoMeta}>
   <main>
     <section class="grid-container">
       <h1>Hey, I'm Jeff Winegar.</h1>

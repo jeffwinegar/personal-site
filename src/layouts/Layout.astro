@@ -1,9 +1,12 @@
 ---
+import SEO, { type SeoMeta } from '@components/SEO.astro';
+
 export type Props = {
   title: string;
+  seoMeta: SeoMeta;
 };
 
-const { title } = Astro.props;
+const { title, seoMeta } = Astro.props;
 const url: string = Astro.url.toString();
 ---
 
@@ -12,18 +15,13 @@ const url: string = Astro.url.toString();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+
+    <title>{title}</title>
+    <SEO {seoMeta} {url} />
     <meta name="generator" content={Astro.generator} />
     
-    <slot name="meta-tags">
-      <meta property="og:url" content={url} />
-      <meta property="twitter:card" content="summary" />
-      <meta property="twitter:creator" content="@jeff_winegar" />
-    </slot>
-    
-    <title>{title}</title>
-    
     <link rel="canonical" href={url} />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   </head>
   <body>
     <slot />
