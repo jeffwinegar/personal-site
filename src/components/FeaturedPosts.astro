@@ -4,7 +4,7 @@ import PostMeta from '@components/PostMeta.astro';
 
 export type Props = {
   class?: string;
-}
+};
 
 const posts = await getCollection('blog');
 const { class: className = '' } = Astro.props;
@@ -47,11 +47,5 @@ const { class: className = '' } = Astro.props;
   }
   a:where(:hover, :focus) {
     text-decoration-color: currentColor;
-  }
-
-  .post-meta {
-    color: var(--color-dark-gray);
-    font-size: 0.875rem;
-    line-height: normal;
   }
 </style>
