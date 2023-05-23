@@ -5,7 +5,11 @@ import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 // https://astro.build/config
 export default defineConfig({
   site: 'https://www.jeffwinegar.com',
-  integrations: [sitemap()],
+  integrations: [
+    sitemap({
+      filter: (page) => page !== `${site}/robots.txt`,
+    }),
+  ],
   markdown: {
     rehypePlugins: [rehypeAccessibleEmojis],
     shikiConfig: {
