@@ -7,7 +7,7 @@ export default defineConfig({
   site: 'https://www.jeffwinegar.com',
   integrations: [
     sitemap({
-      filter: (page) => page !== `${site}/robots.txt`,
+      filter: (page) => page !== 'https://www.jeffwinegar.com/robots.txt',
     }),
   ],
   markdown: {
