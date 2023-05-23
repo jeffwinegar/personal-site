@@ -1,7 +1,7 @@
 ---
 title: Uses
 date: 2021-11-15
-categories: 
+categories:
   - Other
   - Reference
 toc: false

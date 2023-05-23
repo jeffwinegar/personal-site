@@ -5,7 +5,6 @@ import PostMeta from '@components/PostMeta.astro';
 import TableOfContents from '@components/TableOfContents.astro';
 import { Icon } from 'astro-icon';
 import type { InferGetStaticPropsType } from 'astro';
-import type { SeoMeta } from '@components/SEO.astro';
 
 export async function getStaticPaths() {
   const allPosts = await getCollection('blog');
@@ -21,16 +20,17 @@ type Props = InferGetStaticPropsType<typeof getStaticPaths>;
 const { post } = Astro.props;
 const { title, date, share, toc } = post.data;
 const { Content, headings } = await post.render();
-
-const seoMeta: SeoMeta = {
-  type: 'article',
-  title: title,
-  description: share.description,
-  image: share.image,
-};
 ---
 
-<Layout title={`${title} - Jeff Winegar`} {seoMeta}>
+<Layout
+  title={`${title} - Jeff Winegar`}
+  seoMeta={{
+    type: 'article',
+    title: title,
+    description: share.description,
+    image: share.image,
+  }}
+>
   <main>
     <div>
       <a class="icon-link" href="/" aria-label="back to home">
