@@ -19,7 +19,7 @@ const url: string = Astro.url.toString();
     <link rel="sitemap" href="/sitemap-index.xml">
 
     <title>{title}</title>
-    <SEO {seoMeta} {url} />
+    <SEO seoMeta={seoMeta} url={url} />
     <meta name="generator" content={Astro.generator} />
     
     <link rel="canonical" href={url} />

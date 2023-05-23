@@ -18,7 +18,7 @@ const { class: className = '' } = Astro.props;
       return (
         <li>
           <a href={`/${post.slug}`}>{title}</a>
-          <PostMeta {date} content={post.body} />
+          <PostMeta date={date} content={post.body} />
         </li>
       );
     })
