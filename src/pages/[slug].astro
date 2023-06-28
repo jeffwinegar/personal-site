@@ -31,29 +31,27 @@ const { Content, headings } = await post.render();
     image: share.image,
   }}
 >
-  <main>
-    <div>
-      <a class="icon-link" href="/" aria-label="back to home">
-        <Icon
-          aria-hidden="true"
-          role="img"
-          name="octicon:reply-16"
-          width="16"
-          height="16"
-        /> Back
-      </a>
-    </div>
-    <article class="grid-container">
-      <header>
-        <PostMeta date={date} content={post.body} />
-        <h1>{title}</h1>
-      </header>
+  <div>
+    <a class="icon-link" href="/" aria-label="back to home">
+      <Icon
+        aria-hidden="true"
+        role="img"
+        name="octicon:reply-16"
+        width="16"
+        height="16"
+      /> Back
+    </a>
+  </div>
+  <article class="grid-container">
+    <header>
+      <PostMeta date={date} content={post.body} />
+      <h1>{title}</h1>
+    </header>
 
-      {toc ? <TableOfContents headings={headings} /> : null}
+    {toc ? <TableOfContents headings={headings} /> : null}
 
-      <Content />
-    </article>
-  </main>
+    <Content />
+  </article>
 </Layout>
 
 <style is:global>
@@ -71,7 +69,7 @@ const { Content, headings } = await post.render();
     font-size: 0.7777777778em;
   }
   :not(pre) > code {
-    background-color: var(--color-off-white);
+    background-color: var(--color-gray-10);
     border-radius: 0.125rem;
     border: solid 1px var(--color-lighter-gray);
     line-height: 1;
@@ -105,7 +103,7 @@ const { Content, headings } = await post.render();
     vertical-align: text-bottom;
   }
 
-  main > div:first-of-type {
+  div:first-of-type {
     margin-block-end: calc(1ex / 0.32);
     padding-inline: 1.0875rem;
   }

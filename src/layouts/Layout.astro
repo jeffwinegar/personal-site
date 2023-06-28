@@ -1,5 +1,7 @@
 ---
 import SEO, { type SeoMeta } from '@components/SEO.astro';
+// import ThemeToggle from '@components/ThemeToggle.astro';
+import { ThemeToggle } from '@components/ThemeToggle'
 
 export type Props = {
   title: string;
@@ -7,7 +9,11 @@ export type Props = {
 };
 
 const { title, seoMeta } = Astro.props;
-const url: string = Astro.url.toString();
+const url = Astro.url.toString();
+const currentYear = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date());
 ---
 
 <!DOCTYPE html>
@@ -15,25 +21,39 @@ const url: string = Astro.url.toString();
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="sitemap" href="/sitemap-index.xml">
-
     <title>{title}</title>
+    
     <SEO seoMeta={seoMeta} url={url} />
     <meta name="generator" content={Astro.generator} />
-    
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
     <link rel="canonical" href={url} />
   </head>
   <body>
-    <slot />
+    <main>
+      <slot />
+    </main>
+
+    <footer role="contentinfo">
+      <div>
+        <p>
+          <a href="https://github.com/jeffwinegar/personal-site"
+          >source code</a>
+        </p>
+        <ThemeToggle client:load />
+      </div>
+      <div>
+        <p>Jeff Winegar &copy; 2010 - {currentYear}</p>
+      </div>
+    </footer>
   </body>
 </html>
 
 <style is:global>
   :root {
-    --primary-hue: 210deg;
-    --primary-sat: 100%;
-    --primary-lit: 40%;
+    --primary-hue: 215deg;
+    --primary-sat: 80%;
+    --primary-lit: 48%;
 
     --gray-hue: 240deg;
     --gray-sat: 5%;
@@ -45,13 +65,14 @@ const url: string = Astro.url.toString();
       var(--primary-hue) var(--primary-sat) var(--primary-lit) / 0.5
     );
 
-    --color-off-white: hsl(var(--gray-hue) var(--gray-sat) 95%);
+    --color-white: hsl(0deg 0% 100%);
+    --color-gray-10: hsl(var(--gray-hue) var(--gray-sat) 95%);
     --color-lighter-gray: hsl(var(--gray-hue) var(--gray-sat) 90%);
     --color-light-gray: hsl(var(--gray-hue) var(--gray-sat) 80%);
     --color-gray: hsl(var(--gray-hue) var(--gray-sat) 60%);
     --color-dark-gray: hsl(var(--gray-hue) var(--gray-sat) 25%);
 
-    --color-background: hsl(0deg 0% 100%);
+    --color-background: var(--color-white);
     --color-text: hsl(var(--gray-hue) 100% 10%);
     --color-text-secondary: var(--color-dark-gray);
 
@@ -70,24 +91,24 @@ const url: string = Astro.url.toString();
 
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+  html[data-color-mode='dark'] {
+    --color-background: hsl(240, 10%, 10%);
+    --color-text: hsl(240, 10%, 95%);
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-text);
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
-      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Fira Sans', 'Droid Sans',
-      'Helvetica Neue', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-      'Segoe UI Symbol';
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Fira Sans',
+      'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol';
     line-height: calc(1ex / 0.32);
     min-height: 100vh;
     padding-block-start: calc(1ex / 0.32);
     text-rendering: optimizeSpeed;
     -webkit-font-smoothing: antialiased;
-  }
-  body[data-theme='dark'] {
-    --color-background: hsl(240, 10%, 10%);
-    --color-text: hsl(240, 10%, 95%);
   }
 
   main {
@@ -151,6 +172,15 @@ const url: string = Astro.url.toString();
     }
   }
 
+  :focus-visible {
+    border-radius: 2px;
+    box-decoration-break: clone;
+    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-primary);
+    margin-inline: -1px;
+    outline: none;
+    padding-inline: 1px;
+  }
+
   h1,
   h2 {
     line-height: calc(1ex / 0.42);
@@ -206,5 +236,27 @@ const url: string = Astro.url.toString();
   }
   .grid-container > :not(.grid-full-width, article pre) {
     grid-column: 2;
+  }
+</style>
+
+<style>
+  footer {
+    font-size: 0.875rem;
+    padding: 1.0875rem;
+  }
+  footer > * + * {
+    border-block-start: solid 1px var(--color-light-gray);
+    color: var(--color-dark-gray);
+    display: grid;
+  }
+
+  footer > *:first-child {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  footer p {
+    margin-block: 1ex;
   }
 </style>
