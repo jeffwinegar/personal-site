@@ -1,7 +1,6 @@
 ---
 import SEO, { type SeoMeta } from '@components/SEO.astro';
-// import ThemeToggle from '@components/ThemeToggle.astro';
-import { ThemeToggle } from '@components/ThemeToggle'
+import { ThemeToggle } from '@components/ThemeToggle';
 
 export type Props = {
   title: string;
@@ -22,7 +21,9 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
-    
+
+    <script is:inline src="./src/utils/setInitialTheme.ts"/>
+
     <SEO seoMeta={seoMeta} url={url} />
     <meta name="generator" content={Astro.generator} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
@@ -37,8 +38,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
     <footer role="contentinfo">
       <div>
         <p>
-          <a href="https://github.com/jeffwinegar/personal-site"
-          >source code</a>
+          <a href="https://github.com/jeffwinegar/personal-site">source code</a>
         </p>
         <ThemeToggle client:load />
       </div>
@@ -175,7 +175,8 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
   :focus-visible {
     border-radius: 2px;
     box-decoration-break: clone;
-    box-shadow: 0 0 0 2px var(--color-background), 0 0 0 4px var(--color-primary);
+    box-shadow: 0 0 0 2px var(--color-background),
+      0 0 0 4px var(--color-primary);
     margin-inline: -1px;
     outline: none;
     padding-inline: 1px;
