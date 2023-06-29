@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
+import styles from './ColorSchemeToggle.module.css';
 
 const usePersistedState = (name: string, defaultValue: string) => {
   const [value, setValue] = useState(defaultValue);
@@ -54,7 +55,7 @@ const useSystemColorScheme = () => {
   return systemColorScheme;
 };
 
-export const ThemeToggle = () => {
+export const ColorSchemeToggle = () => {
   const systemColorScheme = useSystemColorScheme();
   const [colorScheme, setColorScheme] = usePersistedState(
     'jw:setting:preferredColorScheme',
@@ -64,11 +65,11 @@ export const ThemeToggle = () => {
   useEffect(() => {
     const themePreference =
       colorScheme === 'system' ? systemColorScheme : colorScheme;
-    document.documentElement.setAttribute('data-color-mode', themePreference);
+    document.documentElement.setAttribute('data-color-scheme', themePreference);
   }, [colorScheme, systemColorScheme]);
 
   return (
-    <fieldset>
+    <fieldset className={styles['color-scheme-toggle']}>
       <legend>Select a color scheme preference</legend>
       <label>
         <input
@@ -78,7 +79,7 @@ export const ThemeToggle = () => {
           type="radio"
           value="light"
         />
-        <span>Light</span>
+        <span className={styles['color-scheme-choice']}>Light</span>
       </label>
       <label>
         <input
@@ -88,7 +89,7 @@ export const ThemeToggle = () => {
           type="radio"
           value="dark"
         />
-        <span>Dark</span>
+        <span className={styles['color-scheme-choice']}>Dark</span>
       </label>
       <label>
         <input
@@ -98,7 +99,7 @@ export const ThemeToggle = () => {
           type="radio"
           value="system"
         />
-        <span>System</span>
+        <span className={styles['color-scheme-choice']}>System</span>
       </label>
     </fieldset>
   );

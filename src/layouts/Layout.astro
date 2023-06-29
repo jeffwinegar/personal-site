@@ -1,6 +1,6 @@
 ---
 import SEO, { type SeoMeta } from '@components/SEO.astro';
-import { ThemeToggle } from '@components/ThemeToggle';
+import { ColorSchemeToggle } from '@components/ColorSchemeToggle';
 
 export type Props = {
   title: string;
@@ -50,7 +50,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
 
       const colorScheme = getInitialColorScheme();
 
-      document.documentElement.setAttribute('data-color-mode', colorScheme);
+      document.documentElement.setAttribute('data-color-scheme', colorScheme);
     </script>
 
     <SEO seoMeta={seoMeta} url={url} />
@@ -69,7 +69,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
         <p>
           <a href="https://github.com/jeffwinegar/personal-site">source code</a>
         </p>
-        <ThemeToggle client:load />
+        <ColorSchemeToggle client:load />
       </div>
       <div>
         <p>Jeff Winegar &copy; 2010 - {currentYear}</p>
@@ -123,7 +123,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
     background-color: var(--color-background);
     color: var(--color-text);
   }
-  html[data-color-mode='dark'] {
+  html[data-color-scheme='dark'] {
     --color-background: hsl(240, 10%, 10%);
     --color-text: hsl(240, 10%, 95%);
   }
