@@ -22,7 +22,35 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
     <meta name="viewport" content="width=device-width" />
     <title>{title}</title>
 
-    <script is:inline src="./src/utils/setInitialTheme.ts"/>
+    <script is:inline>
+      const getInitialColorScheme = () => {
+        const systemColorScheme = localStorage.getItem(
+          'jw:setting:preferredColorScheme'
+        );
+        const mediaQueryList = window.matchMedia('(prefers-color-scheme: dark)');
+  
+        if (
+          typeof systemColorScheme === 'string' &&
+          systemColorScheme !== 'system'
+        ) {
+          return systemColorScheme;
+        }
+  
+        if (
+          typeof mediaQueryList.matches === 'boolean' ||
+          systemColorScheme === 'system'
+        ) {
+          return mediaQueryList.matches ? 'dark' : 'light';
+        }
+  
+        return 'light';
+      };
+  
+      document.documentElement.setAttribute(
+        'data-color-mode',
+        getInitialColorScheme()
+      );
+    </script>
 
     <SEO seoMeta={seoMeta} url={url} />
     <meta name="generator" content={Astro.generator} />
