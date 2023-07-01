@@ -24,7 +24,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
 
     <script is:inline>
       const getInitialColorScheme = () => {
-        const systemColorScheme = localStorage.getItem(
+        const colorSchemeStore = localStorage.getItem(
           'jw:setting:preferredColorScheme'
         );
         const mediaQueryList = window.matchMedia(
@@ -32,15 +32,15 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
         );
 
         if (
-          typeof systemColorScheme === 'string' &&
-          systemColorScheme !== 'system'
+          typeof colorSchemeStore === 'string' &&
+          colorSchemeStore !== 'system'
         ) {
-          return systemColorScheme;
+          return colorSchemeStore;
         }
 
         if (
           typeof mediaQueryList.matches === 'boolean' ||
-          systemColorScheme === 'system'
+          colorSchemeStore === 'system'
         ) {
           return mediaQueryList.matches ? 'dark' : 'light';
         }
