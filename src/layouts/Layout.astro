@@ -81,32 +81,36 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
 
 <style is:global>
   :root {
-    --primary-hue: 215deg;
-    --primary-sat: 80%;
-    --primary-lit: 48%;
-
-    --gray-hue: 240deg;
-    --gray-sat: 5%;
-
-    --color-primary: hsl(
-      var(--primary-hue) var(--primary-sat) var(--primary-lit)
-    );
-    --color-primary-transparent: hsl(
-      var(--primary-hue) var(--primary-sat) var(--primary-lit) / 0.5
-    );
+    --color-blue-30: hsl(215deg 82% 82%);
+    --color-blue-50: hsl(215deg 90% 60%);
+    --color-blue-60: hsl(215deg 80% 48%);
+    --color-blue-70: hsl(215deg 85% 35%);
 
     --color-white: hsl(0deg 0% 100%);
-    --color-gray-10: hsl(var(--gray-hue) var(--gray-sat) 95%);
-    --color-lighter-gray: hsl(var(--gray-hue) var(--gray-sat) 90%);
-    --color-light-gray: hsl(var(--gray-hue) var(--gray-sat) 80%);
-    --color-gray: hsl(var(--gray-hue) var(--gray-sat) 60%);
-    --color-dark-gray: hsl(var(--gray-hue) var(--gray-sat) 25%);
+    --color-gray-10: hsl(204deg 24% 96%);
+    --color-gray-20: hsl(204deg 21% 89%);
+    --color-gray-30: hsl(204deg 20% 80%);
+    --color-gray-40: hsl(204deg 19% 68%);
+    --color-gray-70: hsl(204deg 23% 32%);
+    --color-gray-80: hsl(204deg 29% 23%);
+    --color-gray-90: hsl(204deg 32% 16%);
+    --color-gray-100: hsl(204deg 20% 10%);
 
-    --color-background: var(--color-white);
-    --color-text: hsl(var(--gray-hue) 100% 10%);
-    --color-text-secondary: var(--color-dark-gray);
+    --palette-primary: var(--color-blue-60);
+    --palette-primary-subtle: var(--color-blue-30);
 
-    --max-width-container: 800px;
+    --surface-primary: var(--color-white);
+    --surface-secondary: var(--color-gray-10);
+
+    --border-minimal: var(--color-gray-20);
+    --border-subtle: var(--color-gray-30);
+
+    --text-primary: var(--color-gray-90);
+    --text-secondary: var(--color-gray-70);
+    --text-link: var(--color-blue-60);
+    --text-link-decoration: var(--color-blue-30);
+
+    --container-max-width: 800px;
   }
 
   *,
@@ -121,12 +125,23 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
 
   html {
     scroll-behavior: smooth;
-    background-color: var(--color-background);
-    color: var(--color-text);
+    background-color: var(--surface-primary);
+    color: var(--text-primary);
   }
   html[data-color-scheme='dark'] {
-    --color-background: hsl(240, 10%, 10%);
-    --color-text: hsl(240, 10%, 95%);
+    --palette-primary: var(--color-blue-50);
+    --palette-primary-subtle: var(--color-blue-70);
+
+    --surface-primary: var(--color-gray-100);
+    --surface-secondary: var(--color-gray-90);
+
+    --border-minimal: var(--color-gray-80);
+    --border-subtle: var(--color-gray-70);
+
+    --text-primary: var(--color-gray-20);
+    --text-secondary: var(--color-gray-40);
+    --text-link: var(--color-blue-50);
+    --text-link-decoration: var(--color-blue-70);
   }
 
   body {
@@ -205,7 +220,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
   :focus-visible {
     border-radius: 2px;
     box-decoration-break: clone;
-    box-shadow: 0 0 0 2px var(--color-background),
+    box-shadow: 0 0 0 2px var(--surface-primary),
       0 0 0 4px var(--color-primary);
     margin-inline: -1px;
     outline: none;
@@ -242,8 +257,8 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
     color: inherit;
   }
   :where(p, li) a {
-    color: var(--color-primary);
-    text-decoration-color: var(--color-primary-transparent);
+    color: var(--text-link);
+    text-decoration-color: var(--text-link-decoration);
     transition: text-decoration 250ms ease;
   }
   :where(p, li) a:where(:hover, :focus) {
@@ -259,7 +274,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
     display: grid;
     grid-template-columns: 1fr fit-content(54ch) 1fr;
     margin-inline: auto;
-    max-width: var(--max-width-container);
+    max-width: var(--container-max-width);
     padding-inline: 1.0875rem;
   }
   .grid-full-width {
@@ -281,8 +296,8 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
     padding: 1.0875rem;
   }
   footer > * + * {
-    border-block-start: solid 1px var(--color-light-gray);
-    color: var(--color-dark-gray);
+    border-block-start: solid 1px var(--border-subtle);
+    color: var(--text-secondary);
     display: grid;
   }
 

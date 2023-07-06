@@ -69,9 +69,9 @@ const { Content, headings } = await post.render();
     font-size: 0.7777777778em;
   }
   :not(pre) > code {
-    background-color: var(--color-gray-10);
+    background-color: var(--surface-secondary);
     border-radius: 0.125rem;
-    border: solid 1px var(--color-lighter-gray);
+    border: solid 1px var(--border-minimal);
     line-height: 1;
     padding: 0.25rem 0.3125rem;
   }
@@ -85,8 +85,8 @@ const { Content, headings } = await post.render();
   }
 
   .callout > * {
-    border-inline-start: solid 0.25em var(--color-light-gray);
-    color: var(--color-text-secondary);
+    border-inline-start: solid 0.25em var(--border-subtle);
+    color: var(--text-secondary);
     font-size: 0.9444444444em;
     font-style: italic;
     padding-block-end: 0.3125em;
@@ -110,11 +110,11 @@ const { Content, headings } = await post.render();
 
   .icon-link {
     align-items: center;
-    color: var(--color-primary);
+    color: var(--text-link);
     display: flex;
     font-size: 1rem;
     gap: 0.25em;
-    text-decoration-color: var(--color-primary-transparent);
+    text-decoration-color: var(--text-link-decoration);
     transition: text-decoration 250ms ease;
     width: fit-content;
   }

@@ -1,7 +1,7 @@
 .color-scheme-toggle {
   border-radius: 2em;
-  border: solid 1px var(--color-primary);
-  color: var(--color-primary);
+  border: solid 1px var(--palette-primary);
+  color: var(--palette-primary);
   display: flex;
   font-size: 0.75rem;
   line-height: 1.3333333333;
@@ -28,7 +28,6 @@ input[name='color-scheme'],
 .color-scheme-choice {
   border-radius: calc(1em - 2px);
   border: solid 1px transparent;
-  /* color: var(--color-text); */
   cursor: pointer;
   display: inline-block;
   min-width: 42px;
@@ -38,8 +37,8 @@ input[name='color-scheme'],
 }
 
 input[name='color-scheme']:checked ~ .color-scheme-choice {
-  background-color: var(--color-primary);
-  color: var(--color-background);
+  background-color: var(--palette-primary);
+  color: var(--surface-primary);
 }
 html[data-color-scheme='light'] input[name='color-scheme']:checked ~ .color-scheme-choice {
   font-weight: 300;
@@ -50,8 +49,8 @@ html[data-color-scheme='dark'] input[name='color-scheme']:checked ~ .color-schem
 
 input[name='color-scheme']:focus-visible ~ .color-scheme-choice::after {
   border-radius: 2em;
-  box-shadow: 0 0 0 2px var(--color-background),
-    0 0 0 4px var(--color-primary);
+  box-shadow: 0 0 0 2px var(--surface-primary),
+    0 0 0 4px var(--palette-primary);
   content: '';
   inset: -1px;
   position: absolute;

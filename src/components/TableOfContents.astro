@@ -35,7 +35,7 @@ const toc = generateToc(headings);
     margin-block-start: calc(1ex / (0.64 + 0.32));
   }
   .table-of-contents :global(ol li::before) {
-    color: var(--color-text-secondary);
+    color: var(--text-secondary);
     content: counters(item, '.') '\200A)';
     counter-increment: item;
     font-size: 0.75em;
