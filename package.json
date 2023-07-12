@@ -1,8 +1,17 @@
 {
-  "name": "@example/basics",
+  "name": "jeff-winegar-site",
   "type": "module",
   "version": "0.0.1",
   "private": true,
+  "author": "Jeff Winegar <winegarj@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jeffwinegar/personal-site"
+  },
+  "bugs": {
+    "url": "https://github.com/jeffwinegar/personal-site/issues"
+  },
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",

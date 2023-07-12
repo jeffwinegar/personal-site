@@ -7,7 +7,7 @@ export type Props = {
   seoMeta: SeoMeta;
 };
 
-const netlify_deploy_context = import.meta.env.CONTEXT as string
+const netlify_deploy_context: string = import.meta.env.CONTEXT;
 
 const { title, seoMeta } = Astro.props;
 const url = Astro.url.toString();
