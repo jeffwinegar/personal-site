@@ -13,6 +13,9 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
   timeZone: 'UTC',
 }).format(new Date());
+
+const env = import.meta.env.NODE_ENV as string
+console.log(env);
 ---
 
 <!DOCTYPE html>
@@ -73,7 +76,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
         <ColorSchemeToggle client:load />
       </div>
       <div>
-        <p>Jeff Winegar &copy; 2010 - {currentYear}</p>
+        <p>Jeff Winegar &copy; 2010 - {currentYear} • {env}</p>
       </div>
     </footer>
   </body>
@@ -221,7 +224,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
     border-radius: 2px;
     box-decoration-break: clone;
     box-shadow: 0 0 0 2px var(--surface-primary),
-      0 0 0 4px var(--color-primary);
+      0 0 0 4px var(--palette-primary);
     margin-inline: -1px;
     outline: none;
     padding-inline: 1px;
