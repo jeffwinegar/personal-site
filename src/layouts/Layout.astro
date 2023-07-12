@@ -14,7 +14,7 @@ const currentYear = new Intl.DateTimeFormat('en-US', {
   timeZone: 'UTC',
 }).format(new Date());
 
-const env = import.meta.env.NODE_ENV as string
+const env = import.meta.env.CONTEXT as string
 console.log(env);
 ---
 
