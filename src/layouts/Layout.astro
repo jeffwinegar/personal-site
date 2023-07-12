@@ -7,15 +7,14 @@ export type Props = {
   seoMeta: SeoMeta;
 };
 
+const netlify_deploy_context = import.meta.env.CONTEXT as string
+
 const { title, seoMeta } = Astro.props;
 const url = Astro.url.toString();
 const currentYear = new Intl.DateTimeFormat('en-US', {
   year: 'numeric',
   timeZone: 'UTC',
 }).format(new Date());
-
-const env = import.meta.env.CONTEXT as string
-console.log(env);
 ---
 
 <!DOCTYPE html>
@@ -55,7 +54,17 @@ console.log(env);
 
       document.documentElement.setAttribute('data-color-scheme', colorScheme);
     </script>
-    <script defer data-domain="jeffwinegar.com" data-api="/stats/api/event" src="/stats/js/script.js"></script>
+
+    {
+      netlify_deploy_context === 'production' && (
+        <script
+          defer
+          data-domain="jeffwinegar.com"
+          data-api="/stats/api/event"
+          src="/stats/js/script.js"
+        />
+      )
+    }
 
     <SEO seoMeta={seoMeta} url={url} />
     <meta name="generator" content={Astro.generator} />
@@ -76,7 +85,7 @@ console.log(env);
         <ColorSchemeToggle client:load />
       </div>
       <div>
-        <p>Jeff Winegar &copy; 2010 - {currentYear} • {env}</p>
+        <p>Jeff Winegar &copy; 2010 - {currentYear}</p>
       </div>
     </footer>
   </body>
