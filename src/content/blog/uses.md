@@ -27,7 +27,6 @@ I wanted to be like the cool kids so, even though no one has asked me what my se
 
 ## Desktop Apps
 
-- [Adobe Creative Cloud](https://www.adobe.com/creativecloud.html) (Illustrator, Photoshop, XD)
 - [Arc](https://arc.net/)
 - [Centered](https://www.centered.app/)
 - [Cloudflare WARP](https://1.1.1.1/)
@@ -43,13 +42,14 @@ I wanted to be like the cool kids so, even though no one has asked me what my se
 
 - [Elgato Stream Deck +](https://www.elgato.com/us/en/p/stream-deck-plus-black)
 - [Grovemade Leather Desk Pad](https://grovemade.com/product/leather-desk-pad/?initial=690)
+- [Herman Miller Aeron Chair](https://store.hermanmiller.com/office-chairs-aeron/aeron-chair/2195348.html?lang=en_US)
 - [IKEA ALEX Desk](https://www.ikea.com/us/en/p/alex-desk-white-80483438/)
 - [Logitech MX Master 3 for Mac Mouse](https://www.logitech.com/en-us/mx/master-series.html)
 - [LG 27UL600-W 27" IPS LED 4K UHD FreeSync Monitor with HDR](https://www.bestbuy.com/site/lg-27ul600-w-27-ips-led-4k-uhd-freesync-monitor-with-hdr-silver-white/6329956.p?skuId=6329956)
 - [MacBook Pro (16-inch, 2021)](https://www.apple.com/macbook-pro-14-and-16/) - 10 Core Apple M1 Max, 32 Core Apple GPU with 64 GB RAM and 2 TB SSD Storage. _(personal)_
-- MacBook Pro (15-inch, 2018) - 2.2 GHz 6-Core Intel Core i7 with 16 GB RAM and 256 GB SSD Storage. _(work)_
 - [NuPhy Air75 Wireless Mechanical Keyboard](https://nuphy.com/products/air75)
 - [Roost V2 Laptop Stand](https://www.amazon.com/dp/B01C9KG8IG)
+- [Sony α7 III](https://electronics.sony.com/imaging/interchangeable-lens-cameras/full-frame/p/ilce7m3-b)
 - [VIVO Dual LCD Monitor Desk Mount Stand](https://www.amazon.com/dp/B009S750LA)
 
 ## Other Gear
