@@ -1,0 +1,129 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from '@layouts/Layout.astro';
+import PostMeta from '@components/PostMeta.astro';
+import TableOfContents from '@components/TableOfContents.astro';
+import { Icon } from 'astro-icon';
+import type { InferGetStaticPropsType } from 'astro';
+
+export async function getStaticPaths() {
+  const allPosts = await getCollection('blog');
+
+  return allPosts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+
+const { post } = Astro.props;
+const { title, date, share, toc } = post.data;
+const { Content, headings } = await post.render();
+---
+
+<Layout
+  title={`${title} - Jeff Winegar`}
+  seoMeta={{
+    type: 'article',
+    title: title,
+    description: share.description,
+    image: share.image,
+  }}
+>
+  <div>
+    <a class="icon-link" href="/" aria-label="back to home">
+      <Icon
+        aria-hidden="true"
+        role="img"
+        name="octicon:reply-16"
+        width="16"
+        height="16"
+      /> Back
+    </a>
+  </div>
+  <article class="grid-container">
+    <header>
+      <PostMeta date={date} content={post.body} />
+      <h1>{title}</h1>
+    </header>
+
+    {toc ? <TableOfContents headings={headings} /> : null}
+
+    <Content />
+  </article>
+</Layout>
+
+<style is:global>
+  /* Content styles */
+  article pre {
+    --color-shiki-theme: hsl(220deg 17% 46%); /* nord */
+
+    border-radius: 0.25rem;
+    grid-column: 1 / span 3;
+    margin-block: calc(1ex / 0.64);
+    padding-block: 0.75rem 0.875rem;
+  }
+
+  code {
+    font-size: 0.7777777778em;
+  }
+  :not(pre) > code {
+    background-color: var(--surface-secondary);
+    border-radius: 0.125rem;
+    border: solid 1px var(--border-minimal);
+    line-height: 1;
+    padding: 0.25rem 0.3125rem;
+  }
+  pre > code {
+    line-height: 1.2;
+  }
+  code .line {
+    display: inline-block;
+    line-height: 1.5;
+    padding-inline: 1rem;
+  }
+
+  .callout > * {
+    border-inline-start: solid 0.25em var(--border-subtle);
+    color: var(--text-secondary);
+    font-size: 0.9444444444em;
+    font-style: italic;
+    padding-block-end: 0.3125em;
+    padding-inline: 0.75em 0.5em;
+  }
+</style>
+
+<style>
+  [astro-icon] {
+    aspect-ratio: 1/1;
+    width: 1.1666666667em;
+  }
+  :not(.icon-link) > [astro-icon] {
+    vertical-align: text-bottom;
+  }
+
+  div:first-of-type {
+    margin-block-end: calc(1ex / 0.32);
+    padding-inline: 1.0875rem;
+  }
+
+  .icon-link {
+    align-items: center;
+    color: var(--text-link);
+    display: flex;
+    font-size: 1rem;
+    gap: 0.25em;
+    text-decoration-color: var(--text-link-decoration);
+    transition: text-decoration 250ms ease;
+    width: fit-content;
+  }
+  .icon-link:where(:hover, :focus) {
+    text-decoration-color: currentColor;
+  }
+
+  header h1,
+  header :global(+ *) {
+    margin-block-start: 0;
+  }
+</style>

@@ -1,15 +1,16 @@
 [build]
-  command = "GATSBY_URL=$URL gatsby build"
-  publish = "public"
+  command = "npm run build"
+  publish = "dist"
 
-[build.environment]
-  CYPRESS_CACHE_FOLDER = "./node_modules/CypressBinary"
-  TERM = "xterm"
+[[redirects]]
+  from = "/stats/js/script.js"
+  to = "https://plausible.io/js/script.js"
+  status = 200
 
-[[plugins]]
-  package = "@netlify/plugin-gatsby"
+[[redirects]]
+  from = "/stats/api/event"
+  to = "https://plausible.io/api/event"
+  status = 200
 
-[[plugins]]
-  package = "netlify-plugin-cypress"
-    [plugins.inputs]
-      record = true
+[dev]
+  framework = "astro"

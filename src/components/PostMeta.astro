@@ -1,0 +1,35 @@
+---
+import { getTimeToRead } from '@utils/timeToRead';
+
+export type Props = {
+  date: Date;
+  content: string;
+};
+
+const { date, content } = Astro.props;
+
+const options: Intl.DateTimeFormatOptions = {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+  timeZone: 'UTC',
+};
+const isoDate = new Date(date).toISOString();
+const friendlyDate = new Intl.DateTimeFormat('en-US', options).format(
+  new Date(isoDate)
+);
+---
+
+<p>
+  <time datetime={isoDate}>{friendlyDate}</time> • {getTimeToRead(content)}
+</p>
+
+<style>
+  p {
+    display: block;
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: normal;
+    margin-block: 0;
+  }
+</style>
