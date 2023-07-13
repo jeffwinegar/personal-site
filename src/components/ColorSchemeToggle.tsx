@@ -2,7 +2,11 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import styles from './ColorSchemeToggle.module.css';
 
 const usePersistedState = (name: string, defaultValue: string) => {
-  const [value, setValue] = useState(defaultValue);
+  const [value, setValue] = useState(() => {
+    const val = localStorage.getItem(name);
+
+    return val !== null ? val : defaultValue;
+  });
   const nameRef = useRef(name);
 
   useEffect(() => {
