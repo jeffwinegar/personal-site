@@ -89,10 +89,10 @@ xcode-select --install
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 ```
 
-Follow install instructions. On M1 Macs Homebrew is now installed in a different directory than it used to be so we will need to add Homebrew to our PATH. If you missed the instructions the two commands are (make sure to change to your user name):
+Follow install instructions. On M1 Macs Homebrew is now installed in a different directory than it used to be so we will need to add Homebrew to our PATH. If you missed the instructions the two commands are _(make sure to change **username** to your user name)_:
 
 ```shell
-echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/jeff_winegar/.zprofile
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> /Users/username/.zprofile
 eval "$(/opt/homebrew/bin/brew shellenv)"
 ```
 
@@ -132,27 +132,49 @@ plugins=(
 )
 ```
 
-**[Powerlevel10k](https://github.com/romkatv/powerlevel10k#get-started)**  
-I just started using this theme and really like it.
+**[Starship](https://starship.rs/)**  
+I have been using Starship for a little while now and have liked it. It is Rust based so it's really fast and is easily customizable.
 
-Download and install [the recommended font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k). To set up the Apple Terminal.app go to _Terminal > Preferences > Profiles > Text_, click _Change..._ under _Font_ and select `MesloLGS NF` family. We will go over setting up Visual Studio Code in that section.
+_**Prerequisite:**_ Choose a [Nerd Font](https://www.nerdfonts.com/) to install and enable in your terminal. I had previously tried [Powerlevel10k](https://github.com/romkatv/powerlevel10k#get-started) so I stuck with [the recommended font](https://github.com/romkatv/powerlevel10k#meslo-nerd-font-patched-for-powerlevel10k) I set up for that. To set up the Apple Terminal.app go to _Terminal > Preferences > Profiles > Text_, click _Change..._ under _Font_ and select `MesloLGS NF` family (or the nerd font family you installed). We will go over setting up Visual Studio Code in that section.
 
-Clone the repository
-
-```shell
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
-```
-
-Then set the theme
-
-```ini title="~/.zshrc"
-ZSH_THEME="powerlevel10k/powerlevel10k"
-```
-
-Restart your terminal. If the wizard doesn't start automatically or you want to change your configuration type this command:
+To install we will use Homebrew:
 
 ```shell
-p10k configure
+brew install starship
+```
+
+Then we will need to go into our `~/.zshrc` file to add this at the end:
+
+```shell
+# Custom prompt via https://starship.rs
+eval "$(starship init zsh)"
+```
+
+Now we can get started customizing. We will set up a config file at `~/.config/starship.toml`, this is how I have my config set up (which is heavily borrowed from Jason Lengstorf's config) but you can tweak almost anything you want, check out Starship's [configuration documentation](https://starship.rs/config/) for everything you can do _(the 'git_branch' and 'package' symbols should show correctly with your installed nerd font)_.
+
+```toml
+[aws]
+disabled = true
+
+[directory]
+truncate_to_repo = false
+
+[directory.substitutions]
+"~/dev/github" = "github.com"
+
+[gcloud]
+disabled = true
+
+[git_branch]
+symbol = " "
+
+[nodejs]
+format = "using [$symbol($version)]($style) "
+
+[package]
+display_private = true
+format = "[$symbol($version)]($style) "
+symbol = " "
 ```
 
 ### Git
@@ -230,16 +252,16 @@ yarn-error.log*
 ignored/
 ```
 
-Let's go back to our `.gitconfig` file and add our `.gitignore_global` file to our configuration. Additionally you can add more configurations including aliases.
+Let's go back to our `.gitconfig` file and add our `.gitignore_global` file to our configuration. Additionally you can add more configurations including aliases _(make sure to change **username** to your user name)_.
 
-```ini title="~/.gitconfig" {3,4}
-[user]
-  name = Firstname Lastname
-  email = you@example.com
-[core]
-  excludefile = /Users/jeff_winegar/.gitignore_global
-[init]
-  defaultBranch = main
+```diff title="~/.gitconfig" {3,4}
+  [user]
+    name = Firstname Lastname
+    email = you@example.com
++ [core]
++   excludefile = /Users/username/.gitignore_global
+  [init]
+    defaultBranch = main
 
 # Add any other configurations you'd like.
 ```
@@ -300,7 +322,11 @@ nvm install-latest-npm
 
 ### Text Editor
 
-My text editor of choice is [Visual Studio Code](https://code.visualstudio.com/). Check out my [uses page](/uses) to see what theme and extensions I am currently using. I use VS Code's integrated terminal 99% of the time so I don't use a terminal emulator. If you are using a Nerd Font in your Zsh theme make sure you add it to your font family so your theme works properly in the integrated terminal.
+My text editor of choice is [Visual Studio Code](https://code.visualstudio.com/). Check out my [uses page](/uses) to see what theme and font I am currently using. I use VS Code's integrated terminal 99% of the time so I don't use a terminal emulator. If you are using a Nerd Font in your Zsh theme make sure you add it to your font family in the settings after your main font choice so your theme works properly in the integrated terminal. Mine looks like this:
+
+```json
+"editor.fontFamily": "FiraCode-Retina, 'MesloLGS NF', Menlo, Monaco, 'Courier New', monospace"
+```
 
 ### Project Directory Structure
 
