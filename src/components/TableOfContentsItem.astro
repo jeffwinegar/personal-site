@@ -1,0 +1,26 @@
+---
+import type { TocItem } from '@utils/generateToc';
+export type Props = {
+  heading: TocItem;
+};
+const { heading } = Astro.props;
+---
+
+<li>
+  <a href={`#${heading.slug}`}>{heading.text}</a>
+  {
+    heading.children.length > 0 ? (
+      <ol>
+        {heading.children.map((child: TocItem) => (
+          <Astro.self heading={child} />
+        ))}
+      </ol>
+    ) : null
+  }
+</li>
+
+<style>
+  ol {
+    padding-inline-start: 1em;
+  }
+</style>

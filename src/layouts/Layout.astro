@@ -1,0 +1,337 @@
+---
+import SEO, { type SeoMeta } from '@components/SEO.astro';
+import { ColorSchemeToggle } from '@components/ColorSchemeToggle';
+
+export type Props = {
+  title: string;
+  seoMeta: SeoMeta;
+};
+
+const netlify_deploy_context: string = import.meta.env.CONTEXT;
+
+const { title, seoMeta } = Astro.props;
+const url = Astro.url.toString();
+const currentYear = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  timeZone: 'UTC',
+}).format(new Date());
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+
+    <script is:inline>
+      const getInitialColorScheme = () => {
+        const colorSchemeStore = localStorage.getItem(
+          'jw:setting:preferredColorScheme'
+        );
+        const mediaQueryList = window.matchMedia(
+          '(prefers-color-scheme: dark)'
+        );
+
+        if (
+          typeof colorSchemeStore === 'string' &&
+          colorSchemeStore !== 'system'
+        ) {
+          return colorSchemeStore;
+        }
+
+        if (
+          typeof mediaQueryList.matches === 'boolean' ||
+          colorSchemeStore === 'system'
+        ) {
+          return mediaQueryList.matches ? 'dark' : 'light';
+        }
+
+        return 'light';
+      };
+
+      const colorScheme = getInitialColorScheme();
+
+      document.documentElement.setAttribute('data-color-scheme', colorScheme);
+    </script>
+
+    {
+      netlify_deploy_context === 'production' && (
+        <script
+          defer
+          data-domain="jeffwinegar.com"
+          data-api="/stats/api/event"
+          src="/stats/js/script.js"
+        />
+      )
+    }
+
+    <SEO seoMeta={seoMeta} url={url} />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <link rel="canonical" href={url} />
+  </head>
+  <body>
+    <main>
+      <slot />
+    </main>
+
+    <footer role="contentinfo">
+      <div>
+        <p>
+          <a href="https://github.com/jeffwinegar/personal-site">source code</a>
+        </p>
+        <ColorSchemeToggle client:load />
+      </div>
+      <div>
+        <p>Jeff Winegar &copy; 2010 - {currentYear}</p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style is:global>
+  :root {
+    --color-blue-30: hsl(215deg 82% 82%);
+    --color-blue-50: hsl(215deg 90% 60%);
+    --color-blue-60: hsl(215deg 80% 48%);
+    --color-blue-70: hsl(215deg 85% 35%);
+
+    --color-white: hsl(0deg 0% 100%);
+    --color-gray-10: hsl(204deg 24% 96%);
+    --color-gray-20: hsl(204deg 21% 89%);
+    --color-gray-30: hsl(204deg 20% 80%);
+    --color-gray-40: hsl(204deg 19% 68%);
+    --color-gray-70: hsl(204deg 23% 32%);
+    --color-gray-80: hsl(204deg 29% 23%);
+    --color-gray-90: hsl(204deg 32% 16%);
+    --color-gray-100: hsl(204deg 20% 10%);
+
+    --palette-primary: var(--color-blue-60);
+    --palette-primary-subtle: var(--color-blue-30);
+
+    --surface-primary: var(--color-white);
+    --surface-secondary: var(--color-gray-10);
+
+    --border-minimal: var(--color-gray-20);
+    --border-subtle: var(--color-gray-30);
+
+    --text-primary: var(--color-gray-90);
+    --text-secondary: var(--color-gray-70);
+    --text-link: var(--color-blue-60);
+    --text-link-decoration: var(--color-blue-30);
+
+    --container-max-width: 800px;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: border-box;
+  }
+
+  /* * {
+    margin: 0;
+  } */
+  blockquote,
+  body,
+  dl,
+  dd,
+  figure,
+  h1,
+  h2,
+  h3,
+  h4,
+  p {
+    margin: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--surface-primary);
+    color: var(--text-primary);
+  }
+  html[data-color-scheme='dark'] {
+    --palette-primary: var(--color-blue-50);
+    --palette-primary-subtle: var(--color-blue-70);
+
+    --surface-primary: var(--color-gray-100);
+    --surface-secondary: var(--color-gray-90);
+
+    --border-minimal: var(--color-gray-80);
+    --border-subtle: var(--color-gray-70);
+
+    --text-primary: var(--color-gray-20);
+    --text-secondary: var(--color-gray-40);
+    --text-link: var(--color-blue-50);
+    --text-link-decoration: var(--color-blue-70);
+  }
+
+  body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI',
+      Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Fira Sans',
+      'Droid Sans', 'Helvetica Neue', sans-serif, 'Apple Color Emoji',
+      'Segoe UI Emoji', 'Segoe UI Symbol';
+    line-height: calc(1ex / 0.32);
+    min-height: 100vh;
+    padding-block-start: calc(1ex / 0.32);
+    text-rendering: optimizeSpeed;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  main {
+    font-size: 1.125rem;
+    margin-block-end: calc(1ex / 0.32);
+  }
+
+  img,
+  picture,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6,
+  p {
+    overflow-wrap: break-word;
+  }
+
+  code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+      'Lucida Console', 'Liberation Mono', 'DejaVu Sans Mono',
+      'Bitstream Vera Sans Mono', 'Courier New', monospace;
+  }
+
+  a {
+    text-decoration-skip-ink: auto;
+  }
+
+  :where(ul, ol)[role='list'] {
+    list-style: none;
+  }
+  :where(ul, ol):not([role='list']) > li + li {
+    margin-block-start: calc(1ex / (0.64 + 0.32));
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::after,
+    *::before {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 in !important;
+      scroll-behavior: auto !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+
+  :focus-visible {
+    border-radius: 2px;
+    box-decoration-break: clone;
+    box-shadow: 0 0 0 2px var(--surface-primary),
+      0 0 0 4px var(--palette-primary);
+    margin-inline: -1px;
+    outline: none;
+    padding-inline: 1px;
+  }
+
+  h1,
+  h2 {
+    line-height: calc(1ex / 0.42);
+    margin-block: calc(1ex / (0.42 + 0.32));
+  }
+  h1 {
+    font-size: 2.5em;
+  }
+  h2 {
+    font-size: 2em;
+  }
+  h3 {
+    font-size: 1.75em;
+    line-height: calc(1ex / 0.38);
+    margin-block: calc(1ex / (0.38 + 0.32));
+  }
+  h4 {
+    font-size: 1.5em;
+    line-height: calc(1ex / 0.37);
+    margin-block: calc(1ex / (0.37 + 0.32));
+  }
+
+  p {
+    margin-block: calc(1ex / 0.64);
+  }
+
+  a {
+    color: inherit;
+  }
+  :where(p, li) a {
+    color: var(--text-link);
+    text-decoration-color: var(--text-link-decoration);
+    transition: text-decoration 250ms ease;
+  }
+  :where(p, li) a:where(:hover, :focus) {
+    text-decoration-color: currentColor;
+  }
+
+  ul {
+    margin-block: calc(1ex / 0.64);
+    padding-inline-start: 1.1em;
+  }
+
+  .grid-container {
+    display: grid;
+    grid-template-columns: 1fr fit-content(54ch) 1fr;
+    margin-inline: auto;
+    max-width: var(--container-max-width);
+    padding-inline: 1.0875rem;
+  }
+  .grid-full-width {
+    grid-column: 1 / span 3;
+  }
+  .grid-container > :not(.grid-full-width, article pre) {
+    grid-column: 2;
+  }
+</style>
+
+<style>
+  body {
+    display: grid;
+    grid-template-rows: 1fr auto;
+  }
+
+  footer {
+    font-size: 0.875rem;
+    padding: 1.0875rem;
+  }
+  footer > * + * {
+    border-block-start: solid 1px var(--border-subtle);
+    color: var(--text-secondary);
+    display: grid;
+  }
+
+  footer > *:first-child {
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr auto;
+  }
+
+  footer p {
+    margin-block: 1ex;
+  }
+</style>

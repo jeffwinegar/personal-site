@@ -1,0 +1,36 @@
+---
+export type SeoMeta = {
+  type: string;
+  title: string;
+  description: string;
+  image?: string;
+};
+
+type Props = {
+  seoMeta: SeoMeta;
+  url: string;
+};
+
+const { seoMeta, url } = Astro.props;
+const { type, title, description, image } = seoMeta;
+---
+
+<meta property="og:title" content={title} />
+
+<meta name="description" content={description} />
+<meta property="og:description" content={description} />
+
+<meta property="og:url" content={url} />
+
+{
+  !!image ? (
+    <>
+      <meta name="image" content={image} />
+      <meta property="og:image" content={image} />
+    </>
+  ) : null
+}
+
+<meta property="og:type" content={type} />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:creator" content="@jeff_winegar" />

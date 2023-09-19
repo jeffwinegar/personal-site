@@ -1,0 +1,57 @@
+.color-scheme-toggle {
+  border-radius: 2em;
+  border: solid 1px var(--palette-primary);
+  color: var(--palette-primary);
+  display: flex;
+  font-size: 0.75rem;
+  line-height: 1.3333333333;
+  margin: 0;
+  padding: 1px;
+  position: relative;
+  width: fit-content;
+}
+
+input[name='color-scheme'],
+.color-scheme-toggle > legend {
+  border: 0;
+  clip-path: inset(50%);
+  clip: rect(0 0 0 0);
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.color-scheme-choice {
+  border-radius: calc(1em - 2px);
+  border: solid 1px transparent;
+  cursor: pointer;
+  display: inline-block;
+  min-width: 42px;
+  text-align: center;
+  padding-block-end: 1px;
+  padding-inline: 6px;
+}
+
+input[name='color-scheme']:checked ~ .color-scheme-choice {
+  background-color: var(--palette-primary);
+  color: var(--surface-primary);
+}
+html[data-color-scheme='light'] input[name='color-scheme']:checked ~ .color-scheme-choice {
+  font-weight: 300;
+}
+html[data-color-scheme='dark'] input[name='color-scheme']:checked ~ .color-scheme-choice {
+  font-weight: 500;
+}
+
+input[name='color-scheme']:focus-visible ~ .color-scheme-choice::after {
+  border-radius: 2em;
+  box-shadow: 0 0 0 2px var(--surface-primary),
+    0 0 0 4px var(--palette-primary);
+  content: '';
+  inset: -1px;
+  position: absolute;
+}
