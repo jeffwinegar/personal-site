@@ -1,9 +1,13 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
+import type { JSX } from 'preact/jsx-runtime';
 import styles from './ColorSchemeToggle.module.css';
+
+type ChangeEvent = JSX.TargetedEvent<HTMLInputElement, Event>;
 
 const usePersistedState = (name: string, defaultValue: string) => {
   const [value, setValue] = useState(() => {
-    const val = localStorage.getItem(name);
+    const val =
+      typeof localStorage !== 'undefined' ? localStorage.getItem(name) : null;
 
     return val !== null ? val : defaultValue;
   });
@@ -43,7 +47,7 @@ const useSystemColorScheme = () => {
     ? window.matchMedia('(prefers-color-scheme: dark)')
     : null;
 
-  const [systemColorScheme, setSystemColorScheme] = useState((): string =>
+  const [systemColorScheme, setSystemColorScheme] = useState(() =>
     mediaQueryList?.matches ? 'dark' : 'light'
   );
 
@@ -79,7 +83,7 @@ export const ColorSchemeToggle = () => {
         <input
           checked={colorScheme === 'light'}
           name="color-scheme"
-          onChange={(e) => setColorScheme((e.target as HTMLInputElement).value)}
+          onChange={(e: ChangeEvent) => setColorScheme(e.currentTarget.value)}
           type="radio"
           value="light"
         />
@@ -89,7 +93,7 @@ export const ColorSchemeToggle = () => {
         <input
           checked={colorScheme === 'dark'}
           name="color-scheme"
-          onChange={(e) => setColorScheme((e.target as HTMLInputElement).value)}
+          onChange={(e: ChangeEvent) => setColorScheme(e.currentTarget.value)}
           type="radio"
           value="dark"
         />
@@ -99,7 +103,7 @@ export const ColorSchemeToggle = () => {
         <input
           checked={colorScheme === 'system'}
           name="color-scheme"
-          onChange={(e) => setColorScheme((e.target as HTMLInputElement).value)}
+          onChange={(e: ChangeEvent) => setColorScheme(e.currentTarget.value)}
           type="radio"
           value="system"
         />
