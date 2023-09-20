@@ -26,31 +26,37 @@ input[name='color-scheme'],
 }
 
 .color-scheme-choice {
+  background-color: transparent;
   border-radius: calc(1em - 2px);
   border: solid 1px transparent;
+  color: currentColor;
   cursor: pointer;
   display: inline-block;
   min-width: 42px;
   text-align: center;
   padding-block-end: 1px;
   padding-inline: 6px;
+  transition: background-color 250ms ease, color 250ms ease;
 }
 
 input[name='color-scheme']:checked ~ .color-scheme-choice {
   background-color: var(--palette-primary);
   color: var(--surface-primary);
 }
-html[data-color-scheme='light'] input[name='color-scheme']:checked ~ .color-scheme-choice {
+html[data-color-scheme='light']
+  input[name='color-scheme']:checked
+  ~ .color-scheme-choice {
   font-weight: 300;
 }
-html[data-color-scheme='dark'] input[name='color-scheme']:checked ~ .color-scheme-choice {
+html[data-color-scheme='dark']
+  input[name='color-scheme']:checked
+  ~ .color-scheme-choice {
   font-weight: 500;
 }
 
 input[name='color-scheme']:focus-visible ~ .color-scheme-choice::after {
   border-radius: 2em;
-  box-shadow: 0 0 0 2px var(--surface-primary),
-    0 0 0 4px var(--palette-primary);
+  box-shadow: 0 0 0 2px var(--surface-primary), 0 0 0 4px var(--palette-primary);
   content: '';
   inset: -1px;
   position: absolute;

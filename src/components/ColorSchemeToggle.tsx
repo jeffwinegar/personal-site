@@ -6,7 +6,8 @@ type ChangeEvent = JSX.TargetedEvent<HTMLInputElement, Event>;
 
 const usePersistedState = (name: string, defaultValue: string) => {
   const [value, setValue] = useState(() => {
-    const val = localStorage.getItem(name);
+    const val =
+      typeof localStorage !== 'undefined' ? localStorage.getItem(name) : null;
 
     return val !== null ? val : defaultValue;
   });
