@@ -7,10 +7,10 @@ export type Props = {
 };
 
 const posts = await getCollection('blog');
-const { class: className = '' } = Astro.props;
+const { class: className } = Astro.props;
 ---
 
-<ul class={className}>
+<ul class:list={className}>
   {
     posts.map((post) => {
       const { title, date } = post.data;

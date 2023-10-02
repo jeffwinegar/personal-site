@@ -76,10 +76,10 @@ const repos = Promise.all(
 
 const featuredRepos = await repos;
 
-const { class: className = '' } = Astro.props;
+const { class: className } = Astro.props;
 ---
 
-<ol class={className} role="list">
+<ol class:list={className} role="list">
   {
     featuredRepos.map((repo) => {
       const stars_count = repo.stargazers_count ?? 0;
