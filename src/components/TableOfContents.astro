@@ -11,7 +11,7 @@ const toc = generateToc(headings);
 ---
 
 <aside>
-  <nav class="table-of-contents">
+  <nav>
     <details>
       <summary>
         <h2>In This Article</h2>
@@ -24,17 +24,17 @@ const toc = generateToc(headings);
 </aside>
 
 <style>
-  .table-of-contents {
+  nav {
     margin-block: calc(1ex / 0.64);
   }
-  .table-of-contents :global(ol) {
+  nav :global(ol) {
     counter-reset: item;
     font-size: 1rem;
     line-height: normal;
     list-style: none;
     margin-block-start: calc(1ex / (0.64 + 0.32));
   }
-  .table-of-contents :global(ol li::before) {
+  nav :global(ol li::before) {
     color: var(--text-secondary);
     content: counters(item, '.') '\200A)';
     counter-increment: item;
