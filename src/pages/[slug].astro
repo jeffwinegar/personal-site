@@ -56,29 +56,64 @@ const { Content, headings } = await post.render();
 
 <style is:global>
   /* Content styles */
-  article pre {
-    --color-shiki-theme: hsl(220deg 17% 46%); /* nord */
+  pre.shiki {
+    --_code-color-meta: var(--color-gray-30);
+    --_code-highlight-background: #3b4252; /* https://www.nordtheme.com/docs/colors-and-palettes */
+    --_code-line-height: calc(1ex / 0.32);
 
     border-radius: 0.25rem;
-    grid-column: 1 / span 3;
+    display: grid;
+    grid-column: 1 / -1;
+    grid-template-columns: auto 1fr;
     margin-block: calc(1ex / 0.64);
-    padding-block: 0.75rem 0.875rem;
+    overflow: hidden;
   }
 
   code {
     font-size: 0.7777777778em;
   }
-  :not(pre) > code {
+
+  pre.shiki code {
+    display: block;
+    line-height: var(--_code-line-height);
+  }
+
+  :not(.code-container) > code {
     background-color: var(--surface-secondary);
     border-radius: 0.125rem;
     border: solid 1px var(--border-minimal);
     line-height: 1;
     padding: 0.25rem 0.3125rem;
   }
-  pre > code {
-    line-height: 1.2;
+
+  .code-container {
+    display: inline-flex;
+    grid-area: 2 / 1 / auto / -1;
+    overflow-x: auto;
+    padding-block: 0.75rem 0.875rem;
   }
+
+  .code-title,
+  .language-id {
+    border-block-end: solid 1px var(--_code-highlight-background);
+    color: var(--_code-color-meta);
+    font-size: 0.7222222222em;
+    grid-row: 1;
+    inset-inline-start: 0;
+    padding-block: 0.375ch;
+  }
+  .code-title {
+    background-color: var(--_code-highlight-background);
+    padding-inline: 1ch 1.75ch;
+  }
+  .language-id {
+    grid-column: 2;
+    padding-inline: 1ch;
+    text-align: right;
+  }
+
   code .line {
+    min-block-size: var(--_code-line-height);
     padding-inline: 1rem;
   }
 
