@@ -1,7 +1,8 @@
-import { defineConfig } from 'astro/config';
-import sitemap from '@astrojs/sitemap';
-import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
 import preact from '@astrojs/preact';
+import sitemap from '@astrojs/sitemap';
+import { defineConfig } from 'astro/config';
+import { rehypeAccessibleEmojis } from 'rehype-accessible-emojis';
+import shikiTwoslash from 'remark-shiki-twoslash';
 
 // https://astro.build/config
 export default defineConfig({
@@ -14,8 +15,7 @@ export default defineConfig({
   ],
   markdown: {
     rehypePlugins: [rehypeAccessibleEmojis],
-    shikiConfig: {
-      theme: 'nord',
-    },
+    remarkPlugins: [[shikiTwoslash.default, { theme: 'nord' }]],
+    syntaxHighlight: false,
   },
 });

@@ -254,7 +254,7 @@ ignored/
 
 Let's go back to our `.gitconfig` file and add our `.gitignore_global` file to our configuration. Additionally you can add more configurations including aliases _(make sure to change **username** to your user name)_.
 
-```diff title="~/.gitconfig" {3,4}
+```diff title="~/.gitconfig"
   [user]
     name = Firstname Lastname
     email = you@example.com
@@ -325,7 +325,9 @@ nvm install-latest-npm
 My text editor of choice is [Visual Studio Code](https://code.visualstudio.com/). Check out my [uses page](/uses) to see what theme and font I am currently using. I use VS Code's integrated terminal 99% of the time so I don't use a terminal emulator. If you are using a Nerd Font in your Zsh theme make sure you add it to your font family in the settings after your main font choice so your theme works properly in the integrated terminal. Mine looks like this:
 
 ```json
-"editor.fontFamily": "FiraCode-Retina, 'MesloLGS NF', Menlo, Monaco, 'Courier New', monospace"
+{
+  "editor.fontFamily": "FiraCode-Retina, 'MesloLGS NF', Menlo, Monaco, 'Courier New', monospace"
+}
 ```
 
 ### Project Directory Structure
